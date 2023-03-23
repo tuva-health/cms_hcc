@@ -1,0 +1,603 @@
+model_version,factor_type,enrollment_status,medicaid_status,dual_status,orec,institutional_status,variable,description,coefficient
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC1,HIV/AIDS,0.335
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC1,HIV/AIDS,0.287
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC1,HIV/AIDS,0.595
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC1,HIV/AIDS,0.396
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC1,HIV/AIDS,0.482
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC1,HIV/AIDS,0.2
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC1,HIV/AIDS,1.722
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.352
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.414
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.453
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.53
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.316
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.297
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.324
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC6,Opportunistic Infections,0.424
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC6,Opportunistic Infections,0.74
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC6,Opportunistic Infections,0.572
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC6,Opportunistic Infections,0.803
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC6,Opportunistic Infections,0.318
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC6,Opportunistic Infections,0.658
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC6,Opportunistic Infections,0.534
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC8,Metastatic Cancer and Acute Leukemia,2.659
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC8,Metastatic Cancer and Acute Leukemia,2.714
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC8,Metastatic Cancer and Acute Leukemia,2.566
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC8,Metastatic Cancer and Acute Leukemia,2.801
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC8,Metastatic Cancer and Acute Leukemia,2.455
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC8,Metastatic Cancer and Acute Leukemia,2.659
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC8,Metastatic Cancer and Acute Leukemia,1.303
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC9,Lung and Other Severe Cancers,1.024
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC9,Lung and Other Severe Cancers,0.91
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC9,Lung and Other Severe Cancers,1.01
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC9,Lung and Other Severe Cancers,1.001
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC9,Lung and Other Severe Cancers,1.001
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC9,Lung and Other Severe Cancers,0.88
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC9,Lung and Other Severe Cancers,0.623
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC10,Lymphoma and Other Cancers,0.675
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC10,Lymphoma and Other Cancers,0.663
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC10,Lymphoma and Other Cancers,0.717
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC10,Lymphoma and Other Cancers,0.756
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC10,Lymphoma and Other Cancers,0.648
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC10,Lymphoma and Other Cancers,0.667
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC10,Lymphoma and Other Cancers,0.461
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC11,"Colorectal, Bladder, and Other Cancers",0.307
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC11,"Colorectal, Bladder, and Other Cancers",0.345
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC11,"Colorectal, Bladder, and Other Cancers",0.317
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC11,"Colorectal, Bladder, and Other Cancers",0.355
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC11,"Colorectal, Bladder, and Other Cancers",0.33
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC11,"Colorectal, Bladder, and Other Cancers",0.351
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC11,"Colorectal, Bladder, and Other Cancers",0.294
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC12,"Breast, Prostate, and Other Cancers and Tumors",0.15
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC12,"Breast, Prostate, and Other Cancers and Tumors",0.212
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC12,"Breast, Prostate, and Other Cancers and Tumors",0.158
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC12,"Breast, Prostate, and Other Cancers and Tumors",0.212
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC12,"Breast, Prostate, and Other Cancers and Tumors",0.154
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC12,"Breast, Prostate, and Other Cancers and Tumors",0.181
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC12,"Breast, Prostate, and Other Cancers and Tumors",0.21
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC17,Diabetes with Acute Complications,0.302
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC17,Diabetes with Acute Complications,0.351
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC17,Diabetes with Acute Complications,0.34
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC17,Diabetes with Acute Complications,0.423
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC17,Diabetes with Acute Complications,0.326
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC17,Diabetes with Acute Complications,0.373
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC17,Diabetes with Acute Complications,0.44
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC18,Diabetes with Chronic Complications,0.302
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC18,Diabetes with Chronic Complications,0.351
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC18,Diabetes with Chronic Complications,0.34
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC18,Diabetes with Chronic Complications,0.423
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC18,Diabetes with Chronic Complications,0.326
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC18,Diabetes with Chronic Complications,0.373
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC18,Diabetes with Chronic Complications,0.44
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC19,Diabetes without Complication,0.105
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC19,Diabetes without Complication,0.124
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC19,Diabetes without Complication,0.107
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC19,Diabetes without Complication,0.145
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC19,Diabetes without Complication,0.087
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC19,Diabetes without Complication,0.122
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC19,Diabetes without Complication,0.178
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC21,Protein-Calorie Malnutrition,0.455
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC21,Protein-Calorie Malnutrition,0.674
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC21,Protein-Calorie Malnutrition,0.693
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC21,Protein-Calorie Malnutrition,0.723
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC21,Protein-Calorie Malnutrition,0.457
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC21,Protein-Calorie Malnutrition,0.679
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC21,Protein-Calorie Malnutrition,0.267
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC22,Morbid Obesity,0.25
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC22,Morbid Obesity,0.183
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC22,Morbid Obesity,0.383
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC22,Morbid Obesity,0.297
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC22,Morbid Obesity,0.233
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC22,Morbid Obesity,0.204
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC22,Morbid Obesity,0.455
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC23,Other Significant Endocrine and Metabolic Disorders,0.194
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC23,Other Significant Endocrine and Metabolic Disorders,0.378
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC23,Other Significant Endocrine and Metabolic Disorders,0.211
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC23,Other Significant Endocrine and Metabolic Disorders,0.299
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC23,Other Significant Endocrine and Metabolic Disorders,0.174
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC23,Other Significant Endocrine and Metabolic Disorders,0.319
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC23,Other Significant Endocrine and Metabolic Disorders,0.379
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC27,End-Stage Liver Disease,0.882
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC27,End-Stage Liver Disease,1.065
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC27,End-Stage Liver Disease,1.111
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC27,End-Stage Liver Disease,1.101
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC27,End-Stage Liver Disease,0.729
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC27,End-Stage Liver Disease,0.887
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC27,End-Stage Liver Disease,0.874
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC28,Cirrhosis of Liver,0.363
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC28,Cirrhosis of Liver,0.334
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC28,Cirrhosis of Liver,0.411
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC28,Cirrhosis of Liver,0.365
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC28,Cirrhosis of Liver,0.403
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC28,Cirrhosis of Liver,0.341
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC28,Cirrhosis of Liver,0.485
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC29,Chronic Hepatitis,0.147
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC29,Chronic Hepatitis,0.314
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC29,Chronic Hepatitis,0.042
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC29,Chronic Hepatitis,0.292
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC29,Chronic Hepatitis,0.181
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC29,Chronic Hepatitis,0.238
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC29,Chronic Hepatitis,0.485
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC33,Intestinal Obstruction/Perforation,0.219
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC33,Intestinal Obstruction/Perforation,0.503
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC33,Intestinal Obstruction/Perforation,0.258
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC33,Intestinal Obstruction/Perforation,0.538
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC33,Intestinal Obstruction/Perforation,0.232
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC33,Intestinal Obstruction/Perforation,0.552
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC33,Intestinal Obstruction/Perforation,0.352
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC34,Chronic Pancreatitis,0.287
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC34,Chronic Pancreatitis,0.58
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC34,Chronic Pancreatitis,0.349
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC34,Chronic Pancreatitis,0.762
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC34,Chronic Pancreatitis,0.371
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC34,Chronic Pancreatitis,0.597
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC34,Chronic Pancreatitis,0.422
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC35,Inflammatory Bowel Disease,0.308
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC35,Inflammatory Bowel Disease,0.523
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC35,Inflammatory Bowel Disease,0.275
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC35,Inflammatory Bowel Disease,0.551
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC35,Inflammatory Bowel Disease,0.275
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC35,Inflammatory Bowel Disease,0.543
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC35,Inflammatory Bowel Disease,0.355
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC39,Bone/Joint/Muscle Infections/Necrosis,0.401
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC39,Bone/Joint/Muscle Infections/Necrosis,0.378
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC39,Bone/Joint/Muscle Infections/Necrosis,0.558
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC39,Bone/Joint/Muscle Infections/Necrosis,0.682
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC39,Bone/Joint/Muscle Infections/Necrosis,0.443
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC39,Bone/Joint/Muscle Infections/Necrosis,0.435
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC39,Bone/Joint/Muscle Infections/Necrosis,0.401
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.421
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.367
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.371
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.328
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.347
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.264
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.292
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC46,Severe Hematological Disorders,1.372
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC46,Severe Hematological Disorders,3.566
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC46,Severe Hematological Disorders,1.214
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC46,Severe Hematological Disorders,4.309
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC46,Severe Hematological Disorders,1.234
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC46,Severe Hematological Disorders,4.138
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC46,Severe Hematological Disorders,0.799
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC47,Disorders of Immunity,0.665
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC47,Disorders of Immunity,0.86
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC47,Disorders of Immunity,0.452
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC47,Disorders of Immunity,0.691
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC47,Disorders of Immunity,0.674
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC47,Disorders of Immunity,0.594
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC47,Disorders of Immunity,0.576
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC48,Coagulation Defects and Other Specified Hematological Disorders,0.192
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC48,Coagulation Defects and Other Specified Hematological Disorders,0.312
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC48,Coagulation Defects and Other Specified Hematological Disorders,0.221
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC48,Coagulation Defects and Other Specified Hematological Disorders,0.298
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC48,Coagulation Defects and Other Specified Hematological Disorders,0.186
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC48,Coagulation Defects and Other Specified Hematological Disorders,0.33
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC48,Coagulation Defects and Other Specified Hematological Disorders,0.19
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC51,Dementia With Complications,0.346
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC51,Dementia With Complications,0.224
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC51,Dementia With Complications,0.453
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC51,Dementia With Complications,0.256
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC51,Dementia With Complications,0.42
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC51,Dementia With Complications,0.257
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC51,Dementia With Complications,0
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC52,Dementia Without Complication,0.346
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC52,Dementia Without Complication,0.224
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC52,Dementia Without Complication,0.453
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC52,Dementia Without Complication,0.256
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC52,Dementia Without Complication,0.42
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC52,Dementia Without Complication,0.257
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC52,Dementia Without Complication,0
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC54,Substance Use with Psychotic Complications,0.329
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC54,Substance Use with Psychotic Complications,0.543
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC54,Substance Use with Psychotic Complications,0.538
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC54,Substance Use with Psychotic Complications,0.896
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC54,Substance Use with Psychotic Complications,0.372
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC54,Substance Use with Psychotic Complications,0.679
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC54,Substance Use with Psychotic Complications,0.178
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.329
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.279
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.538
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.356
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.372
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.275
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.178
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.329
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.247
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.538
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.348
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.372
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.275
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.178
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC57,Schizophrenia,0.524
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC57,Schizophrenia,0.352
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC57,Schizophrenia,0.57
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC57,Schizophrenia,0.381
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC57,Schizophrenia,0.495
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC57,Schizophrenia,0.309
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC57,Schizophrenia,0.187
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC58,Reactive and Unspecified Psychosis,0.393
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC58,Reactive and Unspecified Psychosis,0.352
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC58,Reactive and Unspecified Psychosis,0.57
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC58,Reactive and Unspecified Psychosis,0.231
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC58,Reactive and Unspecified Psychosis,0.449
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC58,Reactive and Unspecified Psychosis,0.239
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC58,Reactive and Unspecified Psychosis,0.187
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC59,"Major Depressive, Bipolar, and Paranoid Disorders",0.309
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC59,"Major Depressive, Bipolar, and Paranoid Disorders",0.164
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC59,"Major Depressive, Bipolar, and Paranoid Disorders",0.299
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC59,"Major Depressive, Bipolar, and Paranoid Disorders",0.127
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC59,"Major Depressive, Bipolar, and Paranoid Disorders",0.306
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC59,"Major Depressive, Bipolar, and Paranoid Disorders",0.109
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC59,"Major Depressive, Bipolar, and Paranoid Disorders",0.187
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC60,Personality Disorders,0.309
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC60,Personality Disorders,0.108
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC60,Personality Disorders,0.299
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC60,Personality Disorders,0.1
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC60,Personality Disorders,0.255
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC60,Personality Disorders,0.065
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC60,Personality Disorders,0
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC70,Quadriplegia,1.242
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC70,Quadriplegia,1.001
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC70,Quadriplegia,1.038
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC70,Quadriplegia,1
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC70,Quadriplegia,1
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC70,Quadriplegia,1.134
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC70,Quadriplegia,0.549
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC71,Paraplegia,1.068
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC71,Paraplegia,0.739
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC71,Paraplegia,0.921
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC71,Paraplegia,0.957
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC71,Paraplegia,1
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC71,Paraplegia,0.933
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC71,Paraplegia,0.492
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC72,Spinal Cord Disorders/Injuries,0.481
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC72,Spinal Cord Disorders/Injuries,0.369
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC72,Spinal Cord Disorders/Injuries,0.532
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC72,Spinal Cord Disorders/Injuries,0.377
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC72,Spinal Cord Disorders/Injuries,0.512
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC72,Spinal Cord Disorders/Injuries,0.336
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC72,Spinal Cord Disorders/Injuries,0.289
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,0.999
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,1.132
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,1.101
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,1.245
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,0.687
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,0.933
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,0.476
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC74,Cerebral Palsy,0.339
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC74,Cerebral Palsy,0.098
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC74,Cerebral Palsy,0
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC74,Cerebral Palsy,0
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC74,Cerebral Palsy,0.114
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC74,Cerebral Palsy,0
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC74,Cerebral Palsy,0
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC75,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,0.472
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC75,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,0.481
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC75,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,0.407
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC75,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,0.404
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC75,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,0.287
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC75,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,0.314
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC75,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,0.332
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC76,Muscular Dystrophy,0.518
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC76,Muscular Dystrophy,0.621
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC76,Muscular Dystrophy,0.413
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC76,Muscular Dystrophy,0.597
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC76,Muscular Dystrophy,0
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC76,Muscular Dystrophy,0.286
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC76,Muscular Dystrophy,0.356
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC77,Multiple Sclerosis,0.423
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC77,Multiple Sclerosis,0.566
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC77,Multiple Sclerosis,0.742
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC77,Multiple Sclerosis,0.789
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC77,Multiple Sclerosis,0.276
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC77,Multiple Sclerosis,0.46
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC77,Multiple Sclerosis,0
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC78,Parkinson's and Huntington's Diseases,0.606
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC78,Parkinson's and Huntington's Diseases,0.501
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC78,Parkinson's and Huntington's Diseases,0.601
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC78,Parkinson's and Huntington's Diseases,0.443
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC78,Parkinson's and Huntington's Diseases,0.536
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC78,Parkinson's and Huntington's Diseases,0.43
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC78,Parkinson's and Huntington's Diseases,0.159
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC79,Seizure Disorders and Convulsions,0.22
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC79,Seizure Disorders and Convulsions,0.196
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC79,Seizure Disorders and Convulsions,0.237
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC79,Seizure Disorders and Convulsions,0.139
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC79,Seizure Disorders and Convulsions,0.257
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC79,Seizure Disorders and Convulsions,0.169
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC79,Seizure Disorders and Convulsions,0.065
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC80,"Coma, Brain Compression/Anoxic Damage",0.486
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC80,"Coma, Brain Compression/Anoxic Damage",0.274
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC80,"Coma, Brain Compression/Anoxic Damage",0.511
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC80,"Coma, Brain Compression/Anoxic Damage",0.105
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC80,"Coma, Brain Compression/Anoxic Damage",0.729
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC80,"Coma, Brain Compression/Anoxic Damage",0.134
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC80,"Coma, Brain Compression/Anoxic Damage",0
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC82,Respirator Dependence/Tracheostomy Status,1
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC82,Respirator Dependence/Tracheostomy Status,0.781
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC82,Respirator Dependence/Tracheostomy Status,2.183
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC82,Respirator Dependence/Tracheostomy Status,1.465
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC82,Respirator Dependence/Tracheostomy Status,0.836
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC82,Respirator Dependence/Tracheostomy Status,0.769
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC82,Respirator Dependence/Tracheostomy Status,1.622
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC83,Respiratory Arrest,0.354
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC83,Respiratory Arrest,0.4
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC83,Respiratory Arrest,0.902
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC83,Respiratory Arrest,0.531
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC83,Respiratory Arrest,0.361
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC83,Respiratory Arrest,0.769
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC83,Respiratory Arrest,0.511
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC84,Cardio-Respiratory Failure and Shock,0.282
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC84,Cardio-Respiratory Failure and Shock,0.385
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC84,Cardio-Respiratory Failure and Shock,0.492
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC84,Cardio-Respiratory Failure and Shock,0.531
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC84,Cardio-Respiratory Failure and Shock,0.361
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC84,Cardio-Respiratory Failure and Shock,0.343
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC84,Cardio-Respiratory Failure and Shock,0.313
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC85,Congestive Heart Failure,0.331
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC85,Congestive Heart Failure,0.447
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC85,Congestive Heart Failure,0.371
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC85,Congestive Heart Failure,0.486
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC85,Congestive Heart Failure,0.336
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC85,Congestive Heart Failure,0.422
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC85,Congestive Heart Failure,0.203
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC86,Acute Myocardial Infarction,0.195
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC86,Acute Myocardial Infarction,0.264
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC86,Acute Myocardial Infarction,0.377
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC86,Acute Myocardial Infarction,0.425
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC86,Acute Myocardial Infarction,0.293
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC86,Acute Myocardial Infarction,0.379
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC86,Acute Myocardial Infarction,0.366
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC87,Unstable Angina and Other Acute Ischemic Heart Disease,0.195
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC87,Unstable Angina and Other Acute Ischemic Heart Disease,0.264
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC87,Unstable Angina and Other Acute Ischemic Heart Disease,0.302
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC87,Unstable Angina and Other Acute Ischemic Heart Disease,0.425
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC87,Unstable Angina and Other Acute Ischemic Heart Disease,0.276
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC87,Unstable Angina and Other Acute Ischemic Heart Disease,0.379
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC87,Unstable Angina and Other Acute Ischemic Heart Disease,0.366
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC88,Angina Pectoris,0.135
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC88,Angina Pectoris,0.111
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC88,Angina Pectoris,0.034
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC88,Angina Pectoris,0.152
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC88,Angina Pectoris,0.149
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC88,Angina Pectoris,0.149
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC88,Angina Pectoris,0.366
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC96,Specified Heart Arrhythmias,0.268
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC96,Specified Heart Arrhythmias,0.262
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC96,Specified Heart Arrhythmias,0.384
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC96,Specified Heart Arrhythmias,0.308
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC96,Specified Heart Arrhythmias,0.264
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC96,Specified Heart Arrhythmias,0.281
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC96,Specified Heart Arrhythmias,0.252
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC99,Intracranial Hemorrhage,0.23
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC99,Intracranial Hemorrhage,0.17
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC99,Intracranial Hemorrhage,0.38
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC99,Intracranial Hemorrhage,0.486
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC99,Intracranial Hemorrhage,0.23
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC99,Intracranial Hemorrhage,0.163
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC99,Intracranial Hemorrhage,0.111
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC100,Ischemic or Unspecified Stroke,0.23
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC100,Ischemic or Unspecified Stroke,0.146
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC100,Ischemic or Unspecified Stroke,0.38
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC100,Ischemic or Unspecified Stroke,0.324
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC100,Ischemic or Unspecified Stroke,0.23
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC100,Ischemic or Unspecified Stroke,0.163
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC100,Ischemic or Unspecified Stroke,0.111
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC103,Hemiplegia/Hemiparesis,0.437
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC103,Hemiplegia/Hemiparesis,0.281
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC103,Hemiplegia/Hemiparesis,0.487
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC103,Hemiplegia/Hemiparesis,0.296
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC103,Hemiplegia/Hemiparesis,0.438
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC103,Hemiplegia/Hemiparesis,0.31
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC103,Hemiplegia/Hemiparesis,0
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC104,"Monoplegia, Other Paralytic Syndromes",0.331
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC104,"Monoplegia, Other Paralytic Syndromes",0.27
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC104,"Monoplegia, Other Paralytic Syndromes",0.345
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC104,"Monoplegia, Other Paralytic Syndromes",0.258
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC104,"Monoplegia, Other Paralytic Syndromes",0.3
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC104,"Monoplegia, Other Paralytic Syndromes",0.164
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC104,"Monoplegia, Other Paralytic Syndromes",0
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC106,Atherosclerosis of the Extremities with Ulceration or Gangrene,1.488
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC106,Atherosclerosis of the Extremities with Ulceration or Gangrene,1.521
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC106,Atherosclerosis of the Extremities with Ulceration or Gangrene,1.724
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC106,Atherosclerosis of the Extremities with Ulceration or Gangrene,1.748
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC106,Atherosclerosis of the Extremities with Ulceration or Gangrene,1.504
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC106,Atherosclerosis of the Extremities with Ulceration or Gangrene,1.525
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC106,Atherosclerosis of the Extremities with Ulceration or Gangrene,0.867
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,No,HCC107,Vascular Disease with Complications,0.383
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,No,HCC107,Vascular Disease with Complications,0.464
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,No,HCC107,Vascular Disease with Complications,0.565
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,No,HCC107,Vascular Disease with Complications,0.653
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,No,HCC107,Vascular Disease with Complications,0.463
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,No,HCC107,Vascular Disease with Complications,0.45
+CMS-HCC-2020,Disease,Continuing,Institutional,,,Yes,HCC107,Vascular Disease with Complications,0.299
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC108,Vascular Disease,0.288
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC108,Vascular Disease,0.301
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC108,Vascular Disease,0.294
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC108,Vascular Disease,0.267
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC108,Vascular Disease,0.297
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC108,Vascular Disease,0.314
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC108,Vascular Disease,0.093
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC110,Cystic Fibrosis,0.51
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC110,Cystic Fibrosis,2.676
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC110,Cystic Fibrosis,0.509
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC110,Cystic Fibrosis,3.516
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC110,Cystic Fibrosis,0.392
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC110,Cystic Fibrosis,3.051
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC110,Cystic Fibrosis,0.593
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC111,Chronic Obstructive Pulmonary Disease,0.335
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC111,Chronic Obstructive Pulmonary Disease,0.246
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC111,Chronic Obstructive Pulmonary Disease,0.43
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC111,Chronic Obstructive Pulmonary Disease,0.331
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC111,Chronic Obstructive Pulmonary Disease,0.358
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC111,Chronic Obstructive Pulmonary Disease,0.267
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC111,Chronic Obstructive Pulmonary Disease,0.311
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC112,Fibrosis of Lung and Other Chronic Lung Disorders,0.219
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC112,Fibrosis of Lung and Other Chronic Lung Disorders,0.237
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC112,Fibrosis of Lung and Other Chronic Lung Disorders,0.161
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC112,Fibrosis of Lung and Other Chronic Lung Disorders,0.275
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC112,Fibrosis of Lung and Other Chronic Lung Disorders,0.2
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC112,Fibrosis of Lung and Other Chronic Lung Disorders,0.229
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC112,Fibrosis of Lung and Other Chronic Lung Disorders,0.11
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC114,Aspiration and Specified Bacterial Pneumonias,0.517
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC114,Aspiration and Specified Bacterial Pneumonias,0.236
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC114,Aspiration and Specified Bacterial Pneumonias,0.641
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC114,Aspiration and Specified Bacterial Pneumonias,0.375
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC114,Aspiration and Specified Bacterial Pneumonias,0.514
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC114,Aspiration and Specified Bacterial Pneumonias,0.198
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC114,Aspiration and Specified Bacterial Pneumonias,0.156
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC115,"Pneumococcal Pneumonia, Empyema, Lung Abscess",0.13
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC115,"Pneumococcal Pneumonia, Empyema, Lung Abscess",0
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC115,"Pneumococcal Pneumonia, Empyema, Lung Abscess",0.258
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC115,"Pneumococcal Pneumonia, Empyema, Lung Abscess",0
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC115,"Pneumococcal Pneumonia, Empyema, Lung Abscess",0.093
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC115,"Pneumococcal Pneumonia, Empyema, Lung Abscess",0.082
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC115,"Pneumococcal Pneumonia, Empyema, Lung Abscess",0.156
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC122,Proliferative Diabetic Retinopathy and Vitreous Hemorrhage,0.222
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC122,Proliferative Diabetic Retinopathy and Vitreous Hemorrhage,0.231
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC122,Proliferative Diabetic Retinopathy and Vitreous Hemorrhage,0.271
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC122,Proliferative Diabetic Retinopathy and Vitreous Hemorrhage,0.269
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC122,Proliferative Diabetic Retinopathy and Vitreous Hemorrhage,0.182
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC122,Proliferative Diabetic Retinopathy and Vitreous Hemorrhage,0.201
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC122,Proliferative Diabetic Retinopathy and Vitreous Hemorrhage,0.394
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC124,Exudative Macular Degeneration,0.521
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC124,Exudative Macular Degeneration,0.314
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC124,Exudative Macular Degeneration,0.298
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC124,Exudative Macular Degeneration,0.145
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC124,Exudative Macular Degeneration,0.393
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC124,Exudative Macular Degeneration,0.158
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC124,Exudative Macular Degeneration,0.217
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC134,Dialysis Status,0.435
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC134,Dialysis Status,0.406
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC134,Dialysis Status,0.683
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC134,Dialysis Status,0.594
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC134,Dialysis Status,0.446
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC134,Dialysis Status,0.48
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC134,Dialysis Status,0.468
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC135,Acute Renal Failure,0.435
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC135,Acute Renal Failure,0.406
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC135,Acute Renal Failure,0.683
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC135,Acute Renal Failure,0.594
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC135,Acute Renal Failure,0.446
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC135,Acute Renal Failure,0.48
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC135,Acute Renal Failure,0.468
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC136,"Chronic Kidney Disease, Stage 5",0.289
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC136,"Chronic Kidney Disease, Stage 5",0.231
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC136,"Chronic Kidney Disease, Stage 5",0.26
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC136,"Chronic Kidney Disease, Stage 5",0.323
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC136,"Chronic Kidney Disease, Stage 5",0.28
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC136,"Chronic Kidney Disease, Stage 5",0.261
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC136,"Chronic Kidney Disease, Stage 5",0.245
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC137,"Chronic Kidney Disease, Severe (Stage 4)",0.289
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC137,"Chronic Kidney Disease, Severe (Stage 4)",0.105
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC137,"Chronic Kidney Disease, Severe (Stage 4)",0.26
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC137,"Chronic Kidney Disease, Severe (Stage 4)",0.138
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC137,"Chronic Kidney Disease, Severe (Stage 4)",0.28
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC137,"Chronic Kidney Disease, Severe (Stage 4)",0.039
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC137,"Chronic Kidney Disease, Severe (Stage 4)",0.201
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC138,"Chronic Kidney Disease, Moderate (Stage 3)",0.069
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC138,"Chronic Kidney Disease, Moderate (Stage 3)",0.021
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC138,"Chronic Kidney Disease, Moderate (Stage 3)",0.017
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC138,"Chronic Kidney Disease, Moderate (Stage 3)",0
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC138,"Chronic Kidney Disease, Moderate (Stage 3)",0.043
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC138,"Chronic Kidney Disease, Moderate (Stage 3)",0
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC138,"Chronic Kidney Disease, Moderate (Stage 3)",0.092
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC157,"Pressure Ulcer of Skin with Necrosis Through to Muscle, Tendon, or Bone",2.028
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC157,"Pressure Ulcer of Skin with Necrosis Through to Muscle, Tendon, or Bone",2.097
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC157,"Pressure Ulcer of Skin with Necrosis Through to Muscle, Tendon, or Bone",2.463
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC157,"Pressure Ulcer of Skin with Necrosis Through to Muscle, Tendon, or Bone",2.582
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC157,"Pressure Ulcer of Skin with Necrosis Through to Muscle, Tendon, or Bone",2.028
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC157,"Pressure Ulcer of Skin with Necrosis Through to Muscle, Tendon, or Bone",2.512
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC157,"Pressure Ulcer of Skin with Necrosis Through to Muscle, Tendon, or Bone",0.854
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC158,Pressure Ulcer of Skin with Full Thickness Skin Loss,1.069
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC158,Pressure Ulcer of Skin with Full Thickness Skin Loss,1.212
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC158,Pressure Ulcer of Skin with Full Thickness Skin Loss,1.471
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC158,Pressure Ulcer of Skin with Full Thickness Skin Loss,1.38
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC158,Pressure Ulcer of Skin with Full Thickness Skin Loss,1.162
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC158,Pressure Ulcer of Skin with Full Thickness Skin Loss,0.925
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC158,Pressure Ulcer of Skin with Full Thickness Skin Loss,0.322
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC159,Pressure Ulcer of Skin with Partial Thickness Skin Loss,0.656
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC159,Pressure Ulcer of Skin with Partial Thickness Skin Loss,0.628
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC159,Pressure Ulcer of Skin with Partial Thickness Skin Loss,0.863
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC159,Pressure Ulcer of Skin with Partial Thickness Skin Loss,0.467
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC159,Pressure Ulcer of Skin with Partial Thickness Skin Loss,0.649
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC159,Pressure Ulcer of Skin with Partial Thickness Skin Loss,0.824
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC159,Pressure Ulcer of Skin with Partial Thickness Skin Loss,0.322
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC161,"Chronic Ulcer of Skin, Except Pressure",0.515
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC161,"Chronic Ulcer of Skin, Except Pressure",0.592
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC161,"Chronic Ulcer of Skin, Except Pressure",0.727
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC161,"Chronic Ulcer of Skin, Except Pressure",0.583
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC161,"Chronic Ulcer of Skin, Except Pressure",0.541
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC161,"Chronic Ulcer of Skin, Except Pressure",0.542
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC161,"Chronic Ulcer of Skin, Except Pressure",0.294
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC162,Severe Skin Burn or Condition,0.224
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC162,Severe Skin Burn or Condition,0.506
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC162,Severe Skin Burn or Condition,0.162
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC162,Severe Skin Burn or Condition,0.308
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC162,Severe Skin Burn or Condition,0
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC162,Severe Skin Burn or Condition,0.324
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC162,Severe Skin Burn or Condition,0
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC166,Severe Head Injury,0.486
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC166,Severe Head Injury,0.274
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC166,Severe Head Injury,0.511
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC166,Severe Head Injury,0.105
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC166,Severe Head Injury,0.729
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC166,Severe Head Injury,0.134
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC166,Severe Head Injury,0
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC167,Major Head Injury,0.077
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC167,Major Head Injury,0
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC167,Major Head Injury,0.144
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC167,Major Head Injury,0.025
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC167,Major Head Injury,0.034
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC167,Major Head Injury,0.019
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC167,Major Head Injury,0
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC169,Vertebral Fractures without Spinal Cord Injury,0.476
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC169,Vertebral Fractures without Spinal Cord Injury,0.369
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC169,Vertebral Fractures without Spinal Cord Injury,0.532
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC169,Vertebral Fractures without Spinal Cord Injury,0.377
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC169,Vertebral Fractures without Spinal Cord Injury,0.512
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC169,Vertebral Fractures without Spinal Cord Injury,0.336
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC169,Vertebral Fractures without Spinal Cord Injury,0.25
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC170,Hip Fracture/Dislocation,0.35
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC170,Hip Fracture/Dislocation,0.394
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC170,Hip Fracture/Dislocation,0.409
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC170,Hip Fracture/Dislocation,0.469
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC170,Hip Fracture/Dislocation,0.354
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC170,Hip Fracture/Dislocation,0.333
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC170,Hip Fracture/Dislocation,0
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC173,Traumatic Amputations and Complications,0.208
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC173,Traumatic Amputations and Complications,0.172
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC173,Traumatic Amputations and Complications,0.221
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC173,Traumatic Amputations and Complications,0.525
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC173,Traumatic Amputations and Complications,0.176
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC173,Traumatic Amputations and Complications,0.18
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC173,Traumatic Amputations and Complications,0.092
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC176,Complications of Specified Implanted Device or Graft,0.582
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC176,Complications of Specified Implanted Device or Graft,0.911
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC176,Complications of Specified Implanted Device or Graft,0.68
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC176,Complications of Specified Implanted Device or Graft,0.982
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC176,Complications of Specified Implanted Device or Graft,0.52
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC176,Complications of Specified Implanted Device or Graft,0.832
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC176,Complications of Specified Implanted Device or Graft,0.469
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC186,Major Organ Transplant or Replacement Status,0.832
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC186,Major Organ Transplant or Replacement Status,0.445
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC186,Major Organ Transplant or Replacement Status,0.728
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC186,Major Organ Transplant or Replacement Status,0.865
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC186,Major Organ Transplant or Replacement Status,0.438
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC186,Major Organ Transplant or Replacement Status,0.613
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC186,Major Organ Transplant or Replacement Status,1.046
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC188,Artificial Openings for Feeding or Elimination,0.534
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC188,Artificial Openings for Feeding or Elimination,0.755
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC188,Artificial Openings for Feeding or Elimination,0.742
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC188,Artificial Openings for Feeding or Elimination,0.77
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC188,Artificial Openings for Feeding or Elimination,0.52
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC188,Artificial Openings for Feeding or Elimination,0.732
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC188,Artificial Openings for Feeding or Elimination,0.514
+CMS-HCC-2020,Disease,Continuing,No,Non,Aged,,HCC189,"Amputation Status, Lower Limb/Amputation Complications",0.519
+CMS-HCC-2020,Disease,Continuing,No,Non,Disabled,,HCC189,"Amputation Status, Lower Limb/Amputation Complications",0.437
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Aged,,HCC189,"Amputation Status, Lower Limb/Amputation Complications",0.795
+CMS-HCC-2020,Disease,Continuing,Yes,Full,Disabled,,HCC189,"Amputation Status, Lower Limb/Amputation Complications",0.934
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Aged,,HCC189,"Amputation Status, Lower Limb/Amputation Complications",0.697
+CMS-HCC-2020,Disease,Continuing,Yes,Partial,Disabled,,HCC189,"Amputation Status, Lower Limb/Amputation Complications",0.626
+CMS-HCC-2020,Disease,Continuing,Institutional,,,,HCC189,"Amputation Status, Lower Limb/Amputation Complications",0.357

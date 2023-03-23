@@ -1,0 +1,71 @@
+model_version,factor_type,enrollment_status,plan_segment,gender,age_group,medicaid_status,dual_status,orec,institutional_status,variable,label,coefficient
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Aged,No,D1,1 payment HCC,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Disabled,No,D1,1 payment HCC,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Aged,No,D1,1 payment HCC,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Disabled,No,D1,1 payment HCC,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Aged,No,D1,1 payment HCC,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Disabled,No,D1,1 payment HCC,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,,,,Yes,D1,1 payment HCC,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Aged,No,D2,2 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Disabled,No,D2,2 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Aged,No,D2,2 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Disabled,No,D2,2 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Aged,No,D2,2 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Disabled,No,D2,2 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,,,,Yes,D2,2 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Aged,No,D3,3 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Disabled,No,D3,3 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Aged,No,D3,3 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Disabled,No,D3,3 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Aged,No,D3,3 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Disabled,No,D3,3 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,,,,Yes,D3,3 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Aged,No,D4,4 payment HCCs,0.006
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Disabled,No,D4,4 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Aged,No,D4,4 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Disabled,No,D4,4 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Aged,No,D4,4 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Disabled,No,D4,4 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,,,,Yes,D4,4 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Aged,No,D5,5 payment HCCs,0.042
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Disabled,No,D5,5 payment HCCs,0.043
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Aged,No,D5,5 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Disabled,No,D5,5 payment HCCs,0.055
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Aged,No,D5,5 payment HCCs,0.037
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Disabled,No,D5,5 payment HCCs,0.083
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,,,,Yes,D5,5 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Aged,No,D6,6 payment HCCs,0.077
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Disabled,No,D6,6 payment HCCs,0.131
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Aged,No,D6,6 payment HCCs,0.04
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Disabled,No,D6,6 payment HCCs,0.167
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Aged,No,D6,6 payment HCCs,0.071
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Disabled,No,D6,6 payment HCCs,0.117
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,,,,Yes,D6,6 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Aged,No,D7,7 payment HCCs,0.126
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Disabled,No,D7,7 payment HCCs,0.201
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Aged,No,D7,7 payment HCCs,0.057
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Disabled,No,D7,7 payment HCCs,0.269
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Aged,No,D7,7 payment HCCs,0.08
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Disabled,No,D7,7 payment HCCs,0.291
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,,,,Yes,D7,7 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Aged,No,D8,8 payment HCCs,0.214
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Disabled,No,D8,8 payment HCCs,0.441
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Aged,No,D8,8 payment HCCs,0.095
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Disabled,No,D8,8 payment HCCs,0.424
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Aged,No,D8,8 payment HCCs,0.125
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Disabled,No,D8,8 payment HCCs,0.452
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,,,,Yes,D8,8 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Aged,No,D9,9 payment HCCs,0.258
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Disabled,No,D9,9 payment HCCs,0.441
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Aged,No,D9,9 payment HCCs,0.156
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Disabled,No,D9,9 payment HCCs,0.549
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Aged,No,D9,9 payment HCCs,0.402
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Disabled,No,D9,9 payment HCCs,0.499
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,,,,Yes,D9,9 payment HCCs,0
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Aged,No,D10P,10 or more payment HCCs,0.505
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,No,Non,Disabled,No,D10P,10 or more payment HCCs,0.897
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Aged,No,D10P,10 or more payment HCCs,0.373
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Full,Disabled,No,D10P,10 or more payment HCCs,1.056
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Aged,No,D10P,10 or more payment HCCs,0.548
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,Yes,Partial,Disabled,No,D10P,10 or more payment HCCs,0.893
+CMS-HCC-2020,Payment HCC Counts,Continuing,,Female,0-34,,,,Yes,D10P,10 or more payment HCCs,0
