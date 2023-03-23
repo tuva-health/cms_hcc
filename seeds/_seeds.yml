@@ -1,0 +1,90 @@
+version: 2
+
+seeds:
+  - name: cms_hcc__cms_hcc_adjustment_rates
+    description: Adjustment rates by payment year.
+    config:
+      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
+      schema: |
+        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
+        {% else %}cms_hcc{%- endif -%}
+      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
+      alias: adjustment_rates
+      tags: cms_hcc
+
+  - name: cms_hcc__cms_hcc_demographic_factors
+    description: CMS-HCC demographic factors by model version and risk segment.
+    config:
+      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
+      schema: |
+        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
+        {% else %}cms_hcc{%- endif -%}
+      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
+      alias: cms_hcc_demographic_factors
+      tags: cms_hcc
+
+  - name: cms_hcc__cms_hcc_disease_factors
+    description: CMS-HCC disease factors by model version and risk segment.
+    config:
+      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
+      schema: |
+        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
+        {% else %}cms_hcc{%- endif -%}
+      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
+      alias: cms_hcc_disease_factors
+      tags: cms_hcc
+
+  - name: cms_hcc__cms_hcc_disease_hierarchies
+    description: CMS-HCC disease hierarchies by model version and risk segment.
+    config:
+      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
+      schema: |
+        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
+        {% else %}cms_hcc{%- endif -%}
+      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
+      alias: cms_hcc_disease_hierarchies
+      tags: cms_hcc
+
+  - name: cms_hcc__cms_hcc_interaction_factors
+    description: CMS-HCC disease and disabled interaction factors by model version and risk segment.
+    config:
+      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
+      schema: |
+        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
+        {% else %}cms_hcc{%- endif -%}
+      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
+      alias: cms_hcc_interaction_factors
+      tags: cms_hcc
+
+  - name: cms_hcc__cms_hcc_payment_hcc_count_factors
+    description: CMS-HCC payment HCC count factors by model version and risk segment.
+    config:
+      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
+      schema: |
+        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
+        {% else %}cms_hcc{%- endif -%}
+      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
+      alias: cms_hcc_payment_hcc_count_factors
+      tags: cms_hcc
+
+  - name: cms_hcc__cpt_hcpcs
+    description: CPT/HCPCS encounter filtering included list by payment year.
+    config:
+      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
+      schema: |
+        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
+        {% else %}cms_hcc{%- endif -%}
+      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
+      alias: cpt_hcpcs
+      tags: cms_hcc
+
+  - name: cms_hcc__icd_10_cm_mappings
+    description: ICD-10 to HCC mapping by payment year and model version.
+    config:
+      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
+      schema: |
+        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
+        {% else %}cms_hcc{%- endif -%}
+      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
+      alias: icd_10_cm_mappings
+      tags: cms_hcc
