@@ -1,0 +1,59 @@
+name: 'integration_tests'
+version: '1.0.0'
+config-version: 2
+
+profile: 'default'
+
+
+
+vars:
+### List of optional vars
+  tuva_database: dev_sarah
+#  tuva_schema_prefix: uppertest
+
+
+#  tuva_schema_prefix: test
+#  terminology_schema: terminology
+#  cms_hcc_schema: cms_hcc_test
+  cms_hcc_database: dev_sarah
+  cms_hcc_schema: cms_hcc
+
+  cms_hcc_input_database: medicare_saf
+#  cms_hcc_input_schema: core
+
+## The two vars below can reference a ref or source
+# core_<table_name>_override: "{{ref('<table_name>')}}"
+# <package_name>_<table_name>_override: "{{source('<source>','table_name')}}"
+  cms_hcc_eligibility_override: "{{ref('eligibility')}}"
+  cms_hcc_medical_claim_override: "{{ref('medical_claim')}}"
+
+## Execute the enabled tests in succession
+#  tuva_packages_enabled: false
+#  cms_hcc_enabled: true
+
+## Only needed if package uses Terminology package
+# terminology_enabled: false
+
+
+
+
+dispatch:
+  - macro_namespace: dbt
+    search_order: [ 'cms_hcc', 'dbt']
+
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  integration_tests:
+    +materialized: ephemeral
