@@ -9,7 +9,7 @@ seeds:
         {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
         {% else %}cms_hcc{%- endif -%}
       enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: adjustment_rates
+      alias: _seed_adjustment_rates
       tags: cms_hcc
       column_types:
         coefficient: float
@@ -22,7 +22,7 @@ seeds:
         {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
         {% else %}cms_hcc{%- endif -%}
       enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: cms_hcc_demographic_factors
+      alias: _seed_cms_hcc_demographic_factors
       tags: cms_hcc
       column_types:
         coefficient: float
@@ -35,7 +35,7 @@ seeds:
         {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
         {% else %}cms_hcc{%- endif -%}
       enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: cms_hcc_disabled_disease_interaction_factors
+      alias: _seed_cms_hcc_disabled_disease_interaction_factors
       tags: cms_hcc
       column_types:
         hcc_code: |
@@ -50,7 +50,7 @@ seeds:
         {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
         {% else %}cms_hcc{%- endif -%}
       enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: cms_hcc_disease_factors
+      alias: _seed_cms_hcc_disease_factors
       tags: cms_hcc
       column_types:
         hcc_code: |
@@ -65,7 +65,7 @@ seeds:
         {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
         {% else %}cms_hcc{%- endif -%}
       enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: cms_hcc_disease_hierarchy
+      alias: _seed_cms_hcc_disease_hierarchy
       tags: cms_hcc
       column_types:
         hcc_code: |
@@ -81,7 +81,7 @@ seeds:
         {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
         {% else %}cms_hcc{%- endif -%}
       enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: cms_hcc_disease_interaction_factors
+      alias: _seed_cms_hcc_disease_interaction_factors
       tags: cms_hcc
       column_types:
         hcc_code_1: |
@@ -98,7 +98,7 @@ seeds:
         {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
         {% else %}cms_hcc{%- endif -%}
       enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: cms_hcc_enrollment_interaction_factors
+      alias: _seed_cms_hcc_enrollment_interaction_factors
       tags: cms_hcc
       column_types:
         coefficient: float
@@ -111,7 +111,7 @@ seeds:
         {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
         {% else %}cms_hcc{%- endif -%}
       enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: cms_hcc_payment_hcc_count_factors
+      alias: _seed_cms_hcc_payment_hcc_count_factors
       tags: cms_hcc
       column_types:
         payment_hcc_count: integer
@@ -125,7 +125,7 @@ seeds:
         {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
         {% else %}cms_hcc{%- endif -%}
       enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: cpt_hcpcs
+      alias: _seed_cpt_hcpcs
       tags: cms_hcc
 
   - name: cms_hcc__icd_10_cm_mappings
@@ -136,5 +136,5 @@ seeds:
         {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
         {% else %}cms_hcc{%- endif -%}
       enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: icd_10_cm_mappings
+      alias: _seed_icd_10_cm_mappings
       tags: cms_hcc
