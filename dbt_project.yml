@@ -10,8 +10,15 @@ vars:
     # the syntax: dbt build --vars '{payment_year: 2022}'
     payment_year: 2023
 
+    # Logic to be added for selecting the HCC model version
+    # cms_hcc_model: CMS-HCC-V24
+
     # The following variables are required for the package models.
     # You should not have to make any changes to these.
+    condition: >
+        {% if var('cms_hcc_condition_override',none) is not none %}{{var('cms_hcc_condition_override')}}
+        {%- else %}{{var('core_condition_override')}}
+        {%- endif %}
     eligibility: >
         {% if var('cms_hcc_eligibility_override',none) is not none %}{{var('cms_hcc_eligibility_override')}}
         {%- else %}{{var('core_eligibility_override')}}
