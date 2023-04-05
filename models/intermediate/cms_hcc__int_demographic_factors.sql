@@ -32,7 +32,7 @@ demographic_factors as (
         , orec
         , institutional_status
         , coefficient
-    from {{ ref('cms_hcc__cms_hcc_demographic_factors') }}
+    from {{ ref('cms_hcc__demographic_factors') }}
 
 ),
 

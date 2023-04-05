@@ -18,7 +18,7 @@ with hcc_mapping as (
 
 hcc_hierarchy as (
 
-    select * from {{ ref('cms_hcc__cms_hcc_disease_hierarchy') }}
+    select * from {{ ref('cms_hcc__disease_hierarchy') }}
 
 ),
 
