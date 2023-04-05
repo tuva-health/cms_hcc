@@ -8,11 +8,12 @@ Steps for staging the eligibility data:
     4) Determine other statuses.
 
 Jinja is used to set payment and collection year variables.
- - The payment_year_var has been set in the model so it gets compiled.
+ - The hcc_model_version and payment_year vars have been set here
+   so they get compiled.
  - CMS guidance: Age is calculated as of Feb 1 of the payment year.
  - The collection year is one year prior to the payment year.
 */
-
+{% set model_version_compiled = var('hcc_model_version') -%}
 {% set payment_year_compiled = var('payment_year') -%}
 {% set payment_year_age_date = payment_year_compiled ~ '-02-01' -%}
 {% set collection_year = payment_year_compiled - 1 -%}
@@ -176,6 +177,7 @@ select
         else FALSE
         end as medicaid_dual_status_default
     , True as institutional_status_default
+    , '{{ model_version_compiled }}' as model_version
     , '{{ payment_year_compiled }}' as payment_year
     , getdate() as date_calculated
 from add_age_group
