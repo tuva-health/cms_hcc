@@ -18,12 +18,13 @@ vars:
   cms_hcc_database: dev_sarah
   cms_hcc_schema: cms_hcc
 
-  cms_hcc_input_database: medicare_saf
+  cms_hcc_input_database: medicare_lds_five_percent
 #  cms_hcc_input_schema: core
 
 ## The two vars below can reference a ref or source
 # core_<table_name>_override: "{{ref('<table_name>')}}"
 # <package_name>_<table_name>_override: "{{source('<source>','table_name')}}"
+  cms_hcc_condition_override: "{{ref('condition')}}"
   cms_hcc_eligibility_override: "{{ref('eligibility')}}"
   cms_hcc_medical_claim_override: "{{ref('medical_claim')}}"
 

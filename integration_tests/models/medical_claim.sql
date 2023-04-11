@@ -1,1 +1,1 @@
-select * from {{source('claims_data_model','medical_claim')}}
+select * from {{source('core','medical_claim')}}

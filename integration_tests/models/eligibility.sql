@@ -1,1 +1,1 @@
-select * from {{source('claims_data_model','eligibility')}}
+select * from {{source('core','eligibility')}}
