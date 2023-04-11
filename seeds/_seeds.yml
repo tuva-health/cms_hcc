@@ -38,7 +38,7 @@ seeds:
       column_types:
         coefficient: float
 
-  - name: cms_hcc__disease_disabled_interaction_factors
+  - name: cms_hcc__disabled_interaction_factors
     description: > 
       Disease and disabled interaction factors by model version 
       and risk segment.
@@ -48,7 +48,7 @@ seeds:
         {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
         {% else %}cms_hcc{%- endif -%}
       enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: _seed_disease_disabled_interaction_factors
+      alias: _seed_disabled_interaction_factors
       tags: cms_hcc
       column_types:
         hcc_code: |
