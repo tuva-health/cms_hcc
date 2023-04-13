@@ -9,9 +9,9 @@ with claim as (
         , payment_year
     from {{ ref('cms_hcc__stg_medical_claim') }}
 
-),
+)
 
-condition as (
+, condition as (
 
     select
           claim_id
@@ -20,9 +20,9 @@ condition as (
     from {{ var('condition') }}
     where code_type = 'icd-10-cm'
 
-),
+)
 
-joined as (
+, joined as (
 
     select distinct
           claim.claim_id

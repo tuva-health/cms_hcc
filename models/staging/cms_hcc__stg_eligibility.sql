@@ -36,9 +36,9 @@ with eligibility_src as (
         ) as row_num /* used to dedupe eligibility */
     from {{ var('eligibility') }}
 
-),
+)
 
-calculate_prior_coverage as (
+, calculate_prior_coverage as (
 
     select
           patient_id
@@ -61,13 +61,13 @@ calculate_prior_coverage as (
      or year(enrollment_end_date) = '{{ collection_year }}')
 
 
-),
+)
 
 /*
    CMS guidance: A “New Enrollee” status is when a beneficiary has less than
    12 months of coverage prior to the payment year.
 */
-add_enrollment as (
+, add_enrollment as (
 
     select distinct
           patient_id
@@ -77,9 +77,9 @@ add_enrollment as (
           end as enrollment_status
     from calculate_prior_coverage
 
-),
+)
 
-latest_eligibility as (
+, latest_eligibility as (
 
     select
           eligibility_src.patient_id
@@ -100,9 +100,9 @@ latest_eligibility as (
          on eligibility_src.patient_id = add_enrollment.patient_id
     where eligibility_src.row_num = 1
 
-),
+)
 
-add_age_group as (
+, add_age_group as (
 
     select
           patient_id

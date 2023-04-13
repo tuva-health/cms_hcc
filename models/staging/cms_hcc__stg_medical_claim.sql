@@ -37,18 +37,18 @@ with medical_claim_src as (
         , hcpcs_code
     from {{ var('medical_claim') }}
 
-),
+)
 
-cpt_hcpcs_list as (
+, cpt_hcpcs_list as (
 
     select
           payment_year
         , hcpcs_cpt_code
     from {{ ref('cms_hcc__cpt_hcpcs') }}
 
-),
+)
 
-professional_claims as (
+, professional_claims as (
 
     select
           medical_claim_src.claim_id
@@ -69,9 +69,9 @@ professional_claims as (
     and year(claim_end_date) = '{{ collection_year }}'
     and cpt_hcpcs_list.payment_year = '{{ payment_year_compiled }}'
 
-),
+)
 
-inpatient_claims as (
+, inpatient_claims as (
 
     select
           medical_claim_src.claim_id
@@ -90,9 +90,9 @@ inpatient_claims as (
     and year(claim_end_date) = '{{ collection_year }}'
     and left(bill_type_code,2) in ('11','41')
 
-),
+)
 
-outpatient_claims as (
+, outpatient_claims as (
 
     select
           medical_claim_src.claim_id
@@ -114,9 +114,9 @@ outpatient_claims as (
     and cpt_hcpcs_list.payment_year = '{{ payment_year_compiled }}'
     and left(bill_type_code,2) in ('12','13','43','71','73','76','77','85')
 
-),
+)
 
-unioned as (
+, unioned as (
 
     select * from professional_claims
     union all

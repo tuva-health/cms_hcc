@@ -18,9 +18,9 @@ with staged_eligibility as (
         , payment_year
     from {{ ref('cms_hcc__stg_eligibility') }}
 
-),
+)
 
-demographic_factors as (
+, demographic_factors as (
 
     select
           model_version
@@ -36,9 +36,9 @@ demographic_factors as (
     from {{ ref('cms_hcc__demographic_factors') }}
     where plan_segment is null /* data not available */
 
-),
+)
 
-new_enrollees as (
+, new_enrollees as (
 
     select
           staged_eligibility.patient_id
@@ -65,9 +65,9 @@ new_enrollees as (
          and staged_eligibility.orec = demographic_factors.orec
     where staged_eligibility.enrollment_status = 'New'
 
-),
+)
 
-continuining_enrollees as (
+, continuining_enrollees as (
 
     select
           staged_eligibility.patient_id
@@ -96,13 +96,13 @@ continuining_enrollees as (
          and staged_eligibility.institutional_status = demographic_factors.institutional_status
     where staged_eligibility.enrollment_status = 'Continuing'
 
-),
+)
 
 /*
     The CMS-HCC model does not have factors for ESRD or null medicare status
     for these edge-cases, we default to 'Aged' and dual_status is Non or Partial.
 */
-other_enrollees as (
+, other_enrollees as (
 
     select
           staged_eligibility.patient_id
@@ -132,9 +132,9 @@ other_enrollees as (
     and (demographic_factors.dual_status in ('Non', 'Partial')
       or demographic_factors.dual_status is null)
 
-),
+)
 
-unioned as (
+, unioned as (
 
     select * from new_enrollees
     union
