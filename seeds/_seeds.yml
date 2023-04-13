@@ -139,5 +139,4 @@ seeds:
       alias: _seed_payment_hcc_count_factors
       tags: cms_hcc
       column_types:
-        payment_hcc_count: integer
         coefficient: float

@@ -29,9 +29,9 @@ CMS-HCC-V24,Payment HCC Counts,Continuing,Yes,Full,Aged,No,9,9 payment HCCs,0.15
 CMS-HCC-V24,Payment HCC Counts,Continuing,Yes,Full,Disabled,No,9,9 payment HCCs,0.549
 CMS-HCC-V24,Payment HCC Counts,Continuing,Yes,Partial,Aged,No,9,9 payment HCCs,0.402
 CMS-HCC-V24,Payment HCC Counts,Continuing,Yes,Partial,Disabled,No,9,9 payment HCCs,0.499
-CMS-HCC-V24,Payment HCC Counts,Continuing,No,Non,Aged,No,10,10 or more payment HCCs,0.505
-CMS-HCC-V24,Payment HCC Counts,Continuing,No,Non,Disabled,No,10,10 or more payment HCCs,0.897
-CMS-HCC-V24,Payment HCC Counts,Continuing,Yes,Full,Aged,No,10,10 or more payment HCCs,0.373
-CMS-HCC-V24,Payment HCC Counts,Continuing,Yes,Full,Disabled,No,10,10 or more payment HCCs,1.056
-CMS-HCC-V24,Payment HCC Counts,Continuing,Yes,Partial,Aged,No,10,10 or more payment HCCs,0.548
-CMS-HCC-V24,Payment HCC Counts,Continuing,Yes,Partial,Disabled,No,10,10 or more payment HCCs,0.893
+CMS-HCC-V24,Payment HCC Counts,Continuing,No,Non,Aged,No,>=10,10 or more payment HCCs,0.505
+CMS-HCC-V24,Payment HCC Counts,Continuing,No,Non,Disabled,No,>=10,10 or more payment HCCs,0.897
+CMS-HCC-V24,Payment HCC Counts,Continuing,Yes,Full,Aged,No,>=10,10 or more payment HCCs,0.373
+CMS-HCC-V24,Payment HCC Counts,Continuing,Yes,Full,Disabled,No,>=10,10 or more payment HCCs,1.056
+CMS-HCC-V24,Payment HCC Counts,Continuing,Yes,Partial,Aged,No,>=10,10 or more payment HCCs,0.548
+CMS-HCC-V24,Payment HCC Counts,Continuing,Yes,Partial,Disabled,No,>=10,10 or more payment HCCs,0.893
