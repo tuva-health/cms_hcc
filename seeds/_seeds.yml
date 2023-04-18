@@ -2,7 +2,9 @@ version: 2
 
 seeds:
   - name: cms_hcc__adjustment_rates
-    description: Adjustment rates by payment year.
+    description: >
+      Adjustment rates by payment year. Extracted from rate announcement
+      documents on cms.gov.
     config:
       database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
       schema: |
@@ -15,7 +17,9 @@ seeds:
         coefficient: float
 
   - name: cms_hcc__cpt_hcpcs
-    description: CPT/HCPCS encounter filtering included list by payment year.
+    description: >
+      CPT/HCPCS encounter filtering included list by payment year. Combined 
+      and cleaned version of code files on cms.gov.
     config:
       database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
       schema: |
@@ -26,7 +30,9 @@ seeds:
       tags: cms_hcc
 
   - name: cms_hcc__demographic_factors
-    description: Demographic factors by model version and risk segment.
+    description: > 
+      Demographic factors by model version and risk segment. Extracted from 
+      rate announcement documents on cms.gov.
     config:
       database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
       schema: |
@@ -41,7 +47,7 @@ seeds:
   - name: cms_hcc__disabled_interaction_factors
     description: > 
       Disease and disabled interaction factors by model version 
-      and risk segment.
+      and risk segment. Extracted from rate announcement documents on cms.gov.
     config:
       database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
       schema: |
@@ -56,7 +62,9 @@ seeds:
         coefficient: float
 
   - name: cms_hcc__disease_factors
-    description: Disease factors by model version and risk segment.
+    description: >
+      Disease factors by model version and risk segment. Extracted from rate 
+      announcement documents on cms.gov.
     config:
       database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
       schema: |
@@ -71,7 +79,9 @@ seeds:
         coefficient: float
 
   - name: cms_hcc__disease_hierarchy
-    description: Disease hierarchies by model version.
+    description: >
+      Disease hierarchies by model version. Extracted from rate announcement
+      documents on cms.gov.
     config:
       database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
       schema: |
@@ -87,7 +97,9 @@ seeds:
           {%- if target.type == "bigquery" -%} string {%- else -%} varchar {%- endif -%}
 
   - name: cms_hcc__disease_interaction_factors
-    description: Disease interaction factors by model version and risk segment.
+    description: >
+      Disease interaction factors by model version and risk segment. Extracted 
+      from rate announcement documents on cms.gov.
     config:
       database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
       schema: |
@@ -105,7 +117,8 @@ seeds:
 
   - name: cms_hcc__enrollment_interaction_factors
     description: >
-      Enrollment interaction factors by model version and risk segment.
+      Enrollment interaction factors by model version and risk segment. 
+      Extracted from rate announcement documents on cms.gov.
     config:
       database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
       schema: |
@@ -118,7 +131,9 @@ seeds:
         coefficient: float
 
   - name: cms_hcc__icd_10_cm_mappings
-    description: ICD-10 to HCC mapping by payment year and model version.
+    description: >
+      ICD-10 to HCC mapping by payment year and model version. Combined and 
+      cleaned version of code files on cms.gov.
     config:
       database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
       schema: |
@@ -129,7 +144,9 @@ seeds:
       tags: cms_hcc
 
   - name: cms_hcc__payment_hcc_count_factors
-    description: Payment HCC count factors by model version and risk segment.
+    description: >
+      Payment HCC count factors by model version and risk segment. Extracted 
+      from rate announcement documents on cms.gov.
     config:
       database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
       schema: |

@@ -3,15 +3,14 @@ version: '0.1.0'
 config-version: 2
 profile: 'default'
 
-
 vars:
     # The payment_year variable has a default of the current year
     # it can be changed here or during execution with
     # the syntax: dbt build --vars '{payment_year: 2022}'
-    payment_year: 2023
+    cms_hcc_payment_year: 2023
 
-    # Logic to be added for selecting the HCC model version
-    # cms_hcc_model: CMS-HCC-V24
+    # Logic to be added for selecting different HCC model versions
+    cms_hcc_model_version: CMS-HCC-V24
 
     # The following variables are required for the package models.
     # You should not have to make any changes to these.
