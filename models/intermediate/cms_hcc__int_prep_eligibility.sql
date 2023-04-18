@@ -1,5 +1,3 @@
-{{ config(enabled = var('cms_hcc_enabled',var('tuva_packages_enabled',True)) ) -}}
-
 /*
 Steps for staging the eligibility data:
     1) Determine enrollment status using eligibility from the collection year.
@@ -13,8 +11,9 @@ Jinja is used to set payment and collection year variables.
  - CMS guidance: Age is calculated as of Feb 1 of the payment year.
  - The collection year is one year prior to the payment year.
 */
-{% set model_version_compiled = var('hcc_model_version') -%}
-{% set payment_year_compiled = var('payment_year') -%}
+
+{% set model_version_compiled = var('cms_hcc_model_version') -%}
+{% set payment_year_compiled = var('cms_hcc_payment_year') -%}
 {% set payment_year_age_date = payment_year_compiled ~ '-02-01' -%}
 {% set collection_year = payment_year_compiled - 1 -%}
 {% set collection_year_start = collection_year ~ '-01-01' -%}

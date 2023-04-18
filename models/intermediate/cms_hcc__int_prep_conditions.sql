@@ -1,5 +1,3 @@
-{{ config(enabled = var('cms_hcc_enabled',var('tuva_packages_enabled',True)) ) -}}
-
 /*
 Steps for staging the medical claim data:
     1) Filter to risk-adjustable claims per claim type for the collection year.
@@ -20,11 +18,12 @@ Jinja is used to set payment and collection year variables.
    so they get compiled.
  - The collection year is one year prior to the payment year.
 */
-{% set model_version_compiled = var('hcc_model_version') -%}
-{% set payment_year_compiled = var('payment_year') -%}
+
+{% set model_version_compiled = var('cms_hcc_model_version') -%}
+{% set payment_year_compiled = var('cms_hcc_payment_year') -%}
 {% set collection_year = payment_year_compiled - 1 -%}
 
-with medical_claim_src as (
+with medical_claims as (
 
     select
           claim_id
@@ -36,6 +35,17 @@ with medical_claim_src as (
         , bill_type_code
         , hcpcs_code
     from {{ var('medical_claim') }}
+
+)
+
+, conditions as (
+
+    select
+          claim_id
+        , patient_id
+        , code
+    from {{ var('condition') }}
+    where code_type = 'icd-10-cm'
 
 )
 
@@ -51,20 +61,17 @@ with medical_claim_src as (
 , professional_claims as (
 
     select
-          medical_claim_src.claim_id
-        , medical_claim_src.claim_line_number
-        , medical_claim_src.claim_type
-        , medical_claim_src.patient_id
-        , medical_claim_src.claim_start_date
-        , medical_claim_src.claim_end_date
-        , medical_claim_src.bill_type_code
-        , medical_claim_src.hcpcs_code
-        , '{{ model_version_compiled }}' as model_version
-        , '{{ payment_year_compiled }}' as payment_year
-        , getdate() as date_calculated
-    from medical_claim_src
+          medical_claims.claim_id
+        , medical_claims.claim_line_number
+        , medical_claims.claim_type
+        , medical_claims.patient_id
+        , medical_claims.claim_start_date
+        , medical_claims.claim_end_date
+        , medical_claims.bill_type_code
+        , medical_claims.hcpcs_code
+    from medical_claims
          inner join cpt_hcpcs_list
-         on medical_claim_src.hcpcs_code = cpt_hcpcs_list.hcpcs_cpt_code
+         on medical_claims.hcpcs_code = cpt_hcpcs_list.hcpcs_cpt_code
     where claim_type = 'professional'
     and year(claim_end_date) = '{{ collection_year }}'
     and cpt_hcpcs_list.payment_year = '{{ payment_year_compiled }}'
@@ -74,18 +81,15 @@ with medical_claim_src as (
 , inpatient_claims as (
 
     select
-          medical_claim_src.claim_id
-        , medical_claim_src.claim_line_number
-        , medical_claim_src.claim_type
-        , medical_claim_src.patient_id
-        , medical_claim_src.claim_start_date
-        , medical_claim_src.claim_end_date
-        , medical_claim_src.bill_type_code
-        , medical_claim_src.hcpcs_code
-        , '{{ model_version_compiled }}' as model_version
-        , '{{ payment_year_compiled }}' as payment_year
-        , getdate() as date_calculated
-    from medical_claim_src
+          medical_claims.claim_id
+        , medical_claims.claim_line_number
+        , medical_claims.claim_type
+        , medical_claims.patient_id
+        , medical_claims.claim_start_date
+        , medical_claims.claim_end_date
+        , medical_claims.bill_type_code
+        , medical_claims.hcpcs_code
+    from medical_claims
     where claim_type = 'institutional'
     and year(claim_end_date) = '{{ collection_year }}'
     and left(bill_type_code,2) in ('11','41')
@@ -95,20 +99,17 @@ with medical_claim_src as (
 , outpatient_claims as (
 
     select
-          medical_claim_src.claim_id
-        , medical_claim_src.claim_line_number
-        , medical_claim_src.claim_type
-        , medical_claim_src.patient_id
-        , medical_claim_src.claim_start_date
-        , medical_claim_src.claim_end_date
-        , medical_claim_src.bill_type_code
-        , medical_claim_src.hcpcs_code
-        , '{{ model_version_compiled }}' as model_version
-        , '{{ payment_year_compiled }}' as payment_year
-        , getdate() as date_calculated
-    from medical_claim_src
+          medical_claims.claim_id
+        , medical_claims.claim_line_number
+        , medical_claims.claim_type
+        , medical_claims.patient_id
+        , medical_claims.claim_start_date
+        , medical_claims.claim_end_date
+        , medical_claims.bill_type_code
+        , medical_claims.hcpcs_code
+    from medical_claims
          inner join cpt_hcpcs_list
-         on medical_claim_src.hcpcs_code = cpt_hcpcs_list.hcpcs_cpt_code
+         on medical_claims.hcpcs_code = cpt_hcpcs_list.hcpcs_cpt_code
     where claim_type = 'institutional'
     and year(claim_end_date) = '{{ collection_year }}'
     and cpt_hcpcs_list.payment_year = '{{ payment_year_compiled }}'
@@ -116,7 +117,7 @@ with medical_claim_src as (
 
 )
 
-, unioned as (
+, eligible_claims as (
 
     select * from professional_claims
     union all
@@ -126,4 +127,23 @@ with medical_claim_src as (
 
 )
 
-select * from unioned
+, eligible_conditions as (
+
+    select distinct
+          eligible_claims.claim_id
+        , eligible_claims.patient_id
+        , conditions.code
+    from eligible_claims
+         inner join conditions
+         on eligible_claims.claim_id = conditions.claim_id
+         and eligible_claims.patient_id = conditions.patient_id
+
+)
+
+select distinct
+      patient_id
+    , code as condition_code
+    , '{{ model_version_compiled }}' as model_version
+    , '{{ payment_year_compiled }}' as payment_year
+    , getdate() as date_calculated
+from eligible_conditions
