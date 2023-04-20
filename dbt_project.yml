@@ -1,5 +1,5 @@
 name: 'cms_hcc'
-version: '0.1.0'
+version: '0.0.1'
 config-version: 2
 profile: 'default'
 
@@ -9,7 +9,7 @@ vars:
     # the syntax: dbt build --vars '{payment_year: 2022}'
     cms_hcc_payment_year: 2023
 
-    # Logic to be added for selecting different HCC model versions
+    # DO NOT CHANGE - Future logic to be added for selecting different HCC model versions
     cms_hcc_model_version: CMS-HCC-V24
 
     # The following variables are required for the package models.

@@ -13,7 +13,7 @@ The Tuva Project's CMS HCC package calculates HCC Risk Scores based on CMS logic
 
 ## 🔌 What databases are supported?
 
-This package has been tested on **Snowflake**, **Redshift** and **BigQuery**.
+This package has been tested on **Snowflake**.
 
 ## 📚 What versions of dbt are supported?
 
