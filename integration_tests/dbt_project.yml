@@ -7,34 +7,15 @@ profile: 'default'
 
 
 vars:
-### List of optional vars
-  tuva_database: dev_sarah
-#  tuva_schema_prefix: uppertest
 
+# Input database and schema
+# (where the sources for this dbt project live):
+  tuva_database: tuva
 
-#  tuva_schema_prefix: test
-#  terminology_schema: terminology
-#  cms_hcc_schema: cms_hcc_test
-  cms_hcc_database: dev_sarah
+# Output database and schema
+# (where the output of this package is dumped):
+  cms_hcc_database: tuva
   cms_hcc_schema: cms_hcc
-
-  cms_hcc_input_database: medicare_lds_five_percent
-#  cms_hcc_input_schema: core
-
-## The two vars below can reference a ref or source
-# core_<table_name>_override: "{{ref('<table_name>')}}"
-# <package_name>_<table_name>_override: "{{source('<source>','table_name')}}"
-  cms_hcc_condition_override: "{{ref('condition')}}"
-  cms_hcc_eligibility_override: "{{ref('eligibility')}}"
-  cms_hcc_medical_claim_override: "{{ref('medical_claim')}}"
-
-## Execute the enabled tests in succession
-#  tuva_packages_enabled: false
-#  cms_hcc_enabled: true
-
-## Only needed if package uses Terminology package
-# terminology_enabled: false
-
 
 
 
@@ -58,3 +39,4 @@ clean-targets:
 models:
   integration_tests:
     +materialized: ephemeral
+    +database: dev_user
