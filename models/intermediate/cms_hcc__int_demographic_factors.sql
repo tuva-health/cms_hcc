@@ -147,19 +147,19 @@ with eligibility as (
 )
 
 select
-      patient_id
-    , enrollment_status
-    , gender
-    , age_group
-    , medicaid_status
-    , dual_status
-    , orec
-    , institutional_status
-    , enrollment_status_default
-    , medicaid_dual_status_default
-    , institutional_status_default
-    , cast(coefficient as numeric(38,3)) as coefficient
-    , model_version
-    , payment_year
-    , getdate() as date_calculated
+      cast(patient_id as {{ dbt.type_string() }}) as patient_id
+    , cast(enrollment_status as {{ dbt.type_string() }}) as enrollment_status
+    , cast(gender as {{ dbt.type_string() }}) as gender
+    , cast(age_group as {{ dbt.type_string() }}) as age_group
+    , cast(medicaid_status as {{ dbt.type_string() }}) as medicaid_status
+    , cast(dual_status as {{ dbt.type_string() }}) as dual_status
+    , cast(orec as {{ dbt.type_string() }}) as orec
+    , cast(institutional_status as {{ dbt.type_string() }}) as institutional_status
+    , cast(enrollment_status_default as boolean) as enrollment_status_default
+    , cast(medicaid_dual_status_default as boolean) as medicaid_dual_status_default
+    , cast(institutional_status_default as boolean) as institutional_status_default
+    , round(cast(coefficient as {{ dbt.type_numeric() }}),3) as coefficient
+    , cast(model_version as {{ dbt.type_string() }}) as model_version
+    , cast(payment_year as integer) as payment_year
+    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
 from unioned

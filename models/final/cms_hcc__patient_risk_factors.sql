@@ -136,13 +136,13 @@ with demographic_factors as (
 )
 
 select
-      patient_id
-    , enrollment_status_default
-    , medicaid_dual_status_default
-    , institutional_status_default
-    , risk_factor_description
-    , coefficient
-    , model_version
-    , payment_year
-    , date_calculated
+      cast(patient_id as {{ dbt.type_string() }}) as patient_id
+    , cast(enrollment_status_default as boolean) as enrollment_status_default
+    , cast(medicaid_dual_status_default as boolean) as medicaid_dual_status_default
+    , cast(institutional_status_default as boolean) as institutional_status_default
+    , cast(risk_factor_description as {{ dbt.type_string() }}) as risk_factor_description
+    , round(cast(coefficient as {{ dbt.type_numeric() }}),3) as coefficient
+    , cast(model_version as {{ dbt.type_string() }}) as model_version
+    , cast(payment_year as integer) as payment_year
+    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
 from add_defaults

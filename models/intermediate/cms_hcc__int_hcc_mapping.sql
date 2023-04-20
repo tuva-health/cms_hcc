@@ -53,9 +53,10 @@ with conditions as (
 )
 
 select
-      patient_id
-    , condition_code
-    , hcc_code
-    , model_version
-    , payment_year
+      cast(patient_id as {{ dbt.type_string() }}) as patient_id
+    , cast(condition_code as {{ dbt.type_string() }}) as condition_code
+    , cast(hcc_code as {{ dbt.type_string() }}) as hcc_code
+    , cast(model_version as {{ dbt.type_string() }}) as model_version
+    , cast(payment_year as integer) as payment_year
+    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
 from mapped

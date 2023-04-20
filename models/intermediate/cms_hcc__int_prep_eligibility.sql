@@ -146,37 +146,37 @@ with eligibility_src as (
 )
 
 select
-      patient_id
-    , enrollment_status
+      cast(patient_id as {{ dbt.type_string() }}) as patient_id
+    , cast(enrollment_status as {{ dbt.type_string() }}) as enrollment_status
     /*, null as plan_segment --data not available */
-    , case
+    , cast(case
         when gender = 'female' then 'Female'
         when gender = 'male' then 'Male'
         else null
-      end as gender
-    , age_group
-    , case
+      end as {{ dbt.type_string() }}) as gender
+    , cast(age_group as {{ dbt.type_string() }}) as age_group
+    , cast(case
         when dual_status_code in ('01','02','03','04','05','06','08') then 'Yes'
         else 'No'
-      end as medicaid_status
-    , case
+      end as {{ dbt.type_string() }}) as medicaid_status
+    , cast(case
         when dual_status_code in ('02','04','08') then 'Full'
         when dual_status_code in ('01','03','05','06') then 'Partial'
         else 'Non'
-      end as dual_status
-    , case
+      end as {{ dbt.type_string() }}) as dual_status
+    , cast(case
         when medicare_status_code in ('10','11') then 'Aged'
         when medicare_status_code in ('20','21') then 'Disabled'
         when medicare_status_code in ('31') then 'ESRD'
-        end as orec /* this field is purposefully limited in it's interpretation to calculate demographic risk factors */
-    , 'No' as institutional_status /* will be replaced with logic */
-    , enrollment_status_default
-    , case
+        end as {{ dbt.type_string() }}) as orec /* this field is purposefully limited in it's interpretation to calculate demographic risk factors */
+    , cast('No'as {{ dbt.type_string() }}) as institutional_status /* will be replaced with logic */
+    , cast(enrollment_status_default as boolean) as enrollment_status_default
+    , cast(case
         when dual_status_code is null then True
         else FALSE
-        end as medicaid_dual_status_default
-    , True as institutional_status_default
-    , '{{ model_version_compiled }}' as model_version
-    , '{{ payment_year_compiled }}' as payment_year
-    , getdate() as date_calculated
+        end as boolean) as medicaid_dual_status_default
+    , cast(True as boolean) as institutional_status_default
+    , cast('{{ model_version_compiled }}' as {{ dbt.type_string() }}) as model_version
+    , cast('{{ payment_year_compiled }}' as integer) as payment_year
+    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
 from add_age_group

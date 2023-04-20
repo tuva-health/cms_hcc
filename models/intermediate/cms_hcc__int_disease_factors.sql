@@ -94,11 +94,11 @@ with demographics as (
 )
 
 select
-      patient_id
-    , hcc_code
-    , description as hcc_description
-    , cast(coefficient as numeric(38,3)) as coefficient
-    , model_version
-    , payment_year
-    , getdate() as date_calculated
+      cast(patient_id as {{ dbt.type_string() }}) as patient_id
+    , cast(hcc_code as {{ dbt.type_string() }}) as hcc_code
+    , cast(description as {{ dbt.type_string() }}) as hcc_description
+    , round(cast(coefficient as {{ dbt.type_numeric() }}),3) as coefficient
+    , cast(model_version as {{ dbt.type_string() }}) as model_version
+    , cast(payment_year as integer) as payment_year
+    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
 from disease_factors

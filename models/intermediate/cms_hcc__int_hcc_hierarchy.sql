@@ -150,8 +150,9 @@ with hcc_mapping as (
 )
 
 select
-      patient_id
-    , model_version
-    , payment_year
-    , hcc_code
+      cast(patient_id as {{ dbt.type_string() }}) as patient_id
+    , cast(model_version as {{ dbt.type_string() }}) as model_version
+    , cast(payment_year as integer) as payment_year
+    , cast(hcc_code as {{ dbt.type_string() }}) as hcc_code
+    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
 from unioned

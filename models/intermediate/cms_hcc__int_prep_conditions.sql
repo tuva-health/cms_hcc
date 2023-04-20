@@ -141,9 +141,9 @@ with medical_claims as (
 )
 
 select distinct
-      patient_id
-    , code as condition_code
-    , '{{ model_version_compiled }}' as model_version
-    , '{{ payment_year_compiled }}' as payment_year
-    , getdate() as date_calculated
+      cast(patient_id as {{ dbt.type_string() }}) as patient_id
+    , cast(code as {{ dbt.type_string() }}) as condition_code
+    , cast('{{ model_version_compiled }}' as {{ dbt.type_string() }}) as model_version
+    , cast('{{ payment_year_compiled }}' as integer) as payment_year
+    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
 from eligible_conditions
