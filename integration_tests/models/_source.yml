@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: core
+    database: "{{ var('cms_hcc_input_database','tuva') }}"
+    schema: "{{ var('cms_hcc_input_schema','core') }}"
+    tables:
+      - name: condition
+      - name: eligibility
+      - name: medical_claim

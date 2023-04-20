@@ -1,0 +1,40 @@
+name: 'integration_tests'
+version: '1.0.0'
+config-version: 2
+
+profile: 'default'
+
+
+
+vars:
+
+# Set the input database and schema:
+  #cms_hcc_input_database: tuva
+  #cms_hcc_input_schema: core
+
+# Set the output database and schema:
+  #cms_hcc_database: dev_user
+  #cms_hcc_schema: cms_hcc
+
+
+
+dispatch:
+  - macro_namespace: dbt
+    search_order: [ 'cms_hcc', 'dbt']
+
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  integration_tests:
+    +materialized: ephemeral
