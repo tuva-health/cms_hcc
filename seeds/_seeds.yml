@@ -28,6 +28,9 @@ seeds:
       enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
       alias: _seed_cpt_hcpcs
       tags: cms_hcc
+      column_types:
+        hcpcs_cpt_code: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar {%- endif -%}
 
   - name: cms_hcc__demographic_factors
     description: > 
@@ -142,6 +145,11 @@ seeds:
       enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
       alias: _seed_icd_10_cm_mappings
       tags: cms_hcc
+      column_types:
+        diagnosis_code: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar {%- endif -%}
+        cms_hcc_v24: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar {%- endif -%}
 
   - name: cms_hcc__payment_hcc_count_factors
     description: >
