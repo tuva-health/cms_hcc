@@ -9,11 +9,11 @@ profile: 'default'
 vars:
 
 # Set the input database and schema:
-  #cms_hcc_input_database: tuva
+  cms_hcc_input_database: tuva_claims_demo_full
   #cms_hcc_input_schema: core
 
 # Set the output database and schema:
-  #cms_hcc_database: dev_user
+  cms_hcc_database: dev_sarah_2
   #cms_hcc_schema: cms_hcc
 
 
