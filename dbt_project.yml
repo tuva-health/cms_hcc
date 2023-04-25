@@ -16,15 +16,15 @@ vars:
     # You should not have to make any changes to these.
     condition: >
         {% if var('cms_hcc_condition_override',none) is not none %}{{var('cms_hcc_condition_override')}}
-        {%- else %}{{ref('condition')}}
+        {%- else %}{{ref('claims_preprocessing__condition')}}
         {%- endif %}
     eligibility: >
         {% if var('cms_hcc_eligibility_override',none) is not none %}{{var('cms_hcc_eligibility_override')}}
-        {%- else %}{{ref('eligibility')}}
+        {%- else %}{{ref('claims_preprocessing__eligibility')}}
         {%- endif %}
     medical_claim: >
         {% if var('cms_hcc_medical_claim_override',none) is not none %}{{var('cms_hcc_medical_claim_override')}}
-        {%- else %}{{ref('medical_claim')}}
+        {%- else %}{{ref('claims_preprocessing__medical_claim')}}
         {%- endif %}
 
 
