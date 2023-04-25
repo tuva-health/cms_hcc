@@ -16,7 +16,10 @@ vars:
   #cms_hcc_database: dev_user
   #cms_hcc_schema: cms_hcc
 
-
+# Set overrides for running integration_tests sources
+  cms_hcc_condition_override: "{{ref('condition')}}"
+  cms_hcc_eligibility_override: "{{ref('eligibility')}}"
+  cms_hcc_medical_claim_override: "{{ref('medical_claim')}}"
 
 dispatch:
   - macro_namespace: dbt
