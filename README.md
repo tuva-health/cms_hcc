@@ -9,7 +9,8 @@
 
 ## 🧰 What does this project do?
 
-The Tuva Project's CMS HCC package calculates HCC Risk Scores based on CMS logic. 
+The Tuva Project's CMS HCC package calculates risk scores based on version V24 of the CMS-HCC risk adjustment model. 
+Future releases will include the ability to run other model versions. 
 
 ## 🔌 What databases are supported?
 
@@ -21,7 +22,32 @@ This package requires you to have dbt installed and a functional dbt project run
 
 ## ✅ How do I use this dbt package?
 
-To run this package, please refer to the instructions in the Tuva Project [README](https://github.com/tuva-health/the_tuva_project#readme).
+This is an early preview of the CMS HCC package. It has not been added to the main [Tuva Project package](https://github.com/tuva-health/the_tuva_project#readme) yet. 
+To run this package, you can update your packages.yml with the GitHub URL. See example below.
+
+```
+packages:
+  - package: tuva-health/the_tuva_project
+    version: ["0.2.6","<1.0.0"]
+
+  - git: https://github.com/tuva-health/cms_hcc.git
+    warn-unpinned: false
+```
+
+This package uses a variable called `cms_hcc_payment_year` to calculate risk scores. 
+The default is the current year.
+You can override this by adding the var to your `dbt_project.yml` file with the year you would like to calculate: 
+
+```
+vars:
+  cms_hcc_payment_year: 2022
+```
+
+Or, via the command line:
+
+```
+dbt build --select cms_hcc --vars '{cms_hcc_payment_year: 2022}'
+```
 
 ## 🙋🏻‍♀ ️****How is this package maintained and how do I contribute?****
 
