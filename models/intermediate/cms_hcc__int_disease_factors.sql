@@ -15,9 +15,6 @@ with demographics as (
         , dual_status
         , orec
         , institutional_status
-        , enrollment_status_default
-        , medicaid_dual_status_default
-        , institutional_status_default
         , model_version
         , payment_year
     from {{ ref('cms_hcc__int_demographic_factors') }}
@@ -61,9 +58,6 @@ with demographics as (
         , demographics.dual_status
         , demographics.orec
         , demographics.institutional_status
-        , demographics.enrollment_status_default
-        , demographics.medicaid_dual_status_default
-        , demographics.institutional_status_default
         , demographics.model_version
         , demographics.payment_year
         , hcc_hierarchy.hcc_code
@@ -73,7 +67,29 @@ with demographics as (
 
 )
 
-, disease_factors as (
+/*
+    disease factors for institutional patients use only
+    enrollment_status and institutional_status
+*/
+, institutional_disease_factors as (
+
+    select
+          demographics_with_hccs.patient_id
+        , demographics_with_hccs.hcc_code
+        , demographics_with_hccs.model_version
+        , demographics_with_hccs.payment_year
+        , seed_disease_factors.description
+        , seed_disease_factors.coefficient
+    from demographics_with_hccs
+         inner join seed_disease_factors
+         on demographics_with_hccs.enrollment_status = seed_disease_factors.enrollment_status
+         and demographics_with_hccs.institutional_status = seed_disease_factors.institutional_status
+         and demographics_with_hccs.hcc_code = seed_disease_factors.hcc_code
+    where demographics_with_hccs.institutional_status = 'Yes'
+
+)
+
+, non_institutional_disease_factors as (
 
     select
           demographics_with_hccs.patient_id
@@ -90,6 +106,15 @@ with demographics as (
          and demographics_with_hccs.orec = seed_disease_factors.orec
          and demographics_with_hccs.institutional_status = seed_disease_factors.institutional_status
          and demographics_with_hccs.hcc_code = seed_disease_factors.hcc_code
+    where demographics_with_hccs.institutional_status = 'No'
+
+)
+
+, unioned as (
+
+    select * from institutional_disease_factors
+    union all
+    select * from non_institutional_disease_factors
 
 )
 
@@ -101,4 +126,4 @@ select
     , cast(model_version as {{ dbt.type_string() }}) as model_version
     , cast(payment_year as integer) as payment_year
     , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
-from disease_factors
+from unioned

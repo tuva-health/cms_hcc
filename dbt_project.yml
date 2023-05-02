@@ -22,6 +22,10 @@ vars:
         {% if var('cms_hcc_eligibility_override',none) is not none %}{{var('cms_hcc_eligibility_override')}}
         {%- else %}{{ref('claims_preprocessing__eligibility')}}
         {%- endif %}
+    encounter: >
+        {% if var('cms_hcc_encounter_override',none) is not none %}{{var('cms_hcc_encounter_override')}}
+        {%- else %}{{ref('claims_preprocessing__encounter')}}
+        {%- endif %}
     medical_claim: >
         {% if var('cms_hcc_medical_claim_override',none) is not none %}{{var('cms_hcc_medical_claim_override')}}
         {%- else %}{{ref('claims_preprocessing__medical_claim')}}

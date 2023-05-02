@@ -15,9 +15,6 @@ with demographics as (
         , dual_status
         , orec
         , institutional_status
-        , enrollment_status_default
-        , medicaid_dual_status_default
-        , institutional_status_default
         , model_version
         , payment_year
     from {{ ref('cms_hcc__int_demographic_factors') }}
@@ -61,9 +58,6 @@ with demographics as (
         , demographics.dual_status
         , demographics.orec
         , demographics.institutional_status
-        , demographics.enrollment_status_default
-        , demographics.medicaid_dual_status_default
-        , demographics.institutional_status_default
         , demographics.model_version
         , demographics.payment_year
         , hcc_hierarchy.hcc_code
@@ -73,7 +67,30 @@ with demographics as (
 
 )
 
-, demographics_with_interactions as (
+/*
+    interaction factors for institutional patients use only
+    enrollment_status and institutional_status
+*/
+, institutional_interactions as (
+
+    select
+          demographics_with_hccs.patient_id
+        , demographics_with_hccs.model_version
+        , demographics_with_hccs.payment_year
+        , interactions_code_1.description
+        , interactions_code_1.hcc_code_1
+        , interactions_code_1.hcc_code_2
+        , interactions_code_1.coefficient
+    from demographics_with_hccs
+         inner join seed_interaction_factors as interactions_code_1
+         on demographics_with_hccs.enrollment_status = interactions_code_1.enrollment_status
+         and demographics_with_hccs.institutional_status = interactions_code_1.institutional_status
+         and demographics_with_hccs.hcc_code = interactions_code_1.hcc_code_1
+    where demographics_with_hccs.institutional_status = 'Yes'
+
+)
+
+, non_institutional_interactions as (
 
     select
           demographics_with_hccs.patient_id
@@ -91,24 +108,32 @@ with demographics as (
          and demographics_with_hccs.orec = interactions_code_1.orec
          and demographics_with_hccs.institutional_status = interactions_code_1.institutional_status
          and demographics_with_hccs.hcc_code = interactions_code_1.hcc_code_1
+    where demographics_with_hccs.institutional_status = 'No'
+
+)
+
+, unioned as (
+
+    select * from institutional_interactions
+    union all
+    select * from non_institutional_interactions
 
 )
 
 , disease_interactions as (
 
     select
-          demographics_with_interactions.patient_id
-        , demographics_with_interactions.hcc_code_1
-        , demographics_with_interactions.hcc_code_2
-        , demographics_with_interactions.description
-        , demographics_with_interactions.coefficient
-        , demographics_with_interactions.model_version
-        , demographics_with_interactions.payment_year
-        , getdate() as date_calculated
-    from demographics_with_interactions
+          unioned.patient_id
+        , unioned.hcc_code_1
+        , unioned.hcc_code_2
+        , unioned.description
+        , unioned.coefficient
+        , unioned.model_version
+        , unioned.payment_year
+    from unioned
         inner join demographics_with_hccs as interactions_code_2
-        on demographics_with_interactions.patient_id = interactions_code_2.patient_id
-        and demographics_with_interactions.hcc_code_2 = interactions_code_2.hcc_code
+        on unioned.patient_id = interactions_code_2.patient_id
+        and unioned.hcc_code_2 = interactions_code_2.hcc_code
 )
 
 select

@@ -15,9 +15,6 @@ with demographics as (
         , dual_status
         , orec
         , institutional_status
-        , enrollment_status_default
-        , medicaid_dual_status_default
-        , institutional_status_default
         , model_version
         , payment_year
     from {{ ref('cms_hcc__int_demographic_factors') }}
@@ -42,8 +39,25 @@ with demographics as (
 )
 
 /*
-    enrollment interaction factors for non-institutional patients use gender
+    interaction factors for institutional patients use only
+    enrollment_status and institutional_status
 */
+, institutional_interactions as (
+
+    select
+          demographics.patient_id
+        , demographics.model_version
+        , demographics.payment_year
+        , seed_interaction_factors.description
+        , seed_interaction_factors.coefficient
+    from demographics
+         inner join seed_interaction_factors
+         on demographics.enrollment_status = seed_interaction_factors.enrollment_status
+         and demographics.institutional_status = seed_interaction_factors.institutional_status
+    where demographics.institutional_status = 'Yes'
+
+)
+
 , non_institutional_interactions as (
 
     select
@@ -64,33 +78,11 @@ with demographics as (
 
 )
 
-/*
-    enrollment interaction factors for institutional patients do not use gender
-*/
-, institutional_interactions as (
-
-    select
-          demographics.patient_id
-        , demographics.model_version
-        , demographics.payment_year
-        , seed_interaction_factors.description
-        , seed_interaction_factors.coefficient
-    from demographics
-         inner join seed_interaction_factors
-         on demographics.enrollment_status = seed_interaction_factors.enrollment_status
-         and demographics.medicaid_status = seed_interaction_factors.medicaid_status
-         and demographics.dual_status = seed_interaction_factors.dual_status
-         and demographics.orec = seed_interaction_factors.orec
-         and demographics.institutional_status = seed_interaction_factors.institutional_status
-    where demographics.institutional_status = 'Yes'
-
-)
-
 , unioned as (
 
-    select * from non_institutional_interactions
-    union all
     select * from institutional_interactions
+    union all
+    select * from non_institutional_interactions
 
 )
 

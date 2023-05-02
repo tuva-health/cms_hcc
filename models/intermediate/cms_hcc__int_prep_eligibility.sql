@@ -78,6 +78,24 @@ with eligibility_src as (
 
 )
 
+/*
+    CMS guidance: An enrollee is given the status of "Institutional" if they
+    have "resided in an institution for at least 90 days" during the
+    collection year.
+*/
+, determine_institutional_status as (
+
+    select distinct patient_id
+    from {{ var('encounter') }}
+    where encounter_type = 'acute inpatient'
+    /* encounter dates must fall within the collection year */
+    and (year(encounter_start_date) = '{{ collection_year }}'
+    or year(encounter_end_date) = '{{ collection_year }}')
+    and datediff(day, encounter_start_date, encounter_end_date) >= 90
+
+
+)
+
 , latest_eligibility as (
 
     select
@@ -94,9 +112,15 @@ with eligibility_src as (
             when add_enrollment.enrollment_status is null then True
             else False
           end as enrollment_status_default
+        , case
+            when determine_institutional_status.patient_id is null then 'No'
+            else 'Yes'
+          end as institutional_status
     from eligibility_src
          left join add_enrollment
          on eligibility_src.patient_id = add_enrollment.patient_id
+         left join determine_institutional_status
+         on eligibility_src.patient_id = determine_institutional_status.patient_id
     where eligibility_src.row_num = 1
 
 )
@@ -111,6 +135,7 @@ with eligibility_src as (
         , medicare_status_code
         , enrollment_status
         , enrollment_status_default
+        , institutional_status
         , case
             when enrollment_status = 'Continuing' and payment_year_age between 0 and 34 then '0-34'
             when enrollment_status = 'Continuing' and payment_year_age between 35 and 44 then '35-44'
@@ -169,13 +194,12 @@ select
         when medicare_status_code in ('20','21') then 'Disabled'
         when medicare_status_code in ('31') then 'ESRD'
         end as {{ dbt.type_string() }}) as orec /* this field is purposefully limited in it's interpretation to calculate demographic risk factors */
-    , cast('No'as {{ dbt.type_string() }}) as institutional_status /* will be replaced with logic */
+    , cast(institutional_status as {{ dbt.type_string() }}) as institutional_status
     , cast(enrollment_status_default as boolean) as enrollment_status_default
     , cast(case
         when dual_status_code is null then True
         else FALSE
         end as boolean) as medicaid_dual_status_default
-    , cast(True as boolean) as institutional_status_default
     , cast('{{ model_version_compiled }}' as {{ dbt.type_string() }}) as model_version
     , cast('{{ payment_year_compiled }}' as integer) as payment_year
     , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated

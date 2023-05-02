@@ -17,7 +17,6 @@ with eligibility as (
         , institutional_status
         , enrollment_status_default
         , medicaid_dual_status_default
-        , institutional_status_default
         , model_version
         , payment_year
     from {{ ref('cms_hcc__int_prep_eligibility') }}
@@ -56,7 +55,6 @@ with eligibility as (
         , eligibility.institutional_status
         , eligibility.enrollment_status_default
         , eligibility.medicaid_dual_status_default
-        , eligibility.institutional_status_default
         , eligibility.model_version
         , eligibility.payment_year
         , seed_demographic_factors.coefficient
@@ -84,7 +82,6 @@ with eligibility as (
         , eligibility.institutional_status
         , eligibility.enrollment_status_default
         , eligibility.medicaid_dual_status_default
-        , eligibility.institutional_status_default
         , eligibility.model_version
         , eligibility.payment_year
         , seed_demographic_factors.coefficient
@@ -118,7 +115,6 @@ with eligibility as (
         , eligibility.institutional_status
         , eligibility.enrollment_status_default
         , eligibility.medicaid_dual_status_default
-        , eligibility.institutional_status_default
         , eligibility.model_version
         , eligibility.payment_year
         , seed_demographic_factors.coefficient
@@ -157,7 +153,6 @@ select
     , cast(institutional_status as {{ dbt.type_string() }}) as institutional_status
     , cast(enrollment_status_default as boolean) as enrollment_status_default
     , cast(medicaid_dual_status_default as boolean) as medicaid_dual_status_default
-    , cast(institutional_status_default as boolean) as institutional_status_default
     , round(cast(coefficient as {{ dbt.type_numeric() }}),3) as coefficient
     , cast(model_version as {{ dbt.type_string() }}) as model_version
     , cast(payment_year as integer) as payment_year

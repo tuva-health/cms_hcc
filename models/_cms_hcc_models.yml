@@ -124,9 +124,6 @@ models:
       - name: medicaid_dual_status_default
         description: >
           Indicates the input field was missing and a default status was used.
-      - name: institutional_status_default
-        description: >
-          Indicates the input field was missing and a default status was used.
       - name: coefficient
         description: >
           Relative factor value that correspond to the CMS HCC model's 
@@ -416,9 +413,6 @@ models:
         description: >
           Indicates the input field was missing and a default status was used.
       - name: medicaid_dual_status_default
-        description: >
-          Indicates the input field was missing and a default status was used.
-      - name: institutional_status_default
         description: >
           Indicates the input field was missing and a default status was used.
       - name: model_version

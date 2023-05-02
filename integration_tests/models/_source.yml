@@ -7,4 +7,5 @@ sources:
     tables:
       - name: condition
       - name: eligibility
+      - name: encounter
       - name: medical_claim
