@@ -24,7 +24,7 @@ with eligibility_src as (
           patient_id
         , gender
         , birth_date
-        , floor(datediff(hour,birth_date,'{{ payment_year_age_date }}')/8766.0,0) as payment_year_age
+        , floor(datediff(hour,birth_date,'{{ payment_year_age_date }}')/8766.0) as payment_year_age
         , enrollment_start_date
         , enrollment_end_date
         , dual_status_code
