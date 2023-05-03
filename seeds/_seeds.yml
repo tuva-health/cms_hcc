@@ -6,12 +6,8 @@ seeds:
       Adjustment rates by payment year. Extracted from rate announcement
       documents on cms.gov.
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
-      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: _seed_adjustment_rates
+      schema: cms_hcc
+      alias: _value_set_adjustment_rates
       tags: cms_hcc
       column_types:
         coefficient: float
@@ -21,12 +17,8 @@ seeds:
       CPT/HCPCS encounter filtering included list by payment year. Combined 
       and cleaned version of code files on cms.gov.
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
-      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: _seed_cpt_hcpcs
+      schema: cms_hcc
+      alias: _value_set_cpt_hcpcs
       tags: cms_hcc
       column_types:
         hcpcs_cpt_code: |
@@ -37,12 +29,8 @@ seeds:
       Demographic factors by model version and risk segment. Extracted from 
       rate announcement documents on cms.gov.
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
-      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: _seed_demographic_factors
+      schema: cms_hcc
+      alias: _value_set_demographic_factors
       tags: cms_hcc
       column_types:
         coefficient: float
@@ -52,12 +40,8 @@ seeds:
       Disease and disabled interaction factors by model version 
       and risk segment. Extracted from rate announcement documents on cms.gov.
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
-      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: _seed_disabled_interaction_factors
+      schema: cms_hcc
+      alias: _value_set_disabled_interaction_factors
       tags: cms_hcc
       column_types:
         hcc_code: |
@@ -69,12 +53,8 @@ seeds:
       Disease factors by model version and risk segment. Extracted from rate 
       announcement documents on cms.gov.
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
-      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: _seed_disease_factors
+      schema: cms_hcc
+      alias: _value_set_disease_factors
       tags: cms_hcc
       column_types:
         hcc_code: |
@@ -86,12 +66,8 @@ seeds:
       Disease hierarchies by model version. Extracted from rate announcement
       documents on cms.gov.
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
-      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: _seed_disease_hierarchy
+      schema: cms_hcc
+      alias: _value_set_disease_hierarchy
       tags: cms_hcc
       column_types:
         hcc_code: |
@@ -104,12 +80,8 @@ seeds:
       Disease interaction factors by model version and risk segment. Extracted 
       from rate announcement documents on cms.gov.
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
-      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: _seed_disease_interaction_factors
+      schema: cms_hcc
+      alias: _value_set_disease_interaction_factors
       tags: cms_hcc
       column_types:
         hcc_code_1: |
@@ -123,12 +95,8 @@ seeds:
       Enrollment interaction factors by model version and risk segment. 
       Extracted from rate announcement documents on cms.gov.
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
-      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: _seed_enrollment_interaction_factors
+      schema: cms_hcc
+      alias: _value_set_enrollment_interaction_factors
       tags: cms_hcc
       column_types:
         coefficient: float
@@ -138,12 +106,8 @@ seeds:
       ICD-10 to HCC mapping by payment year and model version. Combined and 
       cleaned version of code files on cms.gov.
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
-      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: _seed_icd_10_cm_mappings
+      schema: cms_hcc
+      alias: _value_set_icd_10_cm_mappings
       tags: cms_hcc
       column_types:
         diagnosis_code: |
@@ -156,12 +120,8 @@ seeds:
       Payment HCC count factors by model version and risk segment. Extracted 
       from rate announcement documents on cms.gov.
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
-      enabled: "{{ var('cms_hcc_enabled',var('tuva_packages_enabled',True)) }}"
-      alias: _seed_payment_hcc_count_factors
+      schema: cms_hcc
+      alias: _value_set_payment_hcc_count_factors
       tags: cms_hcc
       column_types:
         coefficient: float

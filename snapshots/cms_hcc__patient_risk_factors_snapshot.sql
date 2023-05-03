@@ -2,8 +2,7 @@
 
 {{
   config({
-      "target_database": var('cms_hcc_database',var('tuva_database','tuva'))
-    , "target_schema": var('cms_hcc_schema','cms_hcc')
+      "target_schema": "cms_hcc"
     , "alias": "patient_risk_factors_snapshot"
     , "tags": "cms_hcc"
     , "strategy": "timestamp"
