@@ -56,9 +56,8 @@ with eligibility_src as (
     from eligibility_src
     where
     /* coverage dates must fall within the collection year */
-    (year(enrollment_start_date) = '{{ collection_year }}'
-     or year(enrollment_end_date) = '{{ collection_year }}')
-
+    (extract(year from enrollment_start_date) = '{{ collection_year }}'
+     or extract(year from enrollment_start_date) = '{{ collection_year }}')
 
 )
 

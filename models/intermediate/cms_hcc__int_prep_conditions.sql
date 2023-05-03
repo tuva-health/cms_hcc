@@ -73,7 +73,7 @@ with medical_claims as (
          inner join cpt_hcpcs_list
          on medical_claims.hcpcs_code = cpt_hcpcs_list.hcpcs_cpt_code
     where claim_type = 'professional'
-    and year(claim_end_date) = '{{ collection_year }}'
+    and extract(year from claim_end_date) = '{{ collection_year }}'
     and cpt_hcpcs_list.payment_year = '{{ payment_year_compiled }}'
 
 )
@@ -91,7 +91,7 @@ with medical_claims as (
         , medical_claims.hcpcs_code
     from medical_claims
     where claim_type = 'institutional'
-    and year(claim_end_date) = '{{ collection_year }}'
+    and extract(year from claim_end_date) = '{{ collection_year }}'
     and left(bill_type_code,2) in ('11','41')
 
 )
@@ -111,7 +111,7 @@ with medical_claims as (
          inner join cpt_hcpcs_list
          on medical_claims.hcpcs_code = cpt_hcpcs_list.hcpcs_cpt_code
     where claim_type = 'institutional'
-    and year(claim_end_date) = '{{ collection_year }}'
+    and extract(year from claim_end_date) = '{{ collection_year }}'
     and cpt_hcpcs_list.payment_year = '{{ payment_year_compiled }}'
     and left(bill_type_code,2) in ('12','13','43','71','73','76','77','85')
 
