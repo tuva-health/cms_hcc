@@ -4,10 +4,7 @@ models:
 # Final
   - name: cms_hcc__patient_risk_factors
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
+      schema: cms_hcc
       alias: patient_risk_factors
       tags: cms_hcc
       materialized: table
@@ -42,10 +39,7 @@ models:
 
   - name: cms_hcc__patient_risk_scores
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
+      schema: cms_hcc
       alias: patient_risk_scores
       tags: cms_hcc
       materialized: table
@@ -80,10 +74,7 @@ models:
 # Intermediate
   - name: cms_hcc__int_demographic_factors
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
+      schema: cms_hcc
       alias: _int_demographic_factors
       tags: cms_hcc
       materialized: table
@@ -141,10 +132,7 @@ models:
 
   - name: cms_hcc__int_disabled_interaction_factors
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
+      schema: cms_hcc
       alias: _int_disabled_interaction_factors
       tags: cms_hcc
       materialized: table
@@ -170,10 +158,7 @@ models:
 
   - name: cms_hcc__int_disease_factors
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
+      schema: cms_hcc
       alias: _int_disease_factors
       tags: cms_hcc
       materialized: table
@@ -202,10 +187,7 @@ models:
 
   - name: cms_hcc__int_disease_interaction_factors
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
+      schema: cms_hcc
       alias: _int_disease_interaction_factors
       tags: cms_hcc
       materialized: table
@@ -236,10 +218,7 @@ models:
 
   - name: cms_hcc__int_enrollment_interaction_factors
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
+      schema: cms_hcc
       alias: _int_enrollment_interaction_factors
       tags: cms_hcc
       materialized: table
@@ -265,10 +244,7 @@ models:
 
   - name: cms_hcc__int_hcc_count_factors
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
+      schema: cms_hcc
       alias: _int_hcc_count_factors
       tags: cms_hcc
       materialized: table
@@ -294,10 +270,7 @@ models:
 
   - name: cms_hcc__int_hcc_hierarchy
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
+      schema: cms_hcc
       alias: _int_hcc_hierarchy
       tags: cms_hcc
       materialized: table
@@ -319,10 +292,7 @@ models:
 
   - name: cms_hcc__int_hcc_mapping
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
+      schema: cms_hcc
       alias: _int_hcc_mapping
       tags: cms_hcc
       materialized: table
@@ -346,10 +316,7 @@ models:
 
   - name: cms_hcc__int_prep_conditions
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
+      schema: cms_hcc
       alias: _int_prep_conditions
       tags: cms_hcc
       materialized: view
@@ -373,10 +340,7 @@ models:
 
   - name: cms_hcc__int_prep_eligibility
     config:
-      database: "{{ var('cms_hcc_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('cms_hcc_schema',None) != None -%}{{var('cms_hcc_schema')}}
-        {% else %}cms_hcc{%- endif -%}
+      schema: cms_hcc
       alias: _int_prep_eligibility
       tags: cms_hcc
       materialized: view

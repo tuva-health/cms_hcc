@@ -139,9 +139,9 @@ with eligibility as (
 , unioned as (
 
     select * from new_enrollees
-    union
+    union all
     select * from continuining_enrollees
-    union
+    union all
     select * from other_enrollees
 
 )
@@ -161,5 +161,5 @@ select
     , round(cast(coefficient as {{ dbt.type_numeric() }}),3) as coefficient
     , cast(model_version as {{ dbt.type_string() }}) as model_version
     , cast(payment_year as integer) as payment_year
-    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
+    , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
 from unioned

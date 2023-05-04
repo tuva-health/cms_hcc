@@ -142,9 +142,9 @@ with hcc_mapping as (
 , unioned as (
 
     select * from hccs_without_hierarchy
-    union
+    union all
     select * from lower_level_inclusions
-    union
+    union all
     select * from top_level_inclusions
 
 )
@@ -154,5 +154,5 @@ select
     , cast(model_version as {{ dbt.type_string() }}) as model_version
     , cast(payment_year as integer) as payment_year
     , cast(hcc_code as {{ dbt.type_string() }}) as hcc_code
-    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
+    , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
 from unioned

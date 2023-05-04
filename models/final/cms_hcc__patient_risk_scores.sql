@@ -20,7 +20,7 @@ with seed_adjustment_rates as (
 
 )
 
-, raw as (
+, raw_score as (
 
     select
           patient_id
@@ -38,15 +38,15 @@ with seed_adjustment_rates as (
 , normalized as (
 
     select
-          raw.patient_id
-        , raw.risk_score as raw_risk_score
-        , round(cast(raw.risk_score / seed_adjustment_rates.normalization_factor as {{ dbt.type_numeric() }}),3) as normalized_risk_score
-        , raw.model_version
-        , raw.payment_year
-    from raw
+          raw_score.patient_id
+        , raw_score.risk_score as raw_risk_score
+        , round(cast(raw_score.risk_score / seed_adjustment_rates.normalization_factor as {{ dbt.type_numeric() }}),3) as normalized_risk_score
+        , raw_score.model_version
+        , raw_score.payment_year
+    from raw_score
          left join seed_adjustment_rates
-         on raw.payment_year = seed_adjustment_rates.payment_year
-         and raw.model_version = seed_adjustment_rates.model_version
+         on raw_score.payment_year = seed_adjustment_rates.payment_year
+         and raw_score.model_version = seed_adjustment_rates.model_version
 
 )
 
@@ -73,5 +73,5 @@ select
     , round(cast(payment_risk_score as {{ dbt.type_numeric() }}),3) as payment_risk_score
     , cast(model_version as {{ dbt.type_string() }}) as model_version
     , cast(payment_year as integer) as payment_year
-    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
+    , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
 from payment

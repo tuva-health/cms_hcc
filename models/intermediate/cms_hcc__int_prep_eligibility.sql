@@ -24,7 +24,7 @@ with eligibility_src as (
           patient_id
         , gender
         , birth_date
-        , floor(datediff(hour,birth_date,'{{ payment_year_age_date }}')/8766.0,0) as payment_year_age
+        , floor({{ datediff('birth_date', "'"~payment_year_age_date~"'", 'hour') }} / 8766.0) as payment_year_age
         , enrollment_start_date
         , enrollment_end_date
         , dual_status_code
@@ -50,15 +50,14 @@ with eligibility_src as (
         , enrollment_end_date
         , case
             when enrollment_start_date < '{{ collection_year_start }}'
-            then datediff(month, '{{ collection_year_start }}', enrollment_end_date)+1 /* include starting month */
-            else datediff(month, enrollment_start_date, enrollment_end_date)+1  /* include starting month */
+            then {{ datediff("'"~collection_year_start~"'", 'enrollment_end_date', 'month') }} +1 /* include starting month */
+            else {{ datediff('enrollment_start_date', 'enrollment_end_date', 'month') }} +1  /* include starting month */
           end as coverage_months
     from eligibility_src
     where
     /* coverage dates must fall within the collection year */
-    (year(enrollment_start_date) = '{{ collection_year }}'
-     or year(enrollment_end_date) = '{{ collection_year }}')
-
+    (extract(year from enrollment_start_date) = {{ collection_year }}
+     or extract(year from enrollment_start_date) = {{ collection_year }})
 
 )
 
@@ -178,5 +177,5 @@ select
     , cast(True as boolean) as institutional_status_default
     , cast('{{ model_version_compiled }}' as {{ dbt.type_string() }}) as model_version
     , cast('{{ payment_year_compiled }}' as integer) as payment_year
-    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
+    , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
 from add_age_group

@@ -2,27 +2,27 @@ with demographic_factors as (
 
     select
           patient_id
-        , concat(
-              concat(enrollment_status, '-Enrollee')
-            , ' / '
-            , gender
-            , ' / '
-            , age_group
-            , ' / '
-            , case
+        /* concatenate demographic risk factors */
+        , enrollment_status
+            || ' / '
+            || gender
+            || ' / '
+            || age_group
+            || ' / '
+            || case
                 when medicaid_status = 'Yes' then 'Medicaid'
                 else 'Non-Medicaid'
                 end
-            , ' / '
-            , dual_status
-            , ' / '
-            , orec
-            , ' / '
-            , case
+            || ' / '
+            || dual_status
+            || ' / '
+            || orec
+            || ' / '
+            || case
                 when institutional_status = 'Yes' then 'Institutional'
                 else 'Non-Institutional'
                 end
-          ) as description
+          as description
         , coefficient
         , model_version
         , payment_year
@@ -45,7 +45,7 @@ with demographic_factors as (
 
     select
           patient_id
-        , concat(hcc_description,' (HCC ',hcc_code,')') as description
+        , hcc_description || ' (HCC ' || hcc_code || ')' as description
         , coefficient
         , model_version
         , payment_year
@@ -128,7 +128,6 @@ with demographic_factors as (
         , unioned.coefficient
         , unioned.model_version
         , unioned.payment_year
-        , getdate() as date_calculated
     from unioned
          left join demographic_defaults
          on unioned.patient_id = demographic_defaults.patient_id
@@ -144,5 +143,5 @@ select
     , round(cast(coefficient as {{ dbt.type_numeric() }}),3) as coefficient
     , cast(model_version as {{ dbt.type_string() }}) as model_version
     , cast(payment_year as integer) as payment_year
-    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
+    , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
 from add_defaults

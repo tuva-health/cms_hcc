@@ -9,16 +9,20 @@
 
 ## 🧰 What does this project do?
 
-The Tuva Project's CMS HCC package calculates risk scores based on version V24 of the CMS-HCC risk adjustment model. 
-Future releases will include the ability to run other model versions. 
+The Tuva Project's CMS HCC package calculates risk scores based on version V24 of the CMS-HCC risk adjustment model (payment years 2020-2023). 
+Future releases will include the ability to run other model versions.
 
-## 🔌 What databases are supported?
+*Note: This package does not include CMS models ESRD, PACE, or RxHCC.*
 
-This package has been tested on **Snowflake**.
+## 🔌 Supported Databases and dbt Versions
 
-## 📚 What versions of dbt are supported?
+This package has been tested on:
 
-This package requires you to have dbt installed and a functional dbt project running on dbt version `1.3.x`.
+* BigQuery
+* Redshift
+* Snowflake
+
+This package supports dbt version `1.2.x` or higher.
 
 ## ✅ How do I use this dbt package?
 
@@ -28,7 +32,7 @@ To run this package, you can update your packages.yml with the GitHub URL. See e
 ```
 packages:
   - package: tuva-health/the_tuva_project
-    version: ["0.2.6","<1.0.0"]
+    version: [">=0.3.0","<1.0.0"]
 
   - git: https://github.com/tuva-health/cms_hcc.git
     warn-unpinned: false

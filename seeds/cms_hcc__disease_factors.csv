@@ -5,175 +5,175 @@ CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,1,HIV/AIDS,0.595
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,1,HIV/AIDS,0.396
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,1,HIV/AIDS,0.482
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,1,HIV/AIDS,0.2
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,1,HIV/AIDS,1.722
+CMS-HCC-V24,Disease,Continuing,,,,Yes,1,HIV/AIDS,1.722
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.352
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.414
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.453
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.53
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.316
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.297
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.324
+CMS-HCC-V24,Disease,Continuing,,,,Yes,2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",0.324
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,6,Opportunistic Infections,0.424
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,6,Opportunistic Infections,0.74
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,6,Opportunistic Infections,0.572
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,6,Opportunistic Infections,0.803
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,6,Opportunistic Infections,0.318
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,6,Opportunistic Infections,0.658
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,6,Opportunistic Infections,0.534
+CMS-HCC-V24,Disease,Continuing,,,,Yes,6,Opportunistic Infections,0.534
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,8,Metastatic Cancer and Acute Leukemia,2.659
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,8,Metastatic Cancer and Acute Leukemia,2.714
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,8,Metastatic Cancer and Acute Leukemia,2.566
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,8,Metastatic Cancer and Acute Leukemia,2.801
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,8,Metastatic Cancer and Acute Leukemia,2.455
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,8,Metastatic Cancer and Acute Leukemia,2.659
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,8,Metastatic Cancer and Acute Leukemia,1.303
+CMS-HCC-V24,Disease,Continuing,,,,Yes,8,Metastatic Cancer and Acute Leukemia,1.303
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,9,Lung and Other Severe Cancers,1.024
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,9,Lung and Other Severe Cancers,0.91
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,9,Lung and Other Severe Cancers,1.01
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,9,Lung and Other Severe Cancers,1.001
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,9,Lung and Other Severe Cancers,1.001
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,9,Lung and Other Severe Cancers,0.88
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,9,Lung and Other Severe Cancers,0.623
+CMS-HCC-V24,Disease,Continuing,,,,Yes,9,Lung and Other Severe Cancers,0.623
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,10,Lymphoma and Other Cancers,0.675
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,10,Lymphoma and Other Cancers,0.663
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,10,Lymphoma and Other Cancers,0.717
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,10,Lymphoma and Other Cancers,0.756
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,10,Lymphoma and Other Cancers,0.648
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,10,Lymphoma and Other Cancers,0.667
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,10,Lymphoma and Other Cancers,0.461
+CMS-HCC-V24,Disease,Continuing,,,,Yes,10,Lymphoma and Other Cancers,0.461
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,11,"Colorectal, Bladder, and Other Cancers",0.307
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,11,"Colorectal, Bladder, and Other Cancers",0.345
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,11,"Colorectal, Bladder, and Other Cancers",0.317
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,11,"Colorectal, Bladder, and Other Cancers",0.355
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,11,"Colorectal, Bladder, and Other Cancers",0.33
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,11,"Colorectal, Bladder, and Other Cancers",0.351
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,11,"Colorectal, Bladder, and Other Cancers",0.294
+CMS-HCC-V24,Disease,Continuing,,,,Yes,11,"Colorectal, Bladder, and Other Cancers",0.294
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,12,"Breast, Prostate, and Other Cancers and Tumors",0.15
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,12,"Breast, Prostate, and Other Cancers and Tumors",0.212
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,12,"Breast, Prostate, and Other Cancers and Tumors",0.158
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,12,"Breast, Prostate, and Other Cancers and Tumors",0.212
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,12,"Breast, Prostate, and Other Cancers and Tumors",0.154
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,12,"Breast, Prostate, and Other Cancers and Tumors",0.181
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,12,"Breast, Prostate, and Other Cancers and Tumors",0.21
+CMS-HCC-V24,Disease,Continuing,,,,Yes,12,"Breast, Prostate, and Other Cancers and Tumors",0.21
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,17,Diabetes with Acute Complications,0.302
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,17,Diabetes with Acute Complications,0.351
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,17,Diabetes with Acute Complications,0.34
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,17,Diabetes with Acute Complications,0.423
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,17,Diabetes with Acute Complications,0.326
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,17,Diabetes with Acute Complications,0.373
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,17,Diabetes with Acute Complications,0.44
+CMS-HCC-V24,Disease,Continuing,,,,Yes,17,Diabetes with Acute Complications,0.44
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,18,Diabetes with Chronic Complications,0.302
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,18,Diabetes with Chronic Complications,0.351
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,18,Diabetes with Chronic Complications,0.34
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,18,Diabetes with Chronic Complications,0.423
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,18,Diabetes with Chronic Complications,0.326
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,18,Diabetes with Chronic Complications,0.373
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,18,Diabetes with Chronic Complications,0.44
+CMS-HCC-V24,Disease,Continuing,,,,Yes,18,Diabetes with Chronic Complications,0.44
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,19,Diabetes without Complication,0.105
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,19,Diabetes without Complication,0.124
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,19,Diabetes without Complication,0.107
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,19,Diabetes without Complication,0.145
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,19,Diabetes without Complication,0.087
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,19,Diabetes without Complication,0.122
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,19,Diabetes without Complication,0.178
+CMS-HCC-V24,Disease,Continuing,,,,Yes,19,Diabetes without Complication,0.178
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,21,Protein-Calorie Malnutrition,0.455
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,21,Protein-Calorie Malnutrition,0.674
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,21,Protein-Calorie Malnutrition,0.693
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,21,Protein-Calorie Malnutrition,0.723
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,21,Protein-Calorie Malnutrition,0.457
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,21,Protein-Calorie Malnutrition,0.679
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,21,Protein-Calorie Malnutrition,0.267
+CMS-HCC-V24,Disease,Continuing,,,,Yes,21,Protein-Calorie Malnutrition,0.267
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,22,Morbid Obesity,0.25
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,22,Morbid Obesity,0.183
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,22,Morbid Obesity,0.383
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,22,Morbid Obesity,0.297
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,22,Morbid Obesity,0.233
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,22,Morbid Obesity,0.204
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,22,Morbid Obesity,0.455
+CMS-HCC-V24,Disease,Continuing,,,,Yes,22,Morbid Obesity,0.455
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,23,Other Significant Endocrine and Metabolic Disorders,0.194
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,23,Other Significant Endocrine and Metabolic Disorders,0.378
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,23,Other Significant Endocrine and Metabolic Disorders,0.211
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,23,Other Significant Endocrine and Metabolic Disorders,0.299
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,23,Other Significant Endocrine and Metabolic Disorders,0.174
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,23,Other Significant Endocrine and Metabolic Disorders,0.319
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,23,Other Significant Endocrine and Metabolic Disorders,0.379
+CMS-HCC-V24,Disease,Continuing,,,,Yes,23,Other Significant Endocrine and Metabolic Disorders,0.379
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,27,End-Stage Liver Disease,0.882
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,27,End-Stage Liver Disease,1.065
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,27,End-Stage Liver Disease,1.111
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,27,End-Stage Liver Disease,1.101
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,27,End-Stage Liver Disease,0.729
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,27,End-Stage Liver Disease,0.887
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,27,End-Stage Liver Disease,0.874
+CMS-HCC-V24,Disease,Continuing,,,,Yes,27,End-Stage Liver Disease,0.874
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,28,Cirrhosis of Liver,0.363
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,28,Cirrhosis of Liver,0.334
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,28,Cirrhosis of Liver,0.411
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,28,Cirrhosis of Liver,0.365
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,28,Cirrhosis of Liver,0.403
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,28,Cirrhosis of Liver,0.341
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,28,Cirrhosis of Liver,0.485
+CMS-HCC-V24,Disease,Continuing,,,,Yes,28,Cirrhosis of Liver,0.485
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,29,Chronic Hepatitis,0.147
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,29,Chronic Hepatitis,0.314
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,29,Chronic Hepatitis,0.042
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,29,Chronic Hepatitis,0.292
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,29,Chronic Hepatitis,0.181
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,29,Chronic Hepatitis,0.238
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,29,Chronic Hepatitis,0.485
+CMS-HCC-V24,Disease,Continuing,,,,Yes,29,Chronic Hepatitis,0.485
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,33,Intestinal Obstruction/Perforation,0.219
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,33,Intestinal Obstruction/Perforation,0.503
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,33,Intestinal Obstruction/Perforation,0.258
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,33,Intestinal Obstruction/Perforation,0.538
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,33,Intestinal Obstruction/Perforation,0.232
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,33,Intestinal Obstruction/Perforation,0.552
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,33,Intestinal Obstruction/Perforation,0.352
+CMS-HCC-V24,Disease,Continuing,,,,Yes,33,Intestinal Obstruction/Perforation,0.352
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,34,Chronic Pancreatitis,0.287
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,34,Chronic Pancreatitis,0.58
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,34,Chronic Pancreatitis,0.349
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,34,Chronic Pancreatitis,0.762
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,34,Chronic Pancreatitis,0.371
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,34,Chronic Pancreatitis,0.597
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,34,Chronic Pancreatitis,0.422
+CMS-HCC-V24,Disease,Continuing,,,,Yes,34,Chronic Pancreatitis,0.422
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,35,Inflammatory Bowel Disease,0.308
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,35,Inflammatory Bowel Disease,0.523
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,35,Inflammatory Bowel Disease,0.275
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,35,Inflammatory Bowel Disease,0.551
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,35,Inflammatory Bowel Disease,0.275
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,35,Inflammatory Bowel Disease,0.543
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,35,Inflammatory Bowel Disease,0.355
+CMS-HCC-V24,Disease,Continuing,,,,Yes,35,Inflammatory Bowel Disease,0.355
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,39,Bone/Joint/Muscle Infections/Necrosis,0.401
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,39,Bone/Joint/Muscle Infections/Necrosis,0.378
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,39,Bone/Joint/Muscle Infections/Necrosis,0.558
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,39,Bone/Joint/Muscle Infections/Necrosis,0.682
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,39,Bone/Joint/Muscle Infections/Necrosis,0.443
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,39,Bone/Joint/Muscle Infections/Necrosis,0.435
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,39,Bone/Joint/Muscle Infections/Necrosis,0.401
+CMS-HCC-V24,Disease,Continuing,,,,Yes,39,Bone/Joint/Muscle Infections/Necrosis,0.401
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.421
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.367
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.371
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.328
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.347
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.264
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.292
+CMS-HCC-V24,Disease,Continuing,,,,Yes,40,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.292
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,46,Severe Hematological Disorders,1.372
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,46,Severe Hematological Disorders,3.566
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,46,Severe Hematological Disorders,1.214
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,46,Severe Hematological Disorders,4.309
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,46,Severe Hematological Disorders,1.234
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,46,Severe Hematological Disorders,4.138
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,46,Severe Hematological Disorders,0.799
+CMS-HCC-V24,Disease,Continuing,,,,Yes,46,Severe Hematological Disorders,0.799
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,47,Disorders of Immunity,0.665
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,47,Disorders of Immunity,0.86
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,47,Disorders of Immunity,0.452
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,47,Disorders of Immunity,0.691
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,47,Disorders of Immunity,0.674
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,47,Disorders of Immunity,0.594
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,47,Disorders of Immunity,0.576
+CMS-HCC-V24,Disease,Continuing,,,,Yes,47,Disorders of Immunity,0.576
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,48,Coagulation Defects and Other Specified Hematological Disorders,0.192
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,48,Coagulation Defects and Other Specified Hematological Disorders,0.312
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,48,Coagulation Defects and Other Specified Hematological Disorders,0.221
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,48,Coagulation Defects and Other Specified Hematological Disorders,0.298
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,48,Coagulation Defects and Other Specified Hematological Disorders,0.186
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,48,Coagulation Defects and Other Specified Hematological Disorders,0.33
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,48,Coagulation Defects and Other Specified Hematological Disorders,0.19
+CMS-HCC-V24,Disease,Continuing,,,,Yes,48,Coagulation Defects and Other Specified Hematological Disorders,0.19
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,51,Dementia With Complications,0.346
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,51,Dementia With Complications,0.224
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,51,Dementia With Complications,0.453
@@ -192,42 +192,42 @@ CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,54,Substance Use with Psychotic 
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,54,Substance Use with Psychotic Complications,0.896
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,54,Substance Use with Psychotic Complications,0.372
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,54,Substance Use with Psychotic Complications,0.679
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,54,Substance Use with Psychotic Complications,0.178
+CMS-HCC-V24,Disease,Continuing,,,,Yes,54,Substance Use with Psychotic Complications,0.178
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.329
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.279
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.538
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.356
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.372
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.275
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.178
+CMS-HCC-V24,Disease,Continuing,,,,Yes,55,"Substance Use Disorder, Moderate/Severe, or Substance Use with Complications",0.178
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.329
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.247
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.538
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.348
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.372
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.275
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.178
+CMS-HCC-V24,Disease,Continuing,,,,Yes,56,"Substance Use Disorder, Mild, Except Alcohol and Cannabis",0.178
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,57,Schizophrenia,0.524
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,57,Schizophrenia,0.352
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,57,Schizophrenia,0.57
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,57,Schizophrenia,0.381
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,57,Schizophrenia,0.495
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,57,Schizophrenia,0.309
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,57,Schizophrenia,0.187
+CMS-HCC-V24,Disease,Continuing,,,,Yes,57,Schizophrenia,0.187
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,58,Reactive and Unspecified Psychosis,0.393
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,58,Reactive and Unspecified Psychosis,0.352
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,58,Reactive and Unspecified Psychosis,0.57
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,58,Reactive and Unspecified Psychosis,0.231
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,58,Reactive and Unspecified Psychosis,0.449
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,58,Reactive and Unspecified Psychosis,0.239
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,58,Reactive and Unspecified Psychosis,0.187
+CMS-HCC-V24,Disease,Continuing,,,,Yes,58,Reactive and Unspecified Psychosis,0.187
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,59,"Major Depressive, Bipolar, and Paranoid Disorders",0.309
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,59,"Major Depressive, Bipolar, and Paranoid Disorders",0.164
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,59,"Major Depressive, Bipolar, and Paranoid Disorders",0.299
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,59,"Major Depressive, Bipolar, and Paranoid Disorders",0.127
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,59,"Major Depressive, Bipolar, and Paranoid Disorders",0.306
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,59,"Major Depressive, Bipolar, and Paranoid Disorders",0.109
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,59,"Major Depressive, Bipolar, and Paranoid Disorders",0.187
+CMS-HCC-V24,Disease,Continuing,,,,Yes,59,"Major Depressive, Bipolar, and Paranoid Disorders",0.187
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,60,Personality Disorders,0.309
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,60,Personality Disorders,0.108
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,60,Personality Disorders,0.299
@@ -240,28 +240,28 @@ CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,70,Quadriplegia,1.038
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,70,Quadriplegia,1
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,70,Quadriplegia,1
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,70,Quadriplegia,1.134
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,70,Quadriplegia,0.549
+CMS-HCC-V24,Disease,Continuing,,,,Yes,70,Quadriplegia,0.549
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,71,Paraplegia,1.068
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,71,Paraplegia,0.739
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,71,Paraplegia,0.921
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,71,Paraplegia,0.957
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,71,Paraplegia,1
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,71,Paraplegia,0.933
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,71,Paraplegia,0.492
+CMS-HCC-V24,Disease,Continuing,,,,Yes,71,Paraplegia,0.492
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,72,Spinal Cord Disorders/Injuries,0.481
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,72,Spinal Cord Disorders/Injuries,0.369
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,72,Spinal Cord Disorders/Injuries,0.532
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,72,Spinal Cord Disorders/Injuries,0.377
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,72,Spinal Cord Disorders/Injuries,0.512
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,72,Spinal Cord Disorders/Injuries,0.336
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,72,Spinal Cord Disorders/Injuries,0.289
+CMS-HCC-V24,Disease,Continuing,,,,Yes,72,Spinal Cord Disorders/Injuries,0.289
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,0.999
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,1.132
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,1.101
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,1.245
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,0.687
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,0.933
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,0.476
+CMS-HCC-V24,Disease,Continuing,,,,Yes,73,Amyotrophic Lateral Sclerosis and Other Motor Neuron Disease,0.476
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,74,Cerebral Palsy,0.339
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,74,Cerebral Palsy,0.098
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,74,Cerebral Palsy,0.114
@@ -271,13 +271,13 @@ CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,75,Myasthenia Gravis/Myoneural D
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,75,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,0.404
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,75,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,0.287
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,75,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,0.314
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,75,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,0.332
+CMS-HCC-V24,Disease,Continuing,,,,Yes,75,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,0.332
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,76,Muscular Dystrophy,0.518
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,76,Muscular Dystrophy,0.621
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,76,Muscular Dystrophy,0.413
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,76,Muscular Dystrophy,0.597
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,76,Muscular Dystrophy,0.286
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,76,Muscular Dystrophy,0.356
+CMS-HCC-V24,Disease,Continuing,,,,Yes,76,Muscular Dystrophy,0.356
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,77,Multiple Sclerosis,0.423
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,77,Multiple Sclerosis,0.566
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,77,Multiple Sclerosis,0.742
@@ -290,14 +290,14 @@ CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,78,Parkinson's and Huntington's 
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,78,Parkinson's and Huntington's Diseases,0.443
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,78,Parkinson's and Huntington's Diseases,0.536
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,78,Parkinson's and Huntington's Diseases,0.43
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,78,Parkinson's and Huntington's Diseases,0.159
+CMS-HCC-V24,Disease,Continuing,,,,Yes,78,Parkinson's and Huntington's Diseases,0.159
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,79,Seizure Disorders and Convulsions,0.22
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,79,Seizure Disorders and Convulsions,0.196
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,79,Seizure Disorders and Convulsions,0.237
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,79,Seizure Disorders and Convulsions,0.139
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,79,Seizure Disorders and Convulsions,0.257
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,79,Seizure Disorders and Convulsions,0.169
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,79,Seizure Disorders and Convulsions,0.065
+CMS-HCC-V24,Disease,Continuing,,,,Yes,79,Seizure Disorders and Convulsions,0.065
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,80,"Coma, Brain Compression/Anoxic Damage",0.486
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,80,"Coma, Brain Compression/Anoxic Damage",0.274
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,80,"Coma, Brain Compression/Anoxic Damage",0.511
@@ -310,70 +310,70 @@ CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,82,Respirator Dependence/Tracheo
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,82,Respirator Dependence/Tracheostomy Status,1.465
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,82,Respirator Dependence/Tracheostomy Status,0.836
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,82,Respirator Dependence/Tracheostomy Status,0.769
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,82,Respirator Dependence/Tracheostomy Status,1.622
+CMS-HCC-V24,Disease,Continuing,,,,Yes,82,Respirator Dependence/Tracheostomy Status,1.622
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,83,Respiratory Arrest,0.354
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,83,Respiratory Arrest,0.4
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,83,Respiratory Arrest,0.902
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,83,Respiratory Arrest,0.531
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,83,Respiratory Arrest,0.361
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,83,Respiratory Arrest,0.769
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,83,Respiratory Arrest,0.511
+CMS-HCC-V24,Disease,Continuing,,,,Yes,83,Respiratory Arrest,0.511
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,84,Cardio-Respiratory Failure and Shock,0.282
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,84,Cardio-Respiratory Failure and Shock,0.385
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,84,Cardio-Respiratory Failure and Shock,0.492
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,84,Cardio-Respiratory Failure and Shock,0.531
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,84,Cardio-Respiratory Failure and Shock,0.361
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,84,Cardio-Respiratory Failure and Shock,0.343
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,84,Cardio-Respiratory Failure and Shock,0.313
+CMS-HCC-V24,Disease,Continuing,,,,Yes,84,Cardio-Respiratory Failure and Shock,0.313
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,85,Congestive Heart Failure,0.331
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,85,Congestive Heart Failure,0.447
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,85,Congestive Heart Failure,0.371
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,85,Congestive Heart Failure,0.486
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,85,Congestive Heart Failure,0.336
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,85,Congestive Heart Failure,0.422
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,85,Congestive Heart Failure,0.203
+CMS-HCC-V24,Disease,Continuing,,,,Yes,85,Congestive Heart Failure,0.203
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,86,Acute Myocardial Infarction,0.195
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,86,Acute Myocardial Infarction,0.264
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,86,Acute Myocardial Infarction,0.377
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,86,Acute Myocardial Infarction,0.425
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,86,Acute Myocardial Infarction,0.293
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,86,Acute Myocardial Infarction,0.379
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,86,Acute Myocardial Infarction,0.366
+CMS-HCC-V24,Disease,Continuing,,,,Yes,86,Acute Myocardial Infarction,0.366
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,87,Unstable Angina and Other Acute Ischemic Heart Disease,0.195
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,87,Unstable Angina and Other Acute Ischemic Heart Disease,0.264
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,87,Unstable Angina and Other Acute Ischemic Heart Disease,0.302
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,87,Unstable Angina and Other Acute Ischemic Heart Disease,0.425
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,87,Unstable Angina and Other Acute Ischemic Heart Disease,0.276
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,87,Unstable Angina and Other Acute Ischemic Heart Disease,0.379
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,87,Unstable Angina and Other Acute Ischemic Heart Disease,0.366
+CMS-HCC-V24,Disease,Continuing,,,,Yes,87,Unstable Angina and Other Acute Ischemic Heart Disease,0.366
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,88,Angina Pectoris,0.135
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,88,Angina Pectoris,0.111
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,88,Angina Pectoris,0.034
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,88,Angina Pectoris,0.152
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,88,Angina Pectoris,0.149
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,88,Angina Pectoris,0.149
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,88,Angina Pectoris,0.366
+CMS-HCC-V24,Disease,Continuing,,,,Yes,88,Angina Pectoris,0.366
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,96,Specified Heart Arrhythmias,0.268
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,96,Specified Heart Arrhythmias,0.262
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,96,Specified Heart Arrhythmias,0.384
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,96,Specified Heart Arrhythmias,0.308
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,96,Specified Heart Arrhythmias,0.264
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,96,Specified Heart Arrhythmias,0.281
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,96,Specified Heart Arrhythmias,0.252
+CMS-HCC-V24,Disease,Continuing,,,,Yes,96,Specified Heart Arrhythmias,0.252
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,99,Intracranial Hemorrhage,0.23
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,99,Intracranial Hemorrhage,0.17
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,99,Intracranial Hemorrhage,0.38
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,99,Intracranial Hemorrhage,0.486
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,99,Intracranial Hemorrhage,0.23
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,99,Intracranial Hemorrhage,0.163
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,99,Intracranial Hemorrhage,0.111
+CMS-HCC-V24,Disease,Continuing,,,,Yes,99,Intracranial Hemorrhage,0.111
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,100,Ischemic or Unspecified Stroke,0.23
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,100,Ischemic or Unspecified Stroke,0.146
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,100,Ischemic or Unspecified Stroke,0.38
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,100,Ischemic or Unspecified Stroke,0.324
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,100,Ischemic or Unspecified Stroke,0.23
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,100,Ischemic or Unspecified Stroke,0.163
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,100,Ischemic or Unspecified Stroke,0.111
+CMS-HCC-V24,Disease,Continuing,,,,Yes,100,Ischemic or Unspecified Stroke,0.111
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,103,Hemiplegia/Hemiparesis,0.437
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,103,Hemiplegia/Hemiparesis,0.281
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,103,Hemiplegia/Hemiparesis,0.487
@@ -392,14 +392,14 @@ CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,106,Atherosclerosis of the Extre
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,106,Atherosclerosis of the Extremities with Ulceration or Gangrene,1.748
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,106,Atherosclerosis of the Extremities with Ulceration or Gangrene,1.504
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,106,Atherosclerosis of the Extremities with Ulceration or Gangrene,1.525
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,106,Atherosclerosis of the Extremities with Ulceration or Gangrene,0.867
+CMS-HCC-V24,Disease,Continuing,,,,Yes,106,Atherosclerosis of the Extremities with Ulceration or Gangrene,0.867
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,No,107,Vascular Disease with Complications,0.383
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,No,107,Vascular Disease with Complications,0.464
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,No,107,Vascular Disease with Complications,0.565
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Disabled,No,107,Vascular Disease with Complications,0.653
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Aged,No,107,Vascular Disease with Complications,0.463
 CMS-HCC-V24,Disease,Continuing,Yes,Partial,Disabled,No,107,Vascular Disease with Complications,0.45
-CMS-HCC-V24,Disease,Continuing,Institutional,,,Yes,107,Vascular Disease with Complications,0.299
+CMS-HCC-V24,Disease,Continuing,,,,Yes,107,Vascular Disease with Complications,0.299
 CMS-HCC-V24,Disease,Continuing,No,Non,Aged,,108,Vascular Disease,0.288
 CMS-HCC-V24,Disease,Continuing,No,Non,Disabled,,108,Vascular Disease,0.301
 CMS-HCC-V24,Disease,Continuing,Yes,Full,Aged,,108,Vascular Disease,0.294
