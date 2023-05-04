@@ -128,7 +128,6 @@ with demographic_factors as (
         , unioned.coefficient
         , unioned.model_version
         , unioned.payment_year
-        , getdate() as date_calculated
     from unioned
          left join demographic_defaults
          on unioned.patient_id = demographic_defaults.patient_id

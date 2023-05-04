@@ -14,13 +14,15 @@ Future releases will include the ability to run other model versions.
 
 *Note: This package does not include CMS models ESRD, PACE, or RxHCC.*
 
-## 🔌 What databases are supported?
+## 🔌 Supported Databases and dbt Versions
 
-This package has been tested on **Snowflake**.
+This package has been tested on:
 
-## 📚 What versions of dbt are supported?
+* BigQuery
+* Redshift
+* Snowflake
 
-This package requires you to have dbt installed and a functional dbt project running on dbt version `1.3.x`.
+This package supports dbt version `1.2.x` or higher.
 
 ## ✅ How do I use this dbt package?
 

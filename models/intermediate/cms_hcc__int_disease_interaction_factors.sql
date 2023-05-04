@@ -104,7 +104,6 @@ with demographics as (
         , demographics_with_interactions.coefficient
         , demographics_with_interactions.model_version
         , demographics_with_interactions.payment_year
-        , getdate() as date_calculated
     from demographics_with_interactions
         inner join demographics_with_hccs as interactions_code_2
         on demographics_with_interactions.patient_id = interactions_code_2.patient_id
