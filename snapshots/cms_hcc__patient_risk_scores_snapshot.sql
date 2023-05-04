@@ -7,7 +7,7 @@
     , "tags": "cms_hcc"
     , "strategy": "timestamp"
     , "updated_at": "date_calculated"
-    , "unique_key": "patient_id||raw_risk_score||normalized_risk_score||payment_risk_score||model_version||payment_year||date_calculated"
+    , "unique_key": "patient_id||model_version||payment_year||date_calculated"
   })
 }}
 
