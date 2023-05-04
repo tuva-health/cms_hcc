@@ -139,9 +139,9 @@ with eligibility as (
 , unioned as (
 
     select * from new_enrollees
-    union
+    union all
     select * from continuining_enrollees
-    union
+    union all
     select * from other_enrollees
 
 )

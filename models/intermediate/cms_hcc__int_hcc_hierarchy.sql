@@ -142,9 +142,9 @@ with hcc_mapping as (
 , unioned as (
 
     select * from hccs_without_hierarchy
-    union
+    union all
     select * from lower_level_inclusions
-    union
+    union all
     select * from top_level_inclusions
 
 )
