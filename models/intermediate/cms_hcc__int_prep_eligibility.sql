@@ -24,7 +24,7 @@ with eligibility_src as (
           patient_id
         , gender
         , birth_date
-        , floor({{ datediff(birth_date,'{{ payment_year_age_date }}', 'hour') }} / 8766.0) as payment_year_age
+        , floor({{ datediff('birth_date','{{ payment_year_age_date }}', 'hour') }} / 8766.0) as payment_year_age
         , enrollment_start_date
         , enrollment_end_date
         , dual_status_code
@@ -50,8 +50,8 @@ with eligibility_src as (
         , enrollment_end_date
         , case
             when enrollment_start_date < '{{ collection_year_start }}'
-            then {{ datediff('{{ collection_year_start }}', enrollment_end_date, 'month') }} +1 /* include starting month */
-            else {{ datediff(enrollment_start_date, enrollment_end_date, 'month') }} +1  /* include starting month */
+            then {{ datediff('{{ collection_year_start }}', 'enrollment_end_date', 'month') }} +1 /* include starting month */
+            else {{ datediff('enrollment_start_date', 'enrollment_end_date', 'month') }} +1  /* include starting month */
           end as coverage_months
     from eligibility_src
     where
