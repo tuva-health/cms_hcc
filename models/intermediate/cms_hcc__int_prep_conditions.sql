@@ -73,8 +73,8 @@ with medical_claims as (
          inner join cpt_hcpcs_list
          on medical_claims.hcpcs_code = cpt_hcpcs_list.hcpcs_cpt_code
     where claim_type = 'professional'
-    and extract(year from claim_end_date) = '{{ collection_year }}'
-    and cpt_hcpcs_list.payment_year = '{{ payment_year_compiled }}'
+    and extract(year from claim_end_date) = {{ collection_year }}
+    and cpt_hcpcs_list.payment_year = {{ payment_year_compiled }}
 
 )
 
@@ -91,7 +91,7 @@ with medical_claims as (
         , medical_claims.hcpcs_code
     from medical_claims
     where claim_type = 'institutional'
-    and extract(year from claim_end_date) = '{{ collection_year }}'
+    and extract(year from claim_end_date) = {{ collection_year }}
     and left(bill_type_code,2) in ('11','41')
 
 )
@@ -111,8 +111,8 @@ with medical_claims as (
          inner join cpt_hcpcs_list
          on medical_claims.hcpcs_code = cpt_hcpcs_list.hcpcs_cpt_code
     where claim_type = 'institutional'
-    and extract(year from claim_end_date) = '{{ collection_year }}'
-    and cpt_hcpcs_list.payment_year = '{{ payment_year_compiled }}'
+    and extract(year from claim_end_date) = {{ collection_year }}
+    and cpt_hcpcs_list.payment_year = {{ payment_year_compiled }}
     and left(bill_type_code,2) in ('12','13','43','71','73','76','77','85')
 
 )
@@ -145,5 +145,5 @@ select distinct
     , cast(code as {{ dbt.type_string() }}) as condition_code
     , cast('{{ model_version_compiled }}' as {{ dbt.type_string() }}) as model_version
     , cast('{{ payment_year_compiled }}' as integer) as payment_year
-    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
+    , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
 from eligible_conditions

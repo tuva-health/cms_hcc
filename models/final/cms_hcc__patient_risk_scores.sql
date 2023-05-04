@@ -73,5 +73,5 @@ select
     , round(cast(payment_risk_score as {{ dbt.type_numeric() }}),3) as payment_risk_score
     , cast(model_version as {{ dbt.type_string() }}) as model_version
     , cast(payment_year as integer) as payment_year
-    , cast(getdate() as {{ dbt.type_timestamp() }}) as date_calculated
+    , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
 from payment
