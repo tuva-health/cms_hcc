@@ -4,7 +4,9 @@ models:
 # Final
   - name: cms_hcc__patient_risk_factors
     config:
-      schema: cms_hcc
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_cms_hcc
+        {% else %}cms_hcc{%- endif -%}
       alias: patient_risk_factors
       tags: cms_hcc
       materialized: table
@@ -39,7 +41,9 @@ models:
 
   - name: cms_hcc__patient_risk_scores
     config:
-      schema: cms_hcc
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_cms_hcc
+        {% else %}cms_hcc{%- endif -%}
       alias: patient_risk_scores
       tags: cms_hcc
       materialized: table
@@ -74,7 +78,9 @@ models:
 # Intermediate
   - name: cms_hcc__int_demographic_factors
     config:
-      schema: cms_hcc
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_cms_hcc
+        {% else %}cms_hcc{%- endif -%}
       alias: _int_demographic_factors
       tags: cms_hcc
       materialized: table
@@ -132,7 +138,9 @@ models:
 
   - name: cms_hcc__int_disabled_interaction_factors
     config:
-      schema: cms_hcc
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_cms_hcc
+        {% else %}cms_hcc{%- endif -%}
       alias: _int_disabled_interaction_factors
       tags: cms_hcc
       materialized: table
@@ -158,7 +166,9 @@ models:
 
   - name: cms_hcc__int_disease_factors
     config:
-      schema: cms_hcc
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_cms_hcc
+        {% else %}cms_hcc{%- endif -%}
       alias: _int_disease_factors
       tags: cms_hcc
       materialized: table
@@ -187,7 +197,9 @@ models:
 
   - name: cms_hcc__int_disease_interaction_factors
     config:
-      schema: cms_hcc
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_cms_hcc
+        {% else %}cms_hcc{%- endif -%}
       alias: _int_disease_interaction_factors
       tags: cms_hcc
       materialized: table
@@ -218,7 +230,9 @@ models:
 
   - name: cms_hcc__int_enrollment_interaction_factors
     config:
-      schema: cms_hcc
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_cms_hcc
+        {% else %}cms_hcc{%- endif -%}
       alias: _int_enrollment_interaction_factors
       tags: cms_hcc
       materialized: table
@@ -244,7 +258,9 @@ models:
 
   - name: cms_hcc__int_hcc_count_factors
     config:
-      schema: cms_hcc
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_cms_hcc
+        {% else %}cms_hcc{%- endif -%}
       alias: _int_hcc_count_factors
       tags: cms_hcc
       materialized: table
@@ -270,7 +286,9 @@ models:
 
   - name: cms_hcc__int_hcc_hierarchy
     config:
-      schema: cms_hcc
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_cms_hcc
+        {% else %}cms_hcc{%- endif -%}
       alias: _int_hcc_hierarchy
       tags: cms_hcc
       materialized: table
@@ -292,7 +310,9 @@ models:
 
   - name: cms_hcc__int_hcc_mapping
     config:
-      schema: cms_hcc
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_cms_hcc
+        {% else %}cms_hcc{%- endif -%}
       alias: _int_hcc_mapping
       tags: cms_hcc
       materialized: table
@@ -316,7 +336,9 @@ models:
 
   - name: cms_hcc__int_prep_conditions
     config:
-      schema: cms_hcc
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_cms_hcc
+        {% else %}cms_hcc{%- endif -%}
       alias: _int_prep_conditions
       tags: cms_hcc
       materialized: view
@@ -340,7 +362,9 @@ models:
 
   - name: cms_hcc__int_prep_eligibility
     config:
-      schema: cms_hcc
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_cms_hcc
+        {% else %}cms_hcc{%- endif -%}
       alias: _int_prep_eligibility
       tags: cms_hcc
       materialized: view
