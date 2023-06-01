@@ -66,12 +66,26 @@ with seed_adjustment_rates as (
 
 )
 
+, add_data_types as (
+
+    select
+          cast(patient_id as {{ dbt.type_string() }}) as patient_id
+        , round(cast(raw_risk_score as {{ dbt.type_numeric() }}),3) as raw_risk_score
+        , round(cast(normalized_risk_score as {{ dbt.type_numeric() }}),3) as normalized_risk_score
+        , round(cast(payment_risk_score as {{ dbt.type_numeric() }}),3) as payment_risk_score
+        , cast(model_version as {{ dbt.type_string() }}) as model_version
+        , cast(payment_year as integer) as payment_year
+        , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
+    from payment
+
+)
+
 select
-      cast(patient_id as {{ dbt.type_string() }}) as patient_id
-    , round(cast(raw_risk_score as {{ dbt.type_numeric() }}),3) as raw_risk_score
-    , round(cast(normalized_risk_score as {{ dbt.type_numeric() }}),3) as normalized_risk_score
-    , round(cast(payment_risk_score as {{ dbt.type_numeric() }}),3) as payment_risk_score
-    , cast(model_version as {{ dbt.type_string() }}) as model_version
-    , cast(payment_year as integer) as payment_year
-    , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
-from payment
+      patient_id
+    , raw_risk_score
+    , normalized_risk_score
+    , payment_risk_score
+    , model_version
+    , payment_year
+    , date_calculated
+from add_data_types

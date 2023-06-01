@@ -71,6 +71,8 @@ with demographics as (
 
 )
 
+, add_data_types as (
+
 select
       cast(patient_id as {{ dbt.type_string() }}) as patient_id
     , cast(description as {{ dbt.type_string() }}) as description
@@ -79,3 +81,14 @@ select
     , cast(payment_year as integer) as payment_year
     , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
 from interactions
+
+)
+
+select
+      patient_id
+    , description
+    , coefficient
+    , model_version
+    , payment_year
+    , date_calculated
+from add_data_types

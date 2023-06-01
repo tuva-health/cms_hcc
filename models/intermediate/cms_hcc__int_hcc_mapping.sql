@@ -20,7 +20,7 @@ with conditions as (
         , condition_code
         , model_version
         , payment_year
-    from {{ ref('cms_hcc__int_prep_conditions') }}
+    from {{ ref('cms_hcc__int_eligible_conditions') }}
 
 )
 
@@ -52,11 +52,24 @@ with conditions as (
 
 )
 
+, add_data_types as (
+
+    select
+          cast(patient_id as {{ dbt.type_string() }}) as patient_id
+        , cast(condition_code as {{ dbt.type_string() }}) as condition_code
+        , cast(hcc_code as {{ dbt.type_string() }}) as hcc_code
+        , cast(model_version as {{ dbt.type_string() }}) as model_version
+        , cast(payment_year as integer) as payment_year
+        , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
+    from mapped
+
+)
+
 select
-      cast(patient_id as {{ dbt.type_string() }}) as patient_id
-    , cast(condition_code as {{ dbt.type_string() }}) as condition_code
-    , cast(hcc_code as {{ dbt.type_string() }}) as hcc_code
-    , cast(model_version as {{ dbt.type_string() }}) as model_version
-    , cast(payment_year as integer) as payment_year
-    , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
-from mapped
+      patient_id
+    , condition_code
+    , hcc_code
+    , model_version
+    , payment_year
+    , date_calculated
+from add_data_types
