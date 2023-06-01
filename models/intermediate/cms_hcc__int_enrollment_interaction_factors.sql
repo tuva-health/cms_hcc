@@ -42,7 +42,10 @@ with demographics as (
 )
 
 /*
-    enrollment interaction factors for non-institutional patients use gender
+    Originally disabled interactions for non-institutional members
+
+    note: this filter logic is a workaround for OREC being interpreted from
+    medicare status
 */
 , non_institutional_interactions as (
 
@@ -58,14 +61,23 @@ with demographics as (
          and demographics.enrollment_status = seed_interaction_factors.enrollment_status
          and demographics.medicaid_status = seed_interaction_factors.medicaid_status
          and demographics.dual_status = seed_interaction_factors.dual_status
-         and demographics.orec = seed_interaction_factors.orec
          and demographics.institutional_status = seed_interaction_factors.institutional_status
     where demographics.institutional_status = 'No'
+    and demographics.orec = 'Disabled'
+    and demographics.age_group in (
+          '65-69'
+        , '70-74'
+        , '75-79'
+        , '80-84'
+        , '85-89'
+        , '90-94'
+        , '>=95'
+    )
 
 )
 
 /*
-    enrollment interaction factors for institutional patients do not use gender
+    Medicaid interactions for institutional members
 */
 , institutional_interactions as (
 
@@ -78,11 +90,9 @@ with demographics as (
     from demographics
          inner join seed_interaction_factors
          on demographics.enrollment_status = seed_interaction_factors.enrollment_status
-         and demographics.medicaid_status = seed_interaction_factors.medicaid_status
-         and demographics.dual_status = seed_interaction_factors.dual_status
-         and demographics.orec = seed_interaction_factors.orec
          and demographics.institutional_status = seed_interaction_factors.institutional_status
     where demographics.institutional_status = 'Yes'
+    and demographics.medicaid_status = 'Yes'
 
 )
 
