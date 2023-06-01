@@ -235,7 +235,7 @@ models:
         {% else %}cms_hcc{%- endif -%}
       alias: _int_eligible_conditions
       tags: cms_hcc
-      materialized: view
+      materialized: table
     description: >
       Conditions from eligible risk-adjustable claims per claim type for the 
       collection year.
@@ -367,7 +367,7 @@ models:
         {% else %}cms_hcc{%- endif -%}
       alias: _int_members
       tags: cms_hcc
-      materialized: view
+      materialized: table
     description: >
       Transformed eligibility data into the demographic risk segments required 
       for the CMS HCC and risk calculations.
