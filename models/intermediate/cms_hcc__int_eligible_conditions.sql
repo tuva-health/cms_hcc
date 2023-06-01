@@ -1,5 +1,5 @@
 /*
-Steps for staging the medical claim data:
+Steps for staging condition data:
     1) Filter to risk-adjustable claims per claim type for the collection year.
     2) Gather diagnosis codes from condition for the eligible claims.
     3) Map and filter diagnosis codes to HCCs
@@ -34,7 +34,7 @@ with medical_claims as (
         , claim_end_date
         , bill_type_code
         , hcpcs_code
-    from {{ var('medical_claim') }}
+    from {{ ref('cms_hcc__stg_medical_claim') }}
 
 )
 
@@ -44,7 +44,7 @@ with medical_claims as (
           claim_id
         , patient_id
         , code
-    from {{ var('condition') }}
+    from {{ ref('cms_hcc__stg_condition') }}
     where code_type = 'icd-10-cm'
 
 )
@@ -140,10 +140,22 @@ with medical_claims as (
 
 )
 
-select distinct
-      cast(patient_id as {{ dbt.type_string() }}) as patient_id
-    , cast(code as {{ dbt.type_string() }}) as condition_code
-    , cast('{{ model_version_compiled }}' as {{ dbt.type_string() }}) as model_version
-    , cast('{{ payment_year_compiled }}' as integer) as payment_year
-    , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
-from eligible_conditions
+, add_data_types as (
+
+    select distinct
+          cast(patient_id as {{ dbt.type_string() }}) as patient_id
+        , cast(code as {{ dbt.type_string() }}) as condition_code
+        , cast('{{ model_version_compiled }}' as {{ dbt.type_string() }}) as model_version
+        , cast('{{ payment_year_compiled }}' as integer) as payment_year
+        , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
+    from eligible_conditions
+
+)
+
+select
+      patient_id
+    , condition_code
+    , model_version
+    , payment_year
+    , date_calculated
+from add_data_types

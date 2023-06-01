@@ -1,5 +1,5 @@
 /*
-Steps for staging the eligibility data:
+Steps for transforming eligibility data into member demographics:
     1) Determine enrollment status using eligibility from the collection year.
     2) Roll up to latest eligibility record.
     3) Add age groups based on the payment year.
@@ -18,7 +18,7 @@ Jinja is used to set payment and collection year variables.
 {% set collection_year = payment_year_compiled - 1 -%}
 {% set collection_year_start = collection_year ~ '-01-01' -%}
 
-with eligibility_src as (
+with stg_eligibility as (
 
     select
           patient_id
@@ -33,7 +33,7 @@ with eligibility_src as (
             partition by patient_id
             order by enrollment_end_date desc
         ) as row_num /* used to dedupe eligibility */
-    from {{ var('eligibility') }}
+    from {{ ref('cms_hcc__stg_eligibility') }}
 
 )
 
@@ -53,7 +53,7 @@ with eligibility_src as (
             then {{ datediff("'"~collection_year_start~"'", 'enrollment_end_date', 'month') }} +1 /* include starting month */
             else {{ datediff('enrollment_start_date', 'enrollment_end_date', 'month') }} +1  /* include starting month */
           end as coverage_months
-    from eligibility_src
+    from stg_eligibility
     where
     /* coverage dates must fall within the collection year */
     (extract(year from enrollment_start_date) = {{ collection_year }}
@@ -80,11 +80,11 @@ with eligibility_src as (
 , latest_eligibility as (
 
     select
-          eligibility_src.patient_id
-        , eligibility_src.gender
-        , eligibility_src.payment_year_age
-        , eligibility_src.dual_status_code
-        , eligibility_src.medicare_status_code
+          stg_eligibility.patient_id
+        , stg_eligibility.gender
+        , stg_eligibility.payment_year_age
+        , stg_eligibility.dual_status_code
+        , stg_eligibility.medicare_status_code
         , case
             when add_enrollment.enrollment_status is null then 'New'
             else add_enrollment.enrollment_status
@@ -93,10 +93,10 @@ with eligibility_src as (
             when add_enrollment.enrollment_status is null then True
             else False
           end as enrollment_status_default
-    from eligibility_src
+    from stg_eligibility
          left join add_enrollment
-         on eligibility_src.patient_id = add_enrollment.patient_id
-    where eligibility_src.row_num = 1
+         on stg_eligibility.patient_id = add_enrollment.patient_id
+    where stg_eligibility.row_num = 1
 
 )
 
@@ -144,46 +144,67 @@ with eligibility_src as (
 
 )
 
+, add_data_types as (
+
+    select
+          cast(patient_id as {{ dbt.type_string() }}) as patient_id
+        , cast(enrollment_status as {{ dbt.type_string() }}) as enrollment_status
+        /*, null as plan_segment --data not available */
+        , cast(case
+            when gender = 'female' then 'Female'
+            when gender = 'male' then 'Male'
+            else null
+          end as {{ dbt.type_string() }}) as gender
+        , cast(age_group as {{ dbt.type_string() }}) as age_group
+        , cast(case
+            when dual_status_code in ('01','02','03','04','05','06','08') then 'Yes'
+            else 'No'
+          end as {{ dbt.type_string() }}) as medicaid_status
+        , cast(case
+            when dual_status_code in ('02','04','08') then 'Full'
+            when dual_status_code in ('01','03','05','06') then 'Partial'
+            else 'Non'
+          end as {{ dbt.type_string() }}) as dual_status
+        /*
+           Medicare status is being used as an analog for OREC to calculate
+           demographic risk factors, this will be replaced when OREC is added to
+           the data model.
+        */
+        , cast(case
+            when medicare_status_code in ('10','11') then 'Aged'
+            when medicare_status_code in ('20','21') then 'Disabled'
+            when medicare_status_code in ('31') then 'ESRD'
+            end as {{ dbt.type_string() }}) as orec
+        /*
+           Defaulting everyone to non-institutional until logic is added
+        */
+        , cast('No'as {{ dbt.type_string() }}) as institutional_status
+        , cast(enrollment_status_default as boolean) as enrollment_status_default
+        , cast(case
+            when dual_status_code is null then True
+            else FALSE
+            end as boolean) as medicaid_dual_status_default
+        , cast(True as boolean) as institutional_status_default
+        , cast('{{ model_version_compiled }}' as {{ dbt.type_string() }}) as model_version
+        , cast('{{ payment_year_compiled }}' as integer) as payment_year
+        , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
+    from add_age_group
+
+)
+
 select
-      cast(patient_id as {{ dbt.type_string() }}) as patient_id
-    , cast(enrollment_status as {{ dbt.type_string() }}) as enrollment_status
-    /*, null as plan_segment --data not available */
-    , cast(case
-        when gender = 'female' then 'Female'
-        when gender = 'male' then 'Male'
-        else null
-      end as {{ dbt.type_string() }}) as gender
-    , cast(age_group as {{ dbt.type_string() }}) as age_group
-    , cast(case
-        when dual_status_code in ('01','02','03','04','05','06','08') then 'Yes'
-        else 'No'
-      end as {{ dbt.type_string() }}) as medicaid_status
-    , cast(case
-        when dual_status_code in ('02','04','08') then 'Full'
-        when dual_status_code in ('01','03','05','06') then 'Partial'
-        else 'Non'
-      end as {{ dbt.type_string() }}) as dual_status
-    /*
-       Medicare status is being used as an analog for OREC to calculate
-       demographic risk factors, this will be replaced when OREC is added to
-       the data model.
-    */
-    , cast(case
-        when medicare_status_code in ('10','11') then 'Aged'
-        when medicare_status_code in ('20','21') then 'Disabled'
-        when medicare_status_code in ('31') then 'ESRD'
-        end as {{ dbt.type_string() }}) as orec
-    /*
-       Defaulting everyone to non-institutional until logic is added
-    */
-    , cast('No'as {{ dbt.type_string() }}) as institutional_status
-    , cast(enrollment_status_default as boolean) as enrollment_status_default
-    , cast(case
-        when dual_status_code is null then True
-        else FALSE
-        end as boolean) as medicaid_dual_status_default
-    , cast(True as boolean) as institutional_status_default
-    , cast('{{ model_version_compiled }}' as {{ dbt.type_string() }}) as model_version
-    , cast('{{ payment_year_compiled }}' as integer) as payment_year
-    , cast('{{ dbt_utils.pretty_time(format="%Y-%m-%d %H:%M:%S") }}' as {{ dbt.type_timestamp() }}) as date_calculated
-from add_age_group
+      patient_id
+    , enrollment_status
+    , gender
+    , age_group
+    , medicaid_status
+    , dual_status
+    , orec
+    , institutional_status
+    , enrollment_status_default
+    , medicaid_dual_status_default
+    , institutional_status_default
+    , model_version
+    , payment_year
+    , date_calculated
+from add_data_types
