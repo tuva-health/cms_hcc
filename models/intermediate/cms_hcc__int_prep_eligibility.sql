@@ -163,12 +163,20 @@ select
         when dual_status_code in ('01','03','05','06') then 'Partial'
         else 'Non'
       end as {{ dbt.type_string() }}) as dual_status
+    /*
+       Medicare status is being used as an analog for OREC to calculate
+       demographic risk factors, this will be replaced when OREC is added to
+       the data model.
+    */
     , cast(case
         when medicare_status_code in ('10','11') then 'Aged'
         when medicare_status_code in ('20','21') then 'Disabled'
         when medicare_status_code in ('31') then 'ESRD'
-        end as {{ dbt.type_string() }}) as orec /* this field is purposefully limited in it's interpretation to calculate demographic risk factors */
-    , cast('No'as {{ dbt.type_string() }}) as institutional_status /* will be replaced with logic */
+        end as {{ dbt.type_string() }}) as orec
+    /*
+       Defaulting everyone to non-institutional until logic is added
+    */
+    , cast('No'as {{ dbt.type_string() }}) as institutional_status
     , cast(enrollment_status_default as boolean) as enrollment_status_default
     , cast(case
         when dual_status_code is null then True

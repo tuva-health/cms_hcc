@@ -42,10 +42,7 @@ with demographics as (
 )
 
 /*
-    Originally disabled interactions for non-institutional members
-
-    note: this filter logic is a workaround for OREC being interpreted from
-    medicare status
+    Originally disabled interactions for non-institutional members >= 65
 */
 , non_institutional_interactions as (
 
