@@ -17,7 +17,7 @@ select distinct
     , cast(calendar.last_day_of_month as date) as collection_end_date
     , cast(calendar.year as integer) as collection_year
     , cast(calendar.year + 1 as integer) as payment_year
-from {{ ref('reference_data__calendar') }} as calendar
+from {{ ref('terminology__calendar') }} as calendar
 inner join collection_date_range
     on calendar.first_day_of_month
         between collection_date_range.start_date and collection_date_range.end_date

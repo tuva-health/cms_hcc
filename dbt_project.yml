@@ -24,31 +24,31 @@ seeds:
     value_sets:
       cms_hcc:
         cms_hcc__adjustment_rates:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','cms_hcc__adjustment_rates.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'cms_hcc__adjustment_rates.csv', true, true, true) }}"
         cms_hcc__cpt_hcpcs:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','cms_hcc__cpt_hcpcs.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'cms_hcc__cpt_hcpcs.csv', true, true, true) }}"
         cms_hcc__demographic_factors:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','cms_hcc__demographic_factors.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'cms_hcc__demographic_factors.csv', true, true, true) }}"
         cms_hcc__disabled_interaction_factors:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','cms_hcc__disabled_interaction_factors.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'cms_hcc__disabled_interaction_factors.csv', true, true, true) }}"
         cms_hcc__disease_factors:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','cms_hcc__disease_factors.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'cms_hcc__disease_factors.csv', true, true, true) }}"
         cms_hcc__disease_hierarchy:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','cms_hcc__disease_hierarchy.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'cms_hcc__disease_hierarchy.csv', true, true, true) }}"
         cms_hcc__disease_hierarchy_flat:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','cms_hcc__disease_hierarchy_flat.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'cms_hcc__disease_hierarchy_flat.csv', true, true, true) }}"
         cms_hcc__disease_interaction_factors:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','cms_hcc__disease_interaction_factors.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'cms_hcc__disease_interaction_factors.csv', true, true, true) }}"
         cms_hcc__enrollment_interaction_factors:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','cms_hcc__enrollment_interaction_factors.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'cms_hcc__enrollment_interaction_factors.csv', true, true, true) }}"
         cms_hcc__icd_10_cm_mappings:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','cms_hcc__icd_10_cm_mappings.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'cms_hcc__icd_10_cm_mappings.csv', true, true, true) }}"
         cms_hcc__payment_hcc_count_factors:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','cms_hcc__payment_hcc_count_factors.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'cms_hcc__payment_hcc_count_factors.csv', true, true, true) }}"
       hcc_suspecting:
         hcc_suspecting__clinical_concepts:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','hcc_suspecting__clinical_concepts.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'hcc_suspecting__clinical_concepts.csv', true, true, true) }}"
         hcc_suspecting__hcc_descriptions:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','hcc_suspecting__hcc_descriptions.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'hcc_suspecting__hcc_descriptions.csv', true, true, true) }}"
         hcc_suspecting__icd_10_cm_mappings:
-          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','hcc_suspecting__icd_10_cm_mappings.csv') }}"
+          +post-hook: "{{ the_tuva_project.load_seed(the_tuva_project.get_seed_bucket('value_sets') ~ '/data-marts/cms-hcc/' ~ var('cms_hcc_seed_version', '1.0.0'), 'hcc_suspecting__icd_10_cm_mappings.csv', true, true, true) }}"
