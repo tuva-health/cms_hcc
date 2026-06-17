@@ -9,4 +9,4 @@ select distinct
     , year_month
     , data_source
     , cast('{{ var('tuva_last_run') }}' as {{ dbt.type_timestamp() }}) as tuva_last_run
-from {{ ref('core__member_months') }}
+from {{ ref('core__member_month') }}

@@ -34,7 +34,7 @@ select distinct
       diag.hcc_code
     , diag.model_version
     , 1 as chronic_flag
-from {{ ref('chronic_conditions__cms_chronic_conditions_hierarchy') }} as hier
+from {{ ref('cms_chronic_conditions__cms_chronic_conditions_hierarchy') }} as hier
 inner join hcc_diagnosis as diag
   on hier.code = diag.diagnosis_code
 where diag.payment_year = (select max(payment_year) from hcc_diagnosis)
