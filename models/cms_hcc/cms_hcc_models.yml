@@ -1019,14 +1019,14 @@ models:
                 severity: warn
       - name: death_date
         description: The death date of the patient if there is one.
-  - name: cms_hcc__stg_core__member_months
+  - name: cms_hcc__stg_core__member_month
     config:
       schema: |
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_cms_hcc{% else %}cms_hcc{%- endif -%}
-      alias: _stg_member_months
+      alias: _stg_member_month
       tags: cms_hcc
       materialized: ephemeral
-    description: Staging member months from financial_pmpm
+    description: Staging member month records from core.member_month
     tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
