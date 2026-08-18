@@ -92,8 +92,9 @@ models:
 
   - name: hcc_recapture__stg_chronic_hccs
     description: |
-      A list of chronic HCCs. This is an optional model which can be included by
-      setting the hcc_recapture_chronic_hccs variable in your dbt_project.yml
+      A list of chronic HCCs used for recapture. By default, this model uses the
+      package-owned chronic HCC definitions. Set hcc_recapture_chronic_hccs to
+      true to supply a custom chronic_hccs model instead.
     config:
       schema: |
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_hcc_recapture
