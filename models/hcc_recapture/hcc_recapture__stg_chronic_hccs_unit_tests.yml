@@ -1,0 +1,22 @@
+version: 2
+
+unit_tests:
+  - name: test_hcc_recapture_stg_chronic_hccs_defaults_to_package_seed
+    description: >
+      Verifies that default HCC recapture uses the package-owned chronic HCC
+      definitions without requiring another data-mart package.
+    model: hcc_recapture__stg_chronic_hccs
+    config:
+      enabled: "{{ var('claims_enabled', False) | as_bool }}"
+    overrides:
+      vars:
+        hcc_recapture_chronic_hccs: false
+    given:
+      - input: ref('hcc_recapture__chronic_hccs')
+        rows:
+          - {hcc_code: '85', model_version: 'CMS-HCC-V24', chronic_flag: 1}
+          - {hcc_code: '93', model_version: 'CMS-HCC-V28', chronic_flag: 1}
+    expect:
+      rows:
+        - {hcc_code: '85', model_version: 'CMS-HCC-V24', chronic_flag: 1}
+        - {hcc_code: '93', model_version: 'CMS-HCC-V28', chronic_flag: 1}

@@ -1,0 +1,50 @@
+version: 2
+
+seeds:
+  - name: hcc_recapture__chronic_hccs
+    description: >
+      Default chronic HCC definitions for HCC recapture. This package-owned
+      list is derived from Tuva value sets 1.2.4 and CMS HCC assets 1.0.0 for
+      payment year 2026. The checked-in reference is versioned with the
+      cms_hcc package and must be updated through a package release when its
+      source definitions change.
+    config:
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
+      alias: _value_set_hcc_recapture_chronic_hccs
+      tags: ["cms_hcc", "hcc_recapture"]
+      enabled: "{{ var('claims_enabled', False) }}"
+      column_types:
+        hcc_code: |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar(256) {%- endif -%}
+        model_version: |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar(256) {%- endif -%}
+        chronic_flag: integer
+      meta:
+        source_value_set_version: "1.2.4"
+        source_cms_hcc_seed_version: "1.0.0"
+        source_payment_year: 2026
+        content_sha256: b39e2e8b5b9c20a51de241d92e175ab8b7446fc07bd6eecaa2d008a3aee2b55b
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - hcc_code
+    columns:
+      - name: hcc_code
+        description: Hierarchical Condition Category code.
+        data_tests:
+          - not_null
+      - name: model_version
+        description: CMS-HCC model version.
+        data_tests:
+          - not_null
+      - name: chronic_flag
+        description: Indicates that the HCC is chronic and eligible for recapture.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1]
+                quote: false
