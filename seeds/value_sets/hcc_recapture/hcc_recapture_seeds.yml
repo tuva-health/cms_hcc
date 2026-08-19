@@ -5,7 +5,7 @@ seeds:
     description: >
       Default chronic HCC definitions for HCC recapture. This package-owned
       list is derived from Tuva value sets 1.2.4 and CMS HCC assets 1.0.0 for
-      payment year 2026. The checked-in reference is versioned with the
+      payment year 2026. The released asset is versioned with the
       cms_hcc package and must be updated through a package release when its
       source definitions change.
     config:
@@ -24,7 +24,7 @@ seeds:
         source_value_set_version: "1.2.4"
         source_cms_hcc_seed_version: "1.0.0"
         source_payment_year: 2026
-        content_sha256: b39e2e8b5b9c20a51de241d92e175ab8b7446fc07bd6eecaa2d008a3aee2b55b
+        uncompressed_content_sha256: b39e2e8b5b9c20a51de241d92e175ab8b7446fc07bd6eecaa2d008a3aee2b55b
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
