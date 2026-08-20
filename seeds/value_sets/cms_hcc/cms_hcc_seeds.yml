@@ -10,7 +10,6 @@ seeds:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
       alias: _value_set_adjustment_rates
       tags: cms_hcc
-      enabled: "{{ var('claims_enabled', False) }}"
       column_types:
         model_version: |
           {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar(256) {%- endif -%}
@@ -38,7 +37,6 @@ seeds:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
       alias: _value_set_cpt_hcpcs
       tags: cms_hcc
-      enabled: "{{ var('claims_enabled', False) }}"
       column_types:
         payment_year: |
           integer
@@ -62,7 +60,6 @@ seeds:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
       alias: _value_set_demographic_factors
       tags: cms_hcc
-      enabled: "{{ var('claims_enabled', False) }}"
       column_types:
         model_version: |
           {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar(256) {%- endif -%}
@@ -118,7 +115,6 @@ seeds:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
       alias: _value_set_disabled_interaction_factors
       tags: cms_hcc
-      enabled: "{{ var('claims_enabled', False) }}"
       column_types:
         model_version: |
           {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar(256) {%- endif -%}
@@ -162,7 +158,6 @@ seeds:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
       alias: _value_set_disease_factors
       tags: ["cms_hcc", "hcc_recapture"]
-      enabled: "{{ var('claims_enabled', False) }}"
       column_types:
         model_version: |
           {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar(256) {%- endif -%}
@@ -215,7 +210,6 @@ seeds:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
       alias: _value_set_disease_hierarchy
       tags: cms_hcc
-      enabled: "{{ var('claims_enabled', False) }}"
       column_types:
         model_version: |
           {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar(256) {%- endif -%}
@@ -244,7 +238,6 @@ seeds:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
       alias: _value_set_disease_hierarchy_flat
       tags: ["cms_hcc", "hcc_recapture"]
-      enabled: "{{ var('claims_enabled', False) }}"
       column_types:
         hcc_code: |
           {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar(256) {%- endif -%}
@@ -279,7 +272,6 @@ seeds:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
       alias: _value_set_disease_interaction_factors
       tags: cms_hcc
-      enabled: "{{ var('claims_enabled', False) }}"
       column_types:
         model_version: |
           {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar(256) {%- endif -%}
@@ -339,7 +331,6 @@ seeds:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
       alias: _value_set_enrollment_interaction_factors
       tags: cms_hcc
-      enabled: "{{ var('claims_enabled', False) }}"
       column_types:
         model_version: |
           {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar(256) {%- endif -%}
@@ -387,7 +378,6 @@ seeds:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
       alias: _value_set_cms_hcc_icd_10_cm_mappings
       tags: ["cms_hcc", "hcc_recapture"]
-      enabled: "{{ var('claims_enabled', False) }}"
       column_types:
         payment_year: |
           integer
@@ -426,7 +416,6 @@ seeds:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
       alias: _value_set_payment_hcc_count_factors
       tags: cms_hcc
-      enabled: "{{ var('claims_enabled', False) }}"
       column_types:
         model_version: |
           {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar(256) {%- endif -%}
