@@ -5,6 +5,8 @@ unit_tests:
     description: >
       Verifies that members with missing OREC and Medicare Status default to the
       CMS age-based disabled logic: under 65 as Disabled and 65 or older as Aged.
+      The under-65 fixture also verifies that an open-ended enrollment span is
+      retained and capped to the payment-year boundary for coverage calculations.
     model: cms_hcc__int_members
     config:
       enabled: "{{ var('claims_enabled', False) | as_bool }}"
@@ -21,11 +23,11 @@ unit_tests:
               'under_65' as person_id
             , 'medicare' as payer
             , cast('2023-01-01' as date) as enrollment_start_date
-            , cast('2024-12-31' as date) as enrollment_end_date
+            , cast(null as date) as enrollment_end_date
             , cast(null as {{ string_type }}) as original_reason_entitlement_code
             , cast(null as {{ string_type }}) as dual_status_code
             , cast(null as {{ string_type }}) as medicare_status_code
-            , 'Continuing' as enrollment_status
+            , cast(null as {{ string_type }}) as enrollment_status
             , cast(null as {{ integer_type }}) as long_term_institutional_flag
             , cast(null as {{ integer_type }}) as institutional_snp_flag
             , 'medicare cclf' as data_source
