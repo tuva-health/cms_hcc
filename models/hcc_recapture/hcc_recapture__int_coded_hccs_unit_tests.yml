@@ -1,0 +1,84 @@
+version: 2
+
+unit_tests:
+  - name: test_hcc_recapture_coded_hccs_accepts_billing_and_discharge_diagnoses
+    description: >
+      Verifies that HCC recapture includes Tuva Core claims-derived billing
+      diagnoses and source-clinical discharge diagnoses while excluding other
+      condition types, and preserves the prior coding history reason required
+      by the recapture grain.
+    model: hcc_recapture__int_coded_hccs
+    config:
+      enabled: "{{ var('claims_enabled', False) | as_bool }}"
+    given:
+      - input: ref('hcc_suspecting__int_all_conditions')
+        format: sql
+        rows: |
+          select
+              'p1' as person_id
+            , 'payer' as payer
+            , 'source' as data_source
+            , cast('2025-01-01' as date) as recorded_date
+            , 'CMS-HCC-V28' as model_version
+            , 'c1' as claim_id
+            , '1' as hcc_code
+            , 'Billing diagnosis' as hcc_description
+            , 'billing_diagnosis' as condition_type
+          union all
+          select
+              'p2' as person_id
+            , 'payer' as payer
+            , 'source' as data_source
+            , cast('2025-01-02' as date) as recorded_date
+            , 'CMS-HCC-V28' as model_version
+            , 'c2' as claim_id
+            , '2' as hcc_code
+            , 'Clinical discharge diagnosis' as hcc_description
+            , 'discharge_diagnosis' as condition_type
+          union all
+          select
+              'p3' as person_id
+            , 'payer' as payer
+            , 'source' as data_source
+            , cast('2025-01-03' as date) as recorded_date
+            , 'CMS-HCC-V28' as model_version
+            , 'c3' as claim_id
+            , '3' as hcc_code
+            , 'Problem list condition' as hcc_description
+            , 'problem' as condition_type
+      - input: ref('cms_hcc__int_eligible_conditions')
+        format: sql
+        rows: |
+          select 'p1' as person_id, 'c1' as claim_id, 'payer' as payer
+          union all
+          select 'p2' as person_id, 'c2' as claim_id, 'payer' as payer
+          union all
+          select 'p3' as person_id, 'c3' as claim_id, 'payer' as payer
+    expect:
+      rows:
+        - person_id: p1
+          payer: payer
+          data_source: source
+          recorded_date: '2025-01-01'
+          model_version: CMS-HCC-V28
+          claim_id: c1
+          hcc_code: '1'
+          hcc_description: Billing diagnosis
+          suspect_hcc_flag: 0
+          eligible_claim_flag: 1
+          reason: prior coding history
+          hcc_type: coded
+          hcc_source: payer
+        - person_id: p2
+          payer: payer
+          data_source: source
+          recorded_date: '2025-01-02'
+          model_version: CMS-HCC-V28
+          claim_id: c2
+          hcc_code: '2'
+          hcc_description: Clinical discharge diagnosis
+          suspect_hcc_flag: 0
+          eligible_claim_flag: 1
+          reason: prior coding history
+          hcc_type: coded
+          hcc_source: payer
