@@ -2,6 +2,14 @@
 
 dbt package for the Tuva Project CMS HCC, HCC recapture, and HCC suspecting data marts.
 
+## Open-ended eligibility spans
+
+Tuva Core represents an enrollment span with no known end date using a null
+`enrollment_end_date`. CMS HCC treats that span as active and caps it to the
+applicable payment-year boundary when calculating coverage months. Fully
+refresh the CMS HCC models when upgrading so active enrollment spans are
+included in member and enrollment-status calculations.
+
 ## Data assets
 
 Released seed contents are stored as an immutable snapshot under

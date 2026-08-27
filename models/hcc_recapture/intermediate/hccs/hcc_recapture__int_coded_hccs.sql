@@ -36,4 +36,7 @@ left join eligible_claims as elig
     on cond.person_id = elig.person_id
     and cond.payer = elig.payer
     and cond.claim_id = elig.claim_id
-where lower(condition_type) = 'discharge_diagnosis'
+-- Tuva Core 1.0 labels claims-derived conditions as billing diagnoses because
+-- professional claims do not establish a discharge diagnosis. Retain the
+-- clinical discharge-diagnosis value as a supported coded-condition source.
+where lower(condition_type) in ('billing_diagnosis', 'discharge_diagnosis')

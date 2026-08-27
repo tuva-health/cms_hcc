@@ -36,13 +36,19 @@ with stg_eligibility as (
         , {{ the_tuva_project.concat_custom(['dates.payment_year', "'-12-31'"]) }} as payment_year_end_date
         , row_number() over (
             partition by elig.person_id, dates.collection_end_date
-            order by elig.enrollment_end_date desc
+            order by
+                  case when elig.enrollment_end_date is null then 1 else 0 end desc
+                , elig.enrollment_end_date desc
+                , elig.enrollment_start_date desc
         ) as row_num /* used to dedupe eligibility */
     from {{ ref('cms_hcc__stg_core__eligibility') }} as elig
     inner join {{ ref('cms_hcc__int_monthly_collection_dates') }} as dates
         /* filter to members with eligibility in collection or payment year */
         on elig.enrollment_start_date <= cast({{ the_tuva_project.concat_custom(['dates.payment_year', "'-12-31'"]) }} as date)
-        and elig.enrollment_end_date >= dates.collection_start_date
+        and (
+               elig.enrollment_end_date is null
+            or elig.enrollment_end_date >= dates.collection_start_date
+        )
 
 )
 
@@ -88,7 +94,8 @@ with stg_eligibility as (
             else enrollment_start_date
           end as proxy_enrollment_start_date
         , case
-            when enrollment_end_date > {{ the_tuva_project.try_to_cast_date('payment_year_end_date', 'YYYY-MM-DD') }}
+            when enrollment_end_date is null
+              or enrollment_end_date > {{ the_tuva_project.try_to_cast_date('payment_year_end_date', 'YYYY-MM-DD') }}
             then {{ the_tuva_project.try_to_cast_date('payment_year_end_date', 'YYYY-MM-DD') }}
             else enrollment_end_date
           end as proxy_enrollment_end_date
