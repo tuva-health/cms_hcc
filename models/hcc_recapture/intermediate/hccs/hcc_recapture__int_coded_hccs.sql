@@ -26,6 +26,7 @@ select
         when elig.claim_id is not null then 1
         else 0
     end as eligible_claim_flag
+    , 'prior coding history' as reason
     , 'coded' as hcc_type
     , 'payer' as hcc_source
 -- Not using list_all since it doesn't have claim_id pulled through

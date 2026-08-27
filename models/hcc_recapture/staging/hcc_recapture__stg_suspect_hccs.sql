@@ -14,6 +14,7 @@ select
     , cast(hcc_description as {{dbt.type_string()}}) as hcc_description
     , cast(suspect_hcc_flag as {{dbt.type_int()}}) as suspect_hcc_flag
     , cast(eligible_claim_flag as {{dbt.type_int()}}) as eligible_claim_flag
+    , cast(reason as {{dbt.type_string()}}) as reason
     , cast(hcc_type as {{dbt.type_string()}}) as hcc_type
     , cast(hcc_source as {{dbt.type_string()}}) as hcc_source
 from {{ ref('suspect_hccs')}}
