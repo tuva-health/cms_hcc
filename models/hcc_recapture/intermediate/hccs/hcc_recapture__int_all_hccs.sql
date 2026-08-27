@@ -60,6 +60,7 @@ select distinct
     , eligible_claim_flag
     , med.rendering_npi
     , suspect_hcc_flag
+    , sus.reason
     , case when chronic.chronic_flag = 1 and eligible_claim_flag = 1 then 1 else 0 end as recapturable_flag
     , hcc_type
     , hcc_source

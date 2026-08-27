@@ -1,0 +1,64 @@
+version: 2
+
+unit_tests:
+  - name: test_hcc_recapture_int_suspect_hccs_preserves_distinct_reasons
+    description: >
+      Verifies that otherwise-identical suspect HCCs remain distinct when they
+      were identified for different reasons.
+    model: hcc_recapture__int_suspect_hccs
+    config:
+      enabled: "{{ var('claims_enabled', False) | as_bool }}"
+    overrides:
+      vars:
+        hcc_recapture_suspect_list: false
+    given:
+      - input: ref('hcc_suspecting__list_all')
+        format: sql
+        rows: |
+          select
+              'person-a' as person_id
+            , 'payer-a' as payer
+            , 'source-a' as data_source
+            , cast('2025-01-15' as date) as suspect_date
+            , 'CMS-HCC-V28' as model_version
+            , '37' as hcc_code
+            , 'Diabetes mellitus with chronic complications' as hcc_description
+            , 'Observation suspect' as reason
+          union all
+          select
+              'person-a' as person_id
+            , 'payer-a' as payer
+            , 'source-a' as data_source
+            , cast('2025-01-15' as date) as suspect_date
+            , 'CMS-HCC-V28' as model_version
+            , '37' as hcc_code
+            , 'Diabetes mellitus with chronic complications' as hcc_description
+            , 'Medication suspect' as reason
+    expect:
+      rows:
+        - person_id: person-a
+          payer: payer-a
+          data_source: source-a
+          recorded_date: '2025-01-15'
+          model_version: CMS-HCC-V28
+          claim_id: null
+          hcc_code: '37'
+          hcc_description: Diabetes mellitus with chronic complications
+          suspect_hcc_flag: 1
+          eligible_claim_flag: 1
+          reason: Observation suspect
+          hcc_type: suspect
+          hcc_source: payer
+        - person_id: person-a
+          payer: payer-a
+          data_source: source-a
+          recorded_date: '2025-01-15'
+          model_version: CMS-HCC-V28
+          claim_id: null
+          hcc_code: '37'
+          hcc_description: Diabetes mellitus with chronic complications
+          suspect_hcc_flag: 1
+          eligible_claim_flag: 1
+          reason: Medication suspect
+          hcc_type: suspect
+          hcc_source: payer

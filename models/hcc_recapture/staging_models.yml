@@ -89,6 +89,10 @@ models:
         {% else %}hcc_recapture{%- endif -%}
       alias: stg_suspect_hccs
       tags: ["hcc_recapture", "staging"]
+    columns:
+      - name: reason
+        description: >
+          Explains why the HCC was identified as a suspect. Supply a distinct value for each independent suspecting reason.
 
   - name: hcc_recapture__stg_chronic_hccs
     description: |

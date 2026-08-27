@@ -25,6 +25,9 @@ models:
               - rendering_npi
               - claim_id
               - suspect_hcc_flag
+              - hcc_type
+              - hcc_source
+              - reason
     columns:
       - name: person_id
         description: A unique identifier for a person.
@@ -70,6 +73,9 @@ models:
         description: >
           Whether the claim is eligible for risk adjustment as determined based on a list of accepted CPT/HCPCs codes from CMS. These are available
           on the CMS risk adjustment website: https://www.cms.gov/medicare/payment/medicare-advantage-rates-statistics/risk-adjustment
+      - name: reason
+        description: >
+          Explains how the HCC was identified. The same HCC can appear more than once for a person when it is found for different reasons.
   
   - name: hcc_recapture__int_gap_status
     description: >
@@ -213,6 +219,9 @@ models:
               - rendering_npi
               - claim_id
               - suspect_hcc_flag
+              - hcc_type
+              - hcc_source
+              - reason
     columns:
       - name: person_id
         description: A unique identifier for a person.
@@ -257,7 +266,10 @@ models:
       - name: eligible_claim_flag
         description: >
           Whether the claim is eligible for risk adjustment as determined based on a list of accepted CPT/HCPCs codes from CMS. These are available
-          on the CMS risk adjustment website: https://www.cms.gov/medicare/payment/medicare-advantage-rates-statistics/risk-adjustment               
+          on the CMS risk adjustment website: https://www.cms.gov/medicare/payment/medicare-advantage-rates-statistics/risk-adjustment
+      - name: reason
+        description: >
+          Explains how the HCC was identified. The same HCC can appear more than once for a person when it is found for different reasons.
 
   - name: hcc_recapture__int_suspect_hccs
     description: Suspect HCCs which are identified from sources besides medical claims conditions.
@@ -268,4 +280,21 @@ models:
       alias: int_suspect_hccs
       tags: ["hcc_recapture", "intermediate"]
       materialized: view
-
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - person_id
+              - hcc_code
+              - data_source
+              - payer
+              - model_version
+              - recorded_date
+              - hcc_type
+              - hcc_source
+              - claim_id
+              - reason
+    columns:
+      - name: reason
+        description: >
+          Explains how the HCC was identified. The same HCC can appear more than once for a person when it is found for different reasons.

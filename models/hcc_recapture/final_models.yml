@@ -305,6 +305,7 @@ models:
               - filtered_by_hierarchy_flag
               - hcc_type
               - hcc_source
+              - reason
     columns:
       - name: person_id
         description: A unique identifier for a person.
@@ -436,6 +437,13 @@ models:
           - accepted_values:
               arguments:
                 values: [ 'payer', 'clinical' ]
+        config:
+          meta:
+            data_type: varchar
+            is_primary_key: true
+      - name: reason
+        description: >
+          Explains how the HCC was identified. The same HCC can appear more than once for a person when it is found for different reasons.
         config:
           meta:
             data_type: varchar
