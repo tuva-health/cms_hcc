@@ -1,5 +1,6 @@
 {{ config(
-     enabled = var('claims_enabled', var('clinical_enabled', False)) | as_bool
+     enabled = (var('claims_enabled', False) | as_bool)
+            or (var('clinical_enabled', False) | as_bool)
    )
 }}
 -- NOTE: Need distinct since condition_rank is not included

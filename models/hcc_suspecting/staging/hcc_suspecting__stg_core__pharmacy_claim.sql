@@ -1,5 +1,6 @@
 {{ config(
-     enabled = var('claims_enabled', var('clinical_enabled', False)) | as_bool
+     enabled = (var('claims_enabled', False) | as_bool)
+            or (var('clinical_enabled', False) | as_bool)
    )
 }}
 {% if var('clinical_enabled', False) == true and var('claims_enabled', False) == true -%}
