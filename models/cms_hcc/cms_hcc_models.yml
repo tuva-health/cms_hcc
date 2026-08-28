@@ -1012,11 +1012,11 @@ models:
       - name: sex
         description: Biological sex of the patient.
       - name: birth_date
-        description: Date the patient was born.
+        description: >
+          Date the patient was born. CMS HCC requires this field to calculate demographic risk
+          scores, and records without birth dates are filtered out.
         tests:
           - not_null:
-              description: For CMS HCC, this field is required for calculating the demographic
-                risk scores. Those without birth dates are filtered out.
               config:
                 severity: warn
       - name: death_date
