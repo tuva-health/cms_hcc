@@ -8,6 +8,9 @@ select distinct
       person_id
     , payer
     , hcc_code
+    , closing_hcc_code
+    , gap_hcc_code
+    , best_current_year_hcc_code
     , risk_model_code
     , model_version
     , payment_year

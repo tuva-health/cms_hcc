@@ -107,6 +107,18 @@ models:
         description: The name of the person (i.e. beneficiary) insurance provider.
       - name: hcc_code
         description: The hierarchical condition category code.
+      - name: closing_hcc_code
+        description: >
+          The current-year HCC code from the directly matched closing row. This
+          is null when a different HCC in the hierarchy group closes the gap;
+          use best_current_year_hcc_code for that hierarchy match.
+      - name: gap_hcc_code
+        description: The HCC code for the gap being evaluated.
+      - name: best_current_year_hcc_code
+        description: >
+          The highest-ranked coded or captured current-year HCC in the gap's
+          hierarchy group. This is the HCC used for higher- and
+          lower-coefficient hierarchy comparisons.
       - name: risk_model_code
         description: >
           There are different coefficients depending on a few factors such as dual eligibility, new enrollee, institutional status, etc...
@@ -130,9 +142,10 @@ models:
       - name: gap_status
         description: >
           definitions for gap_status:
-            - 'closed using higher coefficient hcc in hierarchy group': An HCC in the same group was closed, but its coefficient is greater than the prior year HCC
+            - 'closed - equivalent coefficient hcc in hierarchy group': A different HCC in the same hierarchy group has an equivalent coefficient.
+            - 'closed - higher coefficient hcc in hierarchy group': An HCC in the same group was closed, but its coefficient is greater than the prior year HCC
             - 'closed': the specific HCC in question has been observed in a risk adjustable claim during the collection year.
-            - 'closed using lower coefficient hcc in hierarchy group': An HCC in the same group was closed, but its coefficient is less than the prior year HCC
+            - 'closed - lower coefficient hcc in hierarchy group': An HCC in the same group was closed, but its coefficient is less than the prior year HCC
             - 'new': defined as an hcc that has not been coded in the past 2 years
             - 'open': for gaps and claims, it's a chronic condition appropriate for recapture that has not been documented in current collection year
             - 'ineligible for recapture': the specific HCC in question is “Open” and no related/equivalent HCC has been closed, but it is not appropriate for risk adjustment because it’s not a chronic diagnosis.
@@ -184,6 +197,23 @@ models:
       alias: int_determine_gap_status
       tags: ["hcc_recapture", "intermediate"]
       materialized: table
+    columns:
+      - name: hcc_code
+        description: The HCC code represented by the closing row or gap row.
+      - name: closing_hcc_code
+        description: >
+          The current-year HCC code from the directly matched closing row. This
+          is null when a different HCC in the hierarchy group closes the gap;
+          use best_current_year_hcc_code for that hierarchy match.
+      - name: gap_hcc_code
+        description: The HCC code for the gap being evaluated.
+      - name: best_current_year_hcc_code
+        description: >
+          The highest-ranked coded or captured current-year HCC in the gap's
+          hierarchy group. This is the HCC used for higher- and
+          lower-coefficient hierarchy comparisons.
+      - name: gap_status
+        description: The gap status assigned after direct and hierarchy closure checks.
 
   - name: hcc_recapture__int_coded_hccs
     description: HCCs that were found based off of claims information.

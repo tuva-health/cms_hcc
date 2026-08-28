@@ -9,6 +9,9 @@ with add_rankings as (
         person_id
         , payer
         , hcc_code
+        , closing_hcc_code
+        , gap_hcc_code
+        , best_current_year_hcc_code
         , suspect_hcc_flag
         , model_version
         , collection_year + 1 as payment_year
@@ -84,6 +87,9 @@ select distinct
     bgap.person_id
     , bgap.payer
     , bgap.hcc_code
+    , bgap.closing_hcc_code
+    , bgap.gap_hcc_code
+    , bgap.best_current_year_hcc_code
     , bgap.risk_model_code
     , bgap.model_version
     , bgap.payment_year

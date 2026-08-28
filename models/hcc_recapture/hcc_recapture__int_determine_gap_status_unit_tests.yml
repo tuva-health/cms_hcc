@@ -1,0 +1,123 @@
+version: 2
+
+unit_tests:
+  - name: test_hcc_recapture_determine_gap_status_uses_gap_side_hierarchy_rank
+    description: >
+      Verifies that a gap is compared with the best current-year HCC in its
+      hierarchy group. A higher-coefficient HCC and a lower-coefficient HCC
+      receive their distinct closure statuses, while current-year HCCs without
+      a gap remain new. The diagnostic HCC columns distinguish the current-year
+      closing row, the gap being evaluated, and the best current-year hierarchy
+      match.
+    model: hcc_recapture__int_determine_gap_status
+    config:
+      enabled: "{{ var('claims_enabled', False) | as_bool }}"
+    given:
+      - input: ref('hcc_recapture__int_recapturable_hccs')
+        format: sql
+        rows: |
+          select
+              'higher' as person_id
+            , 'payer' as payer
+            , 2024 as collection_year
+            , 'CMS-HCC-VTEST' as model_version
+            , 'HCC-LOW' as hcc_code
+            , 'test hierarchy' as hcc_hierarchy_group
+            , 3 as hcc_hierarchy_group_rank
+            , 0 as suspect_hcc_flag
+            , 1 as recapturable_flag
+            , 'coded' as hcc_type
+            , 'payer' as hcc_source
+            , 1 as eligible_bene_flag
+            , 'CNA' as risk_model_code
+            , 0 as filtered_by_hierarchy_flag
+          union all
+          select
+              'higher', 'payer', 2025, 'CMS-HCC-VTEST', 'HCC-HIGH',
+              'test hierarchy', 1, 0, 1, 'captured', 'clinical', 1, 'CNA', 0
+          union all
+          select
+              'lower', 'payer', 2024, 'CMS-HCC-VTEST', 'HCC-HIGH',
+              'test hierarchy', 1, 0, 1, 'coded', 'payer', 1, 'CNA', 0
+          union all
+          select
+              'lower', 'payer', 2025, 'CMS-HCC-VTEST', 'HCC-LOW',
+              'test hierarchy', 3, 0, 1, 'captured', 'clinical', 1, 'CNA', 0
+          union all
+          select
+              'no_gap', 'payer', 2025, 'CMS-HCC-VTEST', 'HCC-HIGH',
+              'test hierarchy', 1, 0, 1, 'captured', 'clinical', 1, 'CNA', 0
+          union all
+          select
+              'no_gap', 'payer', 2025, 'CMS-HCC-VTEST', 'HCC-LOW',
+              'test hierarchy', 3, 0, 1, 'captured', 'clinical', 1, 'CNA', 0
+      - input: ref('hcc_recapture__stg_coef_hier')
+        format: sql
+        rows: |
+          select
+              'CMS-HCC-VTEST' as model_version
+            , 'test hierarchy' as hcc_hierarchy_group
+            , 'HCC-HIGH' as hcc_code
+            , 'CNA' as risk_model_code
+            , 1.0 as coefficient
+          union all
+          select
+              'CMS-HCC-VTEST', 'test hierarchy', 'HCC-LOW', 'CNA', 0.5
+    expect:
+      rows:
+        - person_id: higher
+          collection_year: 2024
+          hcc_code: HCC-LOW
+          closing_hcc_code: HCC-LOW
+          gap_hcc_code: null
+          best_current_year_hcc_code: null
+          gap_status: new
+        - person_id: higher
+          collection_year: 2025
+          hcc_code: HCC-HIGH
+          closing_hcc_code: HCC-HIGH
+          gap_hcc_code: null
+          best_current_year_hcc_code: null
+          gap_status: new
+        - person_id: higher
+          collection_year: 2025
+          hcc_code: HCC-LOW
+          closing_hcc_code: null
+          gap_hcc_code: HCC-LOW
+          best_current_year_hcc_code: HCC-HIGH
+          gap_status: closed - higher coefficient hcc in hierarchy group
+        - person_id: lower
+          collection_year: 2024
+          hcc_code: HCC-HIGH
+          closing_hcc_code: HCC-HIGH
+          gap_hcc_code: null
+          best_current_year_hcc_code: null
+          gap_status: new
+        - person_id: lower
+          collection_year: 2025
+          hcc_code: HCC-LOW
+          closing_hcc_code: HCC-LOW
+          gap_hcc_code: null
+          best_current_year_hcc_code: null
+          gap_status: new
+        - person_id: lower
+          collection_year: 2025
+          hcc_code: HCC-HIGH
+          closing_hcc_code: null
+          gap_hcc_code: HCC-HIGH
+          best_current_year_hcc_code: HCC-LOW
+          gap_status: closed - lower coefficient hcc in hierarchy group
+        - person_id: no_gap
+          collection_year: 2025
+          hcc_code: HCC-HIGH
+          closing_hcc_code: HCC-HIGH
+          gap_hcc_code: null
+          best_current_year_hcc_code: null
+          gap_status: new
+        - person_id: no_gap
+          collection_year: 2025
+          hcc_code: HCC-LOW
+          closing_hcc_code: HCC-LOW
+          gap_hcc_code: null
+          best_current_year_hcc_code: null
+          gap_status: new
