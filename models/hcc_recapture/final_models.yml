@@ -451,6 +451,7 @@ models:
       - name: gap_status
         description: >
           definitions for gap_status:
+            - 'closed - equivalent coefficient hcc in hierarchy group': A different HCC in the same hierarchy group has an equivalent coefficient.
             - 'closed - higher coefficient hcc in hierarchy group': An HCC in the same group was closed, but its coefficient is greater than the prior year HCC
             - 'closed': the specific HCC in question has been observed in a risk adjustable claim during the collection year.
             - 'closed - lower coefficient hcc in hierarchy group': An HCC in the same group was closed, but its coefficient is less than the prior year HCC
@@ -462,6 +463,7 @@ models:
               arguments:
                 values:
                   [
+                    'closed - equivalent coefficient hcc in hierarchy group',
                     'closed - higher coefficient hcc in hierarchy group',
                     'closed',
                     'closed - lower coefficient hcc in hierarchy group',
@@ -545,6 +547,27 @@ models:
           meta:
             data_type: varchar
             is_primary_key: true
+      - name: closing_hcc_code
+        description: >
+          The current-year HCC code from the directly matched closing row. This
+          is null when a different HCC in the hierarchy group closes the gap;
+          use best_current_year_hcc_code for that hierarchy match.
+        config:
+          meta:
+            data_type: varchar
+      - name: gap_hcc_code
+        description: The HCC code for the gap being evaluated.
+        config:
+          meta:
+            data_type: varchar
+      - name: best_current_year_hcc_code
+        description: >
+          The highest-ranked coded or captured current-year HCC in the gap's
+          hierarchy group. This is the HCC used for higher- and
+          lower-coefficient hierarchy comparisons.
+        config:
+          meta:
+            data_type: varchar
       - name: risk_model_code
         description: >
           There are different coefficients depending on a few factors such as
@@ -596,9 +619,10 @@ models:
       - name: gap_status
         description: >
           definitions for gap_status:
-            - 'closed using higher coefficient hcc in hierarchy group': An HCC in the same group was closed, but its coefficient is greater than the prior year HCC
+            - 'closed - equivalent coefficient hcc in hierarchy group': A different HCC in the same hierarchy group has an equivalent coefficient.
+            - 'closed - higher coefficient hcc in hierarchy group': An HCC in the same group was closed, but its coefficient is greater than the prior year HCC
             - 'closed': the specific HCC in question has been observed in a risk adjustable claim during the collection year.
-            - 'closed using lower coefficient hcc in hierarchy group': An HCC in the same group was closed, but its coefficient is less than the prior year HCC
+            - 'closed - lower coefficient hcc in hierarchy group': An HCC in the same group was closed, but its coefficient is less than the prior year HCC
             - 'new': defined as an hcc that has not been coded in the past 2 years
             - 'open': for gaps and claims, it's a chronic condition appropriate for recapture that has not been documented in current collection year
             - 'ineligible for recapture': the specific HCC in question is “Open” and no related/equivalent HCC has been closed, but it is not appropriate for risk adjustment because it’s not a chronic diagnosis.

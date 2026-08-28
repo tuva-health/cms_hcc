@@ -1,0 +1,54 @@
+version: 2
+
+unit_tests:
+  - name: test_hcc_recapture_gap_status_exposes_hierarchy_hcc_codes
+    description: >
+      Verifies that the public gap-status model exposes distinct gap and
+      best-current-year HCC codes for retained hierarchy closures while still
+      applying the upstream hierarchy filter.
+    model: hcc_recapture__gap_status
+    config:
+      enabled: "{{ var('claims_enabled', False) | as_bool }}"
+    given:
+      - input: ref('hcc_recapture__int_gap_status')
+        format: sql
+        rows: |
+          {% set string_type = 'string' if target.type == 'bigquery' else 'varchar' %}
+          select
+              'retained' as person_id
+            , 'payer' as payer
+            , 'HCC-HIGH' as hcc_code
+            , cast(null as {{ string_type }}) as closing_hcc_code
+            , 'HCC-HIGH' as gap_hcc_code
+            , 'HCC-LOW' as best_current_year_hcc_code
+            , 'CNA' as risk_model_code
+            , 'CMS-HCC-VTEST' as model_version
+            , 2026 as payment_year
+            , 1 as recapturable_flag
+            , 'coded' as hcc_type
+            , 'payer' as hcc_source
+            , 'closed - lower coefficient hcc in hierarchy group' as gap_status
+            , 0 as suspect_hcc_flag
+            , 0 as filtered_by_hierarchy_flag
+          union all
+          select
+              'filtered', 'payer', 'HCC-LOW', 'HCC-LOW', 'HCC-LOW',
+              'HCC-HIGH', 'CNA', 'CMS-HCC-VTEST', 2026, 1, 'coded',
+              'payer', 'closed - higher coefficient hcc in hierarchy group',
+              0, 1
+    expect:
+      rows:
+        - person_id: retained
+          payer: payer
+          hcc_code: HCC-HIGH
+          closing_hcc_code: null
+          gap_hcc_code: HCC-HIGH
+          best_current_year_hcc_code: HCC-LOW
+          risk_model_code: CNA
+          model_version: CMS-HCC-VTEST
+          payment_year: 2026
+          recapturable_flag: 1
+          hcc_type: coded
+          hcc_source: payer
+          gap_status: closed - lower coefficient hcc in hierarchy group
+          suspect_hcc_flag: 0
