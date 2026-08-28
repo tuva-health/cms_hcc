@@ -64,12 +64,7 @@ with lab_result as (
         , try_cast(result as {{ dbt.type_numeric() }}) as result
         {% endif %}
     from egfr_labs
-   {% if target.type == 'fabric' %}
-        WHERE result LIKE '%.%' OR result LIKE '%[0-9]%'
-        AND result NOT LIKE '%[^0-9.]%'
-    {% else %}
-        where {{ the_tuva_project.apply_regex('result', '^[+-]?([0-9]*[.])?[0-9]+$') }}
-    {% endif %}
+    where {{ the_tuva_project.is_numeric_string('result') }}
 
 )
 
@@ -103,12 +98,7 @@ with lab_result as (
           end as {{ dbt.type_numeric() }}) as clean_result
         {% endif %}
     from egfr_labs
-    {% if target.type == 'fabric' %}
-        WHERE NOT (result LIKE '%.%' OR result LIKE '%[0-9]%'
-        AND result NOT LIKE '%[^0-9.]%')
-    {% else %}
-        where {{ the_tuva_project.apply_regex('result', '^[+-]?([0-9]*[.])?[0-9]+$') }} = false
-    {% endif %}
+    where not ({{ the_tuva_project.is_numeric_string('result') }})
 
 )
 

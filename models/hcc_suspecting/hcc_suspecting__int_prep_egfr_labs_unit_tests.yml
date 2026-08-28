@@ -1,0 +1,66 @@
+version: 2
+
+unit_tests:
+  - name: test_hcc_suspecting_int_prep_egfr_labs_numeric_string_contract
+    description: >
+      Verifies that eGFR results use Tuva Core's numeric-string contract before
+      casting, while preserving the model's supported cleanup of annotated
+      numeric results and excluding malformed values.
+    model: hcc_suspecting__int_prep_egfr_labs
+    config:
+      enabled: "{{ (var('claims_enabled', False) | as_bool) or (var('clinical_enabled', False) | as_bool) }}"
+    overrides:
+      vars:
+        tuva_last_run: '2024-01-01 00:00:00'
+    given:
+      - input: ref('hcc_suspecting__stg_core__lab_result')
+        format: sql
+        rows: |
+          {% set string_type = 'string' if target.type == 'bigquery' else 'varchar' %}
+          {% set lab_results = [
+              ('integer', '60', '2024-01-01'),
+              ('decimal', '59.5', '2024-01-02'),
+              ('leading_decimal', '.5', '2024-01-03'),
+              ('signed_positive', '+61', '2024-01-04'),
+              ('signed_negative', '-1', '2024-01-05'),
+              ('at_annotation', '@45', '2024-01-06'),
+              ('unit_annotation', '42mL/min/1.73m2', '2024-01-07'),
+              ('dot_only', '.', '2024-01-08'),
+              ('trailing_decimal', '1.', '2024-01-09'),
+              ('multiple_decimals', '1..2', '2024-01-10'),
+              ('alpha_decimal', 'abc.def', '2024-01-11'),
+              ('alphanumeric', '1a', '2024-01-12'),
+              ('null_result', none, '2024-01-13')
+          ] %}
+          {% for person_id, result, result_date in lab_results %}
+          select
+                '{{ person_id }}' as person_id
+              , 'payer' as payer
+              , 'source' as data_source
+              , 'loinc' as code_type
+              , '33914-3' as code
+              , 'final' as status
+              {% if result is none %}
+              , cast(null as {{ string_type }}) as result
+              {% else %}
+              , '{{ result }}' as result
+              {% endif %}
+              , cast('{{ result_date }}' as date) as result_date
+          {% if not loop.last %}union all{% endif %}
+          {% endfor %}
+      - input: ref('hcc_suspecting__clinical_concepts')
+        format: sql
+        rows: |
+          select
+                'estimated glomerular filtration rate' as concept_name
+              , '33914-3' as code
+              , 'loinc' as code_system
+    expect:
+      rows:
+        - {person_id: integer, result: 60}
+        - {person_id: decimal, result: 59.5}
+        - {person_id: leading_decimal, result: 0.5}
+        - {person_id: signed_positive, result: 61}
+        - {person_id: signed_negative, result: -1}
+        - {person_id: at_annotation, result: 45}
+        - {person_id: unit_annotation, result: 42}

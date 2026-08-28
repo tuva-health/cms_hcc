@@ -45,12 +45,7 @@ with conditions as (
         , code
         , data_source
     from observations
-   {% if target.type == 'fabric' %}
-        WHERE result LIKE '%.%' OR result LIKE '%[0-9]%'
-        AND result NOT LIKE '%[^0-9.]%'
-    {% else %}
-        where {{ the_tuva_project.apply_regex('result', '^[+-]?([0-9]*[.])?[0-9]+$') }}
-    {% endif %}
+    where {{ the_tuva_project.is_numeric_string('result') }}
 
 )
 
