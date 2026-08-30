@@ -62,4 +62,5 @@
 {% endif %}
 
 select 1 as failure
+from (select 1 as _tuva_empty_fixture) as _tuva_empty_fixture
 where 1 = 0
