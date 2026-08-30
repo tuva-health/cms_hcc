@@ -5,7 +5,7 @@ packages:
   # the core__* / terminology__* models and seeds it refs.
   # TODO(D2): switch to hub range [">=1.0.0", "<1.1.0"] once tuva-core 1.0.0 is tagged.
   - git: "https://github.com/tuva-health/tuva-core.git"
-    revision: main
+    revision: 0d300654aae39d89bc09a3c83201cdceb68d0468
   # dbt_utils supplies the dbt_utils.unique_combination_of_columns generic test
   # used throughout models/**/*.yml and seeds/**/*.yml.
   - package: dbt-labs/dbt_utils
