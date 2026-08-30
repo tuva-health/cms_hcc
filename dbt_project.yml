@@ -15,6 +15,11 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
+# Hard-fail a run in which cms_hcc is installed but every one of its models is
+# disabled, instead of silently building nothing. Does not fire on `dbt parse`.
+on-run-start:
+  - "{{ cms_hcc.assert_cms_hcc_enabled() }}"
+
 vars:
   tuva_last_run: '{{ run_started_at.astimezone(modules.pytz.timezone("UTC")) }}'
   cms_hcc_payment_year: '{{ run_started_at.strftime("%Y") }}'

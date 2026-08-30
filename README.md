@@ -13,6 +13,32 @@ dbt package for the Tuva Project CMS HCC, HCC recapture, and HCC suspecting data
 - `dbt-labs/dbt_utils` — the `dbt_utils.unique_combination_of_columns`
   generic test used across the model and seed schema files.
 
+## Enablement
+
+Every model in this package is disabled by default and is gated on Tuva Core's
+domain flags:
+
+| Mart | Gating var |
+| --- | --- |
+| `cms_hcc` | `claims_enabled` |
+| `hcc_recapture` | `claims_enabled` |
+| `hcc_suspecting` | `claims_enabled` **or** `clinical_enabled` |
+
+Set the relevant flag in your root `dbt_project.yml`:
+
+```yaml
+vars:
+  claims_enabled: true
+  clinical_enabled: true
+```
+
+If the package is installed but every one of its models is disabled, the
+`on-run-start` hook `cms_hcc.assert_cms_hcc_enabled()` fails the run rather
+than letting it finish having built nothing. It reports the resolved value of
+each flag. The hook does not fire during `dbt parse` or `dbt deps`. To install
+the package without building it, set
+`vars: {cms_hcc_suppress_enablement_check: true}`.
+
 ## Optional consumer-supplied models
 
 Two `hcc_recapture` staging models are override hooks. They are disabled by
