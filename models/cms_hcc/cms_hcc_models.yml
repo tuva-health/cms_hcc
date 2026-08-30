@@ -206,7 +206,7 @@ models:
     columns:
       - name: person_id
         description: Unique ID for the patient.
-        tests:
+        data_tests:
           - unique
         config:
           meta:
@@ -289,7 +289,7 @@ models:
       This model calculates the CMS HCC raw risk score, blended risk score,
       normalized risk score, and payment risk score for each enrollee, factor
       type, in the payment year and collection period.
-    tests:
+    data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
@@ -356,7 +356,7 @@ models:
       This final model calculates the CMS HCC raw risk score, blended risk
       score, normalized risk score, and payment risk score for each enrollee in
       the  payment year and collection period.
-    tests:
+    data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
@@ -487,7 +487,7 @@ models:
     description: >
       Demographic and enrollment risk relative factor values for
       the  corresponding HCC model version and payment year.
-    tests:
+    data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
@@ -657,7 +657,7 @@ models:
       alias: _int_eligible_conditions
       tags: cms_hcc
       materialized: table
-    tests:
+    data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
@@ -679,7 +679,7 @@ models:
         description: Name of the payer (i.e. health insurer) providing coverage.
       - name: condition_code
         description: The condition code.
-        tests:
+        data_tests:
           - not_null
       - name: model_version
         description: CMS HCC model version.
@@ -804,7 +804,7 @@ models:
       alias: _int_members
       tags: cms_hcc
       materialized: table
-    tests:
+    data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
@@ -817,7 +817,7 @@ models:
     columns:
       - name: person_id
         description: Unique ID for the patient.
-        tests:
+        data_tests:
           - not_null
       - name: enrollment_status
         description: >
@@ -897,7 +897,7 @@ models:
       tags: cms_hcc
       materialized: ephemeral
     description: Staging conditions from core.
-    tests:
+    data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
@@ -932,7 +932,7 @@ models:
       tags: cms_hcc
       materialized: ephemeral
     description: Staging eligibility from core.
-    tests:
+    data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
@@ -967,7 +967,7 @@ models:
       tags: cms_hcc
       materialized: ephemeral
     description: Staging medical claims from core.
-    tests:
+    data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
@@ -1015,7 +1015,7 @@ models:
         description: >
           Date the patient was born. CMS HCC requires this field to calculate demographic risk
           scores, and records without birth dates are filtered out.
-        tests:
+        data_tests:
           - not_null:
               config:
                 severity: warn
@@ -1029,7 +1029,7 @@ models:
       tags: cms_hcc
       materialized: ephemeral
     description: Staging member month records from core.member_month
-    tests:
+    data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:

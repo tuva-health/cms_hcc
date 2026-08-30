@@ -73,7 +73,7 @@ models:
         description: >
           Members without an age group are excluded because risk-model codes require an age-group
           join. A missing age group likely means birth date is missing from the input layer.
-        tests:
+        data_tests:
           - not_null:
               config:
                 severity: warn

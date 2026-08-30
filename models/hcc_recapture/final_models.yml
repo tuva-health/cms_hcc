@@ -420,7 +420,7 @@ models:
             - 'coded': condition was coded in a claim during the collection year
             - 'captured': condition is considered captured according to a different source besides claims, such as a clinical source
             - 'suspect': condition is suspected to be present based on some other criteria besides claims diagnoses
-        tests:
+        data_tests:
           - accepted_values:
               arguments:
                 values: [ 'coded', 'captured', 'suspect' ]
@@ -433,7 +433,7 @@ models:
           The source of the HCC information. Includes the following values:
             - 'payer': HCC was identified in data received from the payer such as claims or suspect lists
             - 'clinical': HCC was identified in clinical data such as the EHR
-        tests:
+        data_tests:
           - accepted_values:
               arguments:
                 values: [ 'payer', 'clinical' ]
@@ -458,7 +458,7 @@ models:
             - 'new': defined as an hcc that has not been coded in the past 2 years
             - 'open': for gaps and claims, it's a chronic condition appropriate for recapture that has not been documented in current collection year
             - 'ineligible for recapture': the specific HCC in question is “Open” and no related/equivalent HCC has been closed, but it is not appropriate for risk adjustment because it’s not a chronic diagnosis.
-        tests:
+        data_tests:
           - accepted_values:
               arguments:
                 values:
