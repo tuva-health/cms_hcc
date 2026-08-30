@@ -35,9 +35,26 @@ vars:
 If the package is installed but every one of its models is disabled, the
 `on-run-start` hook `cms_hcc.assert_cms_hcc_enabled()` fails the run rather
 than letting it finish having built nothing. It reports the resolved value of
-each flag. The hook does not fire during `dbt parse` or `dbt deps`. To install
-the package without building it, set
+each flag.
+
+The check is deliberately narrow. It fires only on a `dbt run` or `dbt build`
+that either passes no `--select` at all, or passes one naming this package
+(`--select cms_hcc`, `--select tag:hcc_recapture`, and so on). `dbt parse`,
+`dbt deps`, `dbt seed`, `dbt test` and `dbt compile` never trip it, and
+neither does a run that selects some other package, nor one driven by a YAML
+`--selector`. To install the package without building it at all, set
 `vars: {cms_hcc_suppress_enablement_check: true}`.
+
+One dbt limitation is worth knowing: when a selection resolves to zero nodes,
+dbt reports `Nothing to do` and returns without running any `on-run-start`
+hook, so `dbt run --select cms_hcc` with every model disabled cannot reach the
+check. `dbt build --select cms_hcc` does reach it, because this package's
+seeds are always enabled and so the selection is non-empty.
+
+One caveat: dbt resolves the hook's operation node out of the `models:` tree
+under the package name, so disabling the package wholesale with
+`models: {cms_hcc: {+enabled: false}}` also disables the check itself. Use the
+`claims_enabled` / `clinical_enabled` flags or the suppression var instead.
 
 ## Optional consumer-supplied models
 
