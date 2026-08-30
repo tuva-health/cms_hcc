@@ -1,0 +1,12 @@
+packages:
+  # the_tuva_project (tuva-core) supplies the cross-database macros this package
+  # calls (concat_custom, date_part, is_numeric_string, limit_zero,
+  # load_package_seed, substring, try_to_cast_date, try_to_cast_datetime) and
+  # the core__* / terminology__* models and seeds it refs.
+  # TODO(D2): switch to hub range [">=1.0.0", "<1.1.0"] once tuva-core 1.0.0 is tagged.
+  - git: "https://github.com/tuva-health/tuva-core.git"
+    revision: main
+  # dbt_utils supplies the dbt_utils.unique_combination_of_columns generic test
+  # used throughout models/**/*.yml and seeds/**/*.yml.
+  - package: dbt-labs/dbt_utils
+    version: [">=1.2.0", "<2.0.0"]
