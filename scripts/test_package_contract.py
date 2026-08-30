@@ -6,7 +6,7 @@ import re
 
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_DBT_REQUIREMENT = ">=1.10.5,<3.0.0"
+EXPECTED_DBT_REQUIREMENT = ">=1.10.5,<2.0.0"
 EXPECTED_ASSET_SLUG = "cms-hcc"
 EXPECTED_VERSION_CALL = "cms_hcc.get_cms_hcc_package_version()"
 
