@@ -16,7 +16,7 @@ unit_tests:
       - input: ref('hcc_suspecting__stg_core__lab_result')
         format: sql
         rows: |
-          {% set string_type = 'string' if target.type == 'bigquery' else 'varchar' %}
+          {% set string_type = 'string' if target.type in ['bigquery', 'databricks'] else 'varchar' %}
           {% set lab_results = [
               ('integer', '60', '2024-01-01'),
               ('decimal', '59.5', '2024-01-02'),
