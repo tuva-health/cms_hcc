@@ -18,40 +18,41 @@ clean-targets:
 vars:
   tuva_last_run: '{{ run_started_at.astimezone(modules.pytz.timezone("UTC")) }}'
   cms_hcc_payment_year: '{{ run_started_at.strftime("%Y") }}'
+  cms_hcc_data_asset_version: "1.0.0"
 
 seeds:
   cms_hcc:
     value_sets:
       cms_hcc:
         cms_hcc__adjustment_rates:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'cms_hcc__adjustment_rates.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'cms_hcc__adjustment_rates.csv.gz') }}"
         cms_hcc__cpt_hcpcs:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'cms_hcc__cpt_hcpcs.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'cms_hcc__cpt_hcpcs.csv.gz') }}"
         cms_hcc__demographic_factors:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'cms_hcc__demographic_factors.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'cms_hcc__demographic_factors.csv.gz') }}"
         cms_hcc__disabled_interaction_factors:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'cms_hcc__disabled_interaction_factors.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'cms_hcc__disabled_interaction_factors.csv.gz') }}"
         cms_hcc__disease_factors:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'cms_hcc__disease_factors.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'cms_hcc__disease_factors.csv.gz') }}"
         cms_hcc__disease_hierarchy:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'cms_hcc__disease_hierarchy.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'cms_hcc__disease_hierarchy.csv.gz') }}"
         cms_hcc__disease_hierarchy_flat:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'cms_hcc__disease_hierarchy_flat.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'cms_hcc__disease_hierarchy_flat.csv.gz') }}"
         cms_hcc__disease_interaction_factors:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'cms_hcc__disease_interaction_factors.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'cms_hcc__disease_interaction_factors.csv.gz') }}"
         cms_hcc__enrollment_interaction_factors:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'cms_hcc__enrollment_interaction_factors.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'cms_hcc__enrollment_interaction_factors.csv.gz') }}"
         cms_hcc__icd_10_cm_mappings:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'cms_hcc__icd_10_cm_mappings.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'cms_hcc__icd_10_cm_mappings.csv.gz') }}"
         cms_hcc__payment_hcc_count_factors:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'cms_hcc__payment_hcc_count_factors.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'cms_hcc__payment_hcc_count_factors.csv.gz') }}"
       hcc_recapture:
         hcc_recapture__chronic_hccs:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'hcc_recapture__chronic_hccs.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'hcc_recapture__chronic_hccs.csv.gz') }}"
       hcc_suspecting:
         hcc_suspecting__clinical_concepts:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'hcc_suspecting__clinical_concepts.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'hcc_suspecting__clinical_concepts.csv.gz') }}"
         hcc_suspecting__hcc_descriptions:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'hcc_suspecting__hcc_descriptions.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'hcc_suspecting__hcc_descriptions.csv.gz') }}"
         hcc_suspecting__icd_10_cm_mappings:
-          +post-hook: "{{ the_tuva_project.load_package_seed('cms-hcc', cms_hcc.get_cms_hcc_package_version(), 'hcc_suspecting__icd_10_cm_mappings.csv.gz') }}"
+          +post-hook: "{{ the_tuva_project.load_package_seed('data-marts/cms-hcc', var('cms_hcc_data_asset_version'), 'hcc_suspecting__icd_10_cm_mappings.csv.gz') }}"
