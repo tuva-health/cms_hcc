@@ -19,6 +19,7 @@ unit_tests:
           select
               'higher' as person_id
             , 'payer' as payer
+            , 'source-a' as data_source
             , 2024 as collection_year
             , 'CMS-HCC-VTEST' as model_version
             , 'HCC-LOW' as hcc_code
@@ -33,24 +34,32 @@ unit_tests:
             , 0 as filtered_by_hierarchy_flag
           union all
           select
-              'higher', 'payer', 2025, 'CMS-HCC-VTEST', 'HCC-HIGH',
+              'higher', 'payer', 'source-a', 2025, 'CMS-HCC-VTEST', 'HCC-HIGH',
               'test hierarchy', 1, 0, 1, 'captured', 'clinical', 1, 'CNA', 0
           union all
           select
-              'lower', 'payer', 2024, 'CMS-HCC-VTEST', 'HCC-HIGH',
+              'lower', 'payer', 'source-a', 2024, 'CMS-HCC-VTEST', 'HCC-HIGH',
               'test hierarchy', 1, 0, 1, 'coded', 'payer', 1, 'CNA', 0
           union all
           select
-              'lower', 'payer', 2025, 'CMS-HCC-VTEST', 'HCC-LOW',
+              'lower', 'payer', 'source-a', 2025, 'CMS-HCC-VTEST', 'HCC-LOW',
               'test hierarchy', 3, 0, 1, 'captured', 'clinical', 1, 'CNA', 0
           union all
           select
-              'no_gap', 'payer', 2025, 'CMS-HCC-VTEST', 'HCC-HIGH',
+              'no_gap', 'payer', 'source-a', 2025, 'CMS-HCC-VTEST', 'HCC-HIGH',
               'test hierarchy', 1, 0, 1, 'captured', 'clinical', 1, 'CNA', 0
           union all
           select
-              'no_gap', 'payer', 2025, 'CMS-HCC-VTEST', 'HCC-LOW',
+              'no_gap', 'payer', 'source-a', 2025, 'CMS-HCC-VTEST', 'HCC-LOW',
               'test hierarchy', 3, 0, 1, 'captured', 'clinical', 1, 'CNA', 0
+          union all
+          select
+              'cross-source', 'payer', 'source-a', 2024, 'CMS-HCC-VTEST', 'HCC-HIGH',
+              'test hierarchy', 1, 0, 1, 'coded', 'payer', 1, 'CNA', 0
+          union all
+          select
+              'cross-source', 'payer', 'source-b', 2025, 'CMS-HCC-VTEST', 'HCC-HIGH',
+              'test hierarchy', 1, 0, 1, 'captured', 'clinical', 1, 'CNA', 0
       - input: ref('hcc_recapture__stg_coef_hier')
         format: sql
         rows: |
@@ -66,6 +75,7 @@ unit_tests:
     expect:
       rows:
         - person_id: higher
+          data_source: source-a
           collection_year: 2024
           hcc_code: HCC-LOW
           closing_hcc_code: HCC-LOW
@@ -73,6 +83,7 @@ unit_tests:
           best_current_year_hcc_code: null
           gap_status: new
         - person_id: higher
+          data_source: source-a
           collection_year: 2025
           hcc_code: HCC-HIGH
           closing_hcc_code: HCC-HIGH
@@ -80,6 +91,7 @@ unit_tests:
           best_current_year_hcc_code: null
           gap_status: new
         - person_id: higher
+          data_source: source-a
           collection_year: 2025
           hcc_code: HCC-LOW
           closing_hcc_code: null
@@ -87,6 +99,7 @@ unit_tests:
           best_current_year_hcc_code: HCC-HIGH
           gap_status: closed - higher coefficient hcc in hierarchy group
         - person_id: lower
+          data_source: source-a
           collection_year: 2024
           hcc_code: HCC-HIGH
           closing_hcc_code: HCC-HIGH
@@ -94,6 +107,7 @@ unit_tests:
           best_current_year_hcc_code: null
           gap_status: new
         - person_id: lower
+          data_source: source-a
           collection_year: 2025
           hcc_code: HCC-LOW
           closing_hcc_code: HCC-LOW
@@ -101,6 +115,7 @@ unit_tests:
           best_current_year_hcc_code: null
           gap_status: new
         - person_id: lower
+          data_source: source-a
           collection_year: 2025
           hcc_code: HCC-HIGH
           closing_hcc_code: null
@@ -108,6 +123,31 @@ unit_tests:
           best_current_year_hcc_code: HCC-LOW
           gap_status: closed - lower coefficient hcc in hierarchy group
         - person_id: no_gap
+          data_source: source-a
+          collection_year: 2025
+          hcc_code: HCC-HIGH
+          closing_hcc_code: HCC-HIGH
+          gap_hcc_code: null
+          best_current_year_hcc_code: null
+          gap_status: new
+        - person_id: cross-source
+          data_source: source-a
+          collection_year: 2024
+          hcc_code: HCC-HIGH
+          closing_hcc_code: HCC-HIGH
+          gap_hcc_code: null
+          best_current_year_hcc_code: null
+          gap_status: new
+        - person_id: cross-source
+          data_source: source-a
+          collection_year: 2025
+          hcc_code: HCC-HIGH
+          closing_hcc_code: null
+          gap_hcc_code: HCC-HIGH
+          best_current_year_hcc_code: null
+          gap_status: open
+        - person_id: cross-source
+          data_source: source-b
           collection_year: 2025
           hcc_code: HCC-HIGH
           closing_hcc_code: HCC-HIGH
@@ -115,6 +155,7 @@ unit_tests:
           best_current_year_hcc_code: null
           gap_status: new
         - person_id: no_gap
+          data_source: source-a
           collection_year: 2025
           hcc_code: HCC-LOW
           closing_hcc_code: HCC-LOW

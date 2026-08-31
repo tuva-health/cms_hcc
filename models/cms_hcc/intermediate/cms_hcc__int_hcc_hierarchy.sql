@@ -15,6 +15,7 @@ with hcc_mapping as (
     select distinct
           person_id
         , payer
+        , data_source
         , hcc_code
         , model_version
         , payment_year
@@ -44,6 +45,7 @@ with hcc_mapping as (
     select distinct
           hcc_mapping.person_id
         , hcc_mapping.payer
+        , hcc_mapping.data_source
         , hcc_mapping.model_version
         , hcc_mapping.payment_year
         , hcc_mapping.collection_start_date
@@ -69,6 +71,7 @@ with hcc_mapping as (
     select
           hcc_mapping.person_id
         , hcc_mapping.payer
+        , hcc_mapping.data_source
         , hcc_mapping.model_version
         , hcc_mapping.payment_year
         , hcc_mapping.collection_start_date
@@ -92,6 +95,7 @@ with hcc_mapping as (
     select
           hccs_with_hierarchy.person_id
         , hccs_with_hierarchy.payer
+        , hccs_with_hierarchy.data_source
         , hccs_with_hierarchy.model_version
         , hccs_with_hierarchy.payment_year
         , hccs_with_hierarchy.collection_start_date
@@ -102,6 +106,7 @@ with hcc_mapping as (
         left outer join hcc_mapping
             on hcc_mapping.person_id = hccs_with_hierarchy.person_id
             and hcc_mapping.payer = hccs_with_hierarchy.payer
+            and hcc_mapping.data_source = hccs_with_hierarchy.data_source
             and hcc_mapping.hcc_code = hccs_with_hierarchy.top_level_hcc
             and hcc_mapping.model_version = hccs_with_hierarchy.model_version
             and hcc_mapping.payment_year = hccs_with_hierarchy.payment_year
@@ -109,6 +114,7 @@ with hcc_mapping as (
     group by
           hccs_with_hierarchy.person_id
         , hccs_with_hierarchy.payer
+        , hccs_with_hierarchy.data_source
         , hccs_with_hierarchy.model_version
         , hccs_with_hierarchy.payment_year
         , hccs_with_hierarchy.collection_start_date
@@ -126,6 +132,7 @@ with hcc_mapping as (
     select distinct
           person_id
         , payer
+        , data_source
         , model_version
         , payment_year
         , collection_start_date
@@ -147,6 +154,7 @@ with hcc_mapping as (
     select distinct
           hcc_mapping.person_id
         , hcc_mapping.payer
+        , hcc_mapping.data_source
         , hcc_mapping.model_version
         , hcc_mapping.payment_year
         , hcc_mapping.collection_start_date
@@ -159,6 +167,7 @@ with hcc_mapping as (
         left outer join lower_level_inclusions
             on hcc_mapping.person_id = lower_level_inclusions.person_id
             and hcc_mapping.payer = lower_level_inclusions.payer
+            and hcc_mapping.data_source = lower_level_inclusions.data_source
             and hcc_mapping.hcc_code = lower_level_inclusions.hcc_code
             and hcc_mapping.model_version = lower_level_inclusions.model_version
             and hcc_mapping.payment_year = lower_level_inclusions.payment_year
@@ -166,6 +175,7 @@ with hcc_mapping as (
         left outer join hierarchy_applied
             on hcc_mapping.person_id = hierarchy_applied.person_id
             and hcc_mapping.payer = hierarchy_applied.payer
+            and hcc_mapping.data_source = hierarchy_applied.data_source
             and hcc_mapping.hcc_code = hierarchy_applied.hcc_code
             and hcc_mapping.model_version = hierarchy_applied.model_version
             and hcc_mapping.payment_year = hierarchy_applied.payment_year
@@ -190,6 +200,7 @@ with hcc_mapping as (
     select
           cast(person_id as {{ dbt.type_string() }}) as person_id
         , cast(payer as {{ dbt.type_string() }}) as payer
+        , cast(data_source as {{ dbt.type_string() }}) as data_source
         , cast(model_version as {{ dbt.type_string() }}) as model_version
         , cast(payment_year as integer) as payment_year
         , cast(collection_start_date as date) as collection_start_date
@@ -202,6 +213,7 @@ with hcc_mapping as (
 select
       person_id
     , payer
+    , data_source
     , model_version
     , payment_year
     , collection_start_date

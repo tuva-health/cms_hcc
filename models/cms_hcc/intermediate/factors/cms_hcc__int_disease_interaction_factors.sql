@@ -8,6 +8,7 @@ with demographics as (
     select
           person_id
         , payer
+        , data_source
         , enrollment_status
         , gender
         , age_group
@@ -28,6 +29,7 @@ with demographics as (
     select
           person_id
         , payer
+        , data_source
         , hcc_code
         , model_version
         , payment_year
@@ -61,6 +63,7 @@ with demographics as (
     select
           demographics.person_id
         , demographics.payer
+        , demographics.data_source
         , demographics.enrollment_status
         , demographics.medicaid_status
         , demographics.dual_status
@@ -75,6 +78,7 @@ with demographics as (
         inner join hcc_hierarchy
             on demographics.person_id = hcc_hierarchy.person_id
             and demographics.payer = hcc_hierarchy.payer
+            and demographics.data_source = hcc_hierarchy.data_source
             and demographics.model_version = hcc_hierarchy.model_version
             and demographics.payment_year = hcc_hierarchy.payment_year
             and demographics.collection_end_date = hcc_hierarchy.collection_end_date
@@ -86,6 +90,7 @@ with demographics as (
     select
           demographics_with_hccs.person_id
         , demographics_with_hccs.payer
+        , demographics_with_hccs.data_source
         , demographics_with_hccs.model_version
         , demographics_with_hccs.payment_year
         , demographics_with_hccs.collection_start_date
@@ -119,6 +124,7 @@ with demographics as (
     select
           demographics_with_interactions.person_id
         , demographics_with_interactions.payer
+        , demographics_with_interactions.data_source
         , demographics_with_interactions.factor_type
         , demographics_with_interactions.hcc_code_1
         , demographics_with_interactions.hcc_code_2
@@ -132,6 +138,7 @@ with demographics as (
         inner join demographics_with_hccs as interactions_code_2
             on demographics_with_interactions.person_id = interactions_code_2.person_id
             and demographics_with_interactions.payer = interactions_code_2.payer
+            and demographics_with_interactions.data_source = interactions_code_2.data_source
             and demographics_with_interactions.hcc_code_2 = interactions_code_2.hcc_code
             and demographics_with_interactions.model_version = interactions_code_2.model_version
             and demographics_with_interactions.payment_year = interactions_code_2.payment_year
@@ -143,6 +150,7 @@ with demographics as (
     select
           cast(person_id as {{ dbt.type_string() }}) as person_id
         , cast(payer as {{ dbt.type_string() }}) as payer
+        , cast(data_source as {{ dbt.type_string() }}) as data_source
         , cast(hcc_code_1 as {{ dbt.type_string() }}) as hcc_code_1
         , cast(hcc_code_2 as {{ dbt.type_string() }}) as hcc_code_2
         , cast(description as {{ dbt.type_string() }}) as description
@@ -159,6 +167,7 @@ with demographics as (
 select
       person_id
     , payer
+    , data_source
     , hcc_code_1
     , hcc_code_2
     , description

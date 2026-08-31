@@ -17,6 +17,7 @@ unit_tests:
           select
               'retained' as person_id
             , 'payer' as payer
+            , 'source-a' as data_source
             , 'HCC-HIGH' as hcc_code
             , cast(null as {{ string_type }}) as closing_hcc_code
             , 'HCC-HIGH' as gap_hcc_code
@@ -32,7 +33,7 @@ unit_tests:
             , 0 as filtered_by_hierarchy_flag
           union all
           select
-              'filtered', 'payer', 'HCC-LOW', 'HCC-LOW', 'HCC-LOW',
+              'filtered', 'payer', 'source-a', 'HCC-LOW', 'HCC-LOW', 'HCC-LOW',
               'HCC-HIGH', 'CNA', 'CMS-HCC-VTEST', 2026, 1, 'coded',
               'payer', 'closed - higher coefficient hcc in hierarchy group',
               0, 1
@@ -40,6 +41,7 @@ unit_tests:
       rows:
         - person_id: retained
           payer: payer
+          data_source: source-a
           hcc_code: HCC-HIGH
           closing_hcc_code: null
           gap_hcc_code: HCC-HIGH

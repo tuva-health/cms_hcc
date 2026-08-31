@@ -14,6 +14,7 @@ risk_gaps as (
     select distinct
         person_id
         , payer
+        , data_source
         , collection_year + 1 as collection_year
         , model_version
         , hcc_code
@@ -35,6 +36,7 @@ risk_gaps as (
     select distinct
         person_id
         , payer
+        , data_source
         , collection_year
         , model_version
         , hcc_code
@@ -54,12 +56,15 @@ hcc_rank as (
     select distinct
         person_id
         , payer
+        , data_source
         , collection_year
         , model_version
         , hcc_code
         , hcc_hierarchy_group
         , hcc_hierarchy_group_rank
-        , min(hcc_hierarchy_group_rank) over (partition by person_id, payer, collection_year, model_version, hcc_hierarchy_group) as best_hcc_rank
+        , min(hcc_hierarchy_group_rank) over (
+            partition by person_id, payer, data_source, collection_year, model_version, hcc_hierarchy_group
+        ) as best_hcc_rank
     from filtered_hccs
     where hcc_type in ('coded', 'captured')
         and hcc_hierarchy_group != 'no hierarchy'
@@ -84,6 +89,7 @@ equiv_coef as (
 select
     coalesce(base.payer, gap.payer) as payer
     , coalesce(base.person_id, gap.person_id) as person_id
+    , coalesce(base.data_source, gap.data_source) as data_source
     , coalesce(base.risk_model_code, gap.risk_model_code) as risk_model_code
     , coalesce(base.eligible_bene_flag, gap.eligible_bene_flag) as eligible_bene_flag
     , coalesce(base.hcc_code, gap.hcc_code) as hcc_code
@@ -116,6 +122,7 @@ from filtered_hccs as base
 full outer join risk_gaps as gap
     on base.person_id = gap.person_id
     and base.payer = gap.payer
+    and base.data_source = gap.data_source
     and base.collection_year = gap.collection_year
     and base.model_version = gap.model_version
     and base.hcc_code = gap.hcc_code
@@ -129,6 +136,7 @@ left join equiv_coef as equiv
 left join hcc_rank as grp
     on gap.person_id = grp.person_id
     and gap.payer = grp.payer
+    and gap.data_source = grp.data_source
     and gap.collection_year = grp.collection_year
     and gap.model_version = grp.model_version
     and gap.hcc_hierarchy_group = grp.hcc_hierarchy_group

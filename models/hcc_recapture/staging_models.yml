@@ -61,10 +61,13 @@ models:
               - person_id
               - collection_year
               - payer
+              - data_source
               - age_group
     columns:
       - name: person_id
         description: A unique identifier for a person.
+      - name: data_source
+        description: The source that scopes the beneficiary and payer identifiers.
       - name: collection_year
         description: The year that the claims originated and were originally coded.
       - name: payer

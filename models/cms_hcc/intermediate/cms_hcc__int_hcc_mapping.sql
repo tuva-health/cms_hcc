@@ -20,6 +20,7 @@ with conditions as (
         , payment_year
         , collection_start_date
         , collection_end_date
+        , data_source
     from {{ ref('cms_hcc__int_eligible_conditions') }}
 
 )
@@ -61,6 +62,7 @@ with conditions as (
         , conditions.payment_year
         , conditions.collection_start_date
         , conditions.collection_end_date
+        , conditions.data_source
         , 'CMS-HCC-V24' as model_version
         , cast(seed_hcc_mapping.cms_hcc_v24 as {{ dbt.type_string() }}) as hcc_code
     from conditions
@@ -80,6 +82,7 @@ with conditions as (
         , conditions.payment_year
         , conditions.collection_start_date
         , conditions.collection_end_date
+        , conditions.data_source
         , 'CMS-HCC-V28' as model_version
         , cast(seed_hcc_mapping.cms_hcc_v28 as {{ dbt.type_string() }}) as hcc_code
     from conditions
@@ -101,6 +104,7 @@ with conditions as (
     select distinct
           person_id
         , payer
+        , data_source
         , payment_year
         , collection_end_date
     from v28_mapped
@@ -117,12 +121,14 @@ with conditions as (
         , v28_mapped.payment_year
         , v28_mapped.collection_start_date
         , v28_mapped.collection_end_date
+        , v28_mapped.data_source
         , v28_mapped.model_version
         , v28_mapped.hcc_code
     from v28_mapped
         left join v28_heart_sibling
             on v28_mapped.person_id = v28_heart_sibling.person_id
             and v28_mapped.payer = v28_heart_sibling.payer
+            and v28_mapped.data_source = v28_heart_sibling.data_source
             and v28_mapped.payment_year = v28_heart_sibling.payment_year
             and v28_mapped.collection_end_date = v28_heart_sibling.collection_end_date
     where not (
@@ -145,6 +151,7 @@ with conditions as (
     select
           cast(person_id as {{ dbt.type_string() }}) as person_id
         , cast(payer as {{ dbt.type_string() }}) as payer
+        , cast(data_source as {{ dbt.type_string() }}) as data_source
         , cast(condition_code as {{ dbt.type_string() }}) as condition_code
         , cast(hcc_code as {{ dbt.type_string() }}) as hcc_code
         , cast(model_version as {{ dbt.type_string() }}) as model_version
@@ -158,6 +165,7 @@ with conditions as (
 select
       person_id
     , payer
+    , data_source
     , condition_code
     , hcc_code
     , model_version

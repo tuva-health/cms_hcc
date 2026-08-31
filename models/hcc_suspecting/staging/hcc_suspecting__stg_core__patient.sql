@@ -5,6 +5,7 @@
 }}
 select
       person_id
+    , data_source
     , sex
     , birth_date
     , death_date

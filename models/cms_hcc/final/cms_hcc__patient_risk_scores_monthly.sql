@@ -6,6 +6,7 @@
 select
       person_id
     , payer
+    , data_source
     , risk_model_code
     , enrollment_status
     , enrollment_status_default
@@ -25,6 +26,7 @@ from {{ ref('cms_hcc__patient_risk_scores_monthly_by_factor_type') }}
 group by
       person_id
     , payer
+    , data_source
     , risk_model_code
     , enrollment_status
     , enrollment_status_default

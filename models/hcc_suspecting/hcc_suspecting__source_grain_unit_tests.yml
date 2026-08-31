@@ -1,0 +1,66 @@
+version: 2
+
+unit_tests:
+  - name: test_hcc_suspecting_list_rollup_preserves_sources
+    description: Reused person, payer, and HCC identifiers are rolled up independently by source.
+    model: hcc_suspecting__list_rollup
+    config:
+      enabled: "{{ (var('claims_enabled', False) | as_bool) or (var('clinical_enabled', False) | as_bool) }}"
+    given:
+      - input: ref('hcc_suspecting__list')
+        format: sql
+        rows: |
+          select
+              'shared-person' as person_id
+            , 'shared-payer' as payer
+            , 'source-a' as data_source
+            , 'CMS-HCC-V28' as model_version
+            , '1' as hcc_code
+            , 'Test HCC' as hcc_description
+            , 'old-a' as reason
+            , 'old-a' as contributing_factor
+            , cast('2025-01-01' as date) as suspect_date
+          union all
+          select
+              'shared-person', 'shared-payer', 'source-a', 'CMS-HCC-V28',
+              '1', 'Test HCC', 'latest-a', 'latest-a', cast('2025-02-01' as date)
+          union all
+          select
+              'shared-person', 'shared-payer', 'source-b', 'CMS-HCC-V28',
+              '1', 'Test HCC', 'latest-b', 'latest-b', cast('2025-03-01' as date)
+    expect:
+      rows:
+        - {person_id: shared-person, payer: shared-payer, data_source: source-a, reason: latest-a, latest_suspect_date: '2025-02-01'}
+        - {person_id: shared-person, payer: shared-payer, data_source: source-b, reason: latest-b, latest_suspect_date: '2025-03-01'}
+
+  - name: test_hcc_suspecting_summary_joins_patients_within_source
+    description: Patient attributes and gap counts do not cross sources when identifiers are reused.
+    model: hcc_suspecting__summary
+    config:
+      enabled: "{{ (var('claims_enabled', False) | as_bool) or (var('clinical_enabled', False) | as_bool) }}"
+    given:
+      - input: ref('hcc_suspecting__stg_core__patient')
+        format: sql
+        rows: |
+          select
+              'shared-person' as person_id
+            , 'source-a' as data_source
+            , 'female' as sex
+            , cast('1950-01-01' as date) as birth_date
+            , cast(null as date) as death_date
+          union all
+          select
+              'shared-person', 'source-b', 'male', cast('1960-01-01' as date),
+              cast(null as date)
+      - input: ref('hcc_suspecting__list')
+        format: sql
+        rows: |
+          select 'shared-person' as person_id, 'shared-payer' as payer, 'source-a' as data_source
+          union all
+          select 'shared-person', 'shared-payer', 'source-a'
+          union all
+          select 'shared-person', 'shared-payer', 'source-b'
+    expect:
+      rows:
+        - {person_id: shared-person, payer: shared-payer, data_source: source-a, patient_sex: female, suspecting_gaps: 2}
+        - {person_id: shared-person, payer: shared-payer, data_source: source-b, patient_sex: male, suspecting_gaps: 1}

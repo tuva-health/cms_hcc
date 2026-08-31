@@ -49,11 +49,11 @@ unit_tests:
       - input: ref('cms_hcc__int_eligible_conditions')
         format: sql
         rows: |
-          select 'p1' as person_id, 'c1' as claim_id, 'payer' as payer
+          select 'p1' as person_id, 'c1' as claim_id, 'payer' as payer, 'source' as data_source
           union all
-          select 'p2' as person_id, 'c2' as claim_id, 'payer' as payer
+          select 'p2' as person_id, 'c2' as claim_id, 'payer' as payer, 'source' as data_source
           union all
-          select 'p3' as person_id, 'c3' as claim_id, 'payer' as payer
+          select 'p3' as person_id, 'c3' as claim_id, 'payer' as payer, 'source' as data_source
     expect:
       rows:
         - person_id: p1

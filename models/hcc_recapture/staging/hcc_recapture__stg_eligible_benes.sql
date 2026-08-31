@@ -6,6 +6,7 @@
 -- Flattening months to 1 person per year
 select distinct
   person_id
+  , data_source
   , {{ the_tuva_project.date_part('year', 'collection_end_date') }} as collection_year
   , age_group
   , payer

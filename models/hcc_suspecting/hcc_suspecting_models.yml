@@ -130,6 +130,15 @@ models:
     description: >
       This final model displays the list of suspecting conditions per
       patient  and hcc with the latest contributing factor rolled up.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - person_id
+              - payer
+              - data_source
+              - model_version
+              - hcc_code
     columns:
       - name: person_id
         description: Unique ID for the patient.
@@ -138,6 +147,11 @@ models:
             data_type: varchar
       - name: payer
         description: Name of the payer associated with the suspected HCC.
+        config:
+          meta:
+            data_type: varchar
+      - name: data_source
+        description: User-configured source that scopes the patient and payer identifiers.
         config:
           meta:
             data_type: varchar
@@ -192,6 +206,13 @@ models:
       materialized: table
     description: >
       This final model displays a rollup of suspecting conditions per patient.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - person_id
+              - payer
+              - data_source
     columns:
       - name: person_id
         description: Unique ID for the patient.
@@ -201,6 +222,12 @@ models:
             is_primary_key: true
       - name: payer
         description: Name of the payer associated with the suspected HCC rollup.
+        config:
+          meta:
+            data_type: varchar
+            is_primary_key: true
+      - name: data_source
+        description: User-configured source that scopes the patient and payer identifiers.
         config:
           meta:
             data_type: varchar
@@ -682,6 +709,7 @@ models:
     description: Staging patients from core.
     columns:
       - name: person_id
+      - name: data_source
       - name: sex
       - name: birth_date
       - name: death_date

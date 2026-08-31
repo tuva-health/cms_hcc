@@ -40,6 +40,12 @@ unit_tests:
               'claim-latest', '1111111111', 'CMS-HCC-V28', '101',
               'Latest HCC', 'group-a', 1, 0, 'current coding history', 'INS',
               'coded', 'payer', 1, 1, 1, 1, 2025
+          union all
+          select
+              'person-a', 'payer-a', 'source-b', cast('2025-12-15' as date),
+              'claim-source-b', '2222222222', 'CMS-HCC-V28', '102',
+              'Other-source HCC', 'group-b', 1, 0, 'other source', 'CND',
+              'coded', 'payer', 1, 1, 1, 1, 2025
       - input: ref('hcc_recapture__int_recapturable_hccs')
         format: sql
         rows: |
@@ -59,6 +65,7 @@ unit_tests:
           select
               'not-person-a' as person_id
             , 'not-payer' as payer
+            , 'not-source' as data_source
             , 'not-version' as model_version
             , 'not-code' as hcc_code
             , 'open' as gap_status
@@ -67,5 +74,6 @@ unit_tests:
             , 0 as filtered_by_hierarchy_flag
     expect:
       rows:
-        - {claim_id: claim-older, risk_model_code: INS}
-        - {claim_id: claim-latest, risk_model_code: INS}
+        - {claim_id: claim-older, data_source: source-a, risk_model_code: INS}
+        - {claim_id: claim-latest, data_source: source-a, risk_model_code: INS}
+        - {claim_id: claim-source-b, data_source: source-b, risk_model_code: CND}
