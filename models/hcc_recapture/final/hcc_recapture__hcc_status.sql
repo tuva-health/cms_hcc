@@ -25,6 +25,7 @@ select distinct
             coalesce(gap.payment_year, {{ the_tuva_project.date_part('year', 'hccs.recorded_date') }} + 1),
             hccs.model_version
         order by hccs.recorded_date desc
+        rows between unbounded preceding and unbounded following
     ) as risk_model_code
     , hccs.hcc_type
     , hccs.hcc_source
