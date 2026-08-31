@@ -17,7 +17,7 @@ unit_tests:
       - input: ref('cms_hcc__stg_core__eligibility')
         format: sql
         rows: |
-          {% set string_type = 'string' if target.type == 'bigquery' else 'varchar' %}
+          {% set string_type = 'string' if target.type in ['bigquery', 'databricks'] else 'varchar' %}
           {% set integer_type = 'int64' if target.type == 'bigquery' else 'integer' %}
           select
               'under_65' as person_id
