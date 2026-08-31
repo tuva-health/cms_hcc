@@ -1,0 +1,71 @@
+version: 2
+
+unit_tests:
+  - name: test_hcc_recapture_hcc_status_uses_latest_risk_model_code
+    description: >
+      Verifies that every HCC status row in a person, payment-year, and model
+      partition uses the risk model code from the latest recorded HCC.
+    model: hcc_recapture__hcc_status
+    config:
+      enabled: "{{ var('claims_enabled', False) | as_bool }}"
+    given:
+      - input: ref('hcc_recapture__int_all_hccs')
+        format: sql
+        rows: |
+          select
+              'person-a' as person_id
+            , 'payer-a' as payer
+            , 'source-a' as data_source
+            , cast('2025-01-15' as date) as recorded_date
+            , 'claim-older' as claim_id
+            , '1111111111' as rendering_npi
+            , 'CMS-HCC-V28' as model_version
+            , '100' as hcc_code
+            , 'Older HCC' as hcc_description
+            , 'group-a' as hcc_hierarchy_group
+            , 2 as hcc_hierarchy_group_rank
+            , 0 as suspect_hcc_flag
+            , 'prior coding history' as reason
+            , 'CNA' as risk_model_code
+            , 'coded' as hcc_type
+            , 'payer' as hcc_source
+            , 1 as hcc_chronic_flag
+            , 1 as recapturable_flag
+            , 1 as eligible_claim_flag
+            , 1 as eligible_bene_flag
+            , 2025 as collection_year
+          union all
+          select
+              'person-a', 'payer-a', 'source-a', cast('2025-10-15' as date),
+              'claim-latest', '1111111111', 'CMS-HCC-V28', '101',
+              'Latest HCC', 'group-a', 1, 0, 'current coding history', 'INS',
+              'coded', 'payer', 1, 1, 1, 1, 2025
+      - input: ref('hcc_recapture__int_recapturable_hccs')
+        format: sql
+        rows: |
+          select
+              'not-person-a' as person_id
+            , 'not-code' as hcc_code
+            , 'not-source' as data_source
+            , 'not-payer' as payer
+            , 'not-version' as model_version
+            , 1900 as collection_year
+            , 'not-group' as hcc_hierarchy_group
+            , 'not-claim' as claim_id
+            , 0 as filtered_by_hierarchy_flag
+      - input: ref('hcc_recapture__int_gap_status')
+        format: sql
+        rows: |
+          select
+              'not-person-a' as person_id
+            , 'not-payer' as payer
+            , 'not-version' as model_version
+            , 'not-code' as hcc_code
+            , 'open' as gap_status
+            , 1901 as payment_year
+            , 0 as suspect_hcc_flag
+            , 0 as filtered_by_hierarchy_flag
+    expect:
+      rows:
+        - {claim_id: claim-older, risk_model_code: INS}
+        - {claim_id: claim-latest, risk_model_code: INS}
