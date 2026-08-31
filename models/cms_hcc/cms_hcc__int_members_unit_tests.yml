@@ -69,42 +69,50 @@ unit_tests:
             , 2023 as collection_year
             , 2024 as payment_year
     expect:
-      rows:
-        - person_id: 'under_65'
-          payer: 'medicare'
-          enrollment_status: 'Continuing'
-          gender: 'Female'
-          age_group: '60-64'
-          medicaid_status: 'No'
-          dual_status: 'Non'
-          orec: 'Disabled'
-          institutional_status: 'No'
-          originally_disabled_flag: 'No'
-          institutional_snp_flag: null
-          enrollment_status_default: false
-          medicaid_dual_status_default: true
-          orec_default: true
-          institutional_status_default: true
-          payment_year: 2024
-          collection_start_date: '2023-01-01'
-          collection_end_date: '2023-12-31'
-          tuva_last_run: '2024-01-01 00:00:00'
-        - person_id: 'sixty_five'
-          payer: 'medicare'
-          enrollment_status: 'Continuing'
-          gender: 'Male'
-          age_group: '65-69'
-          medicaid_status: 'No'
-          dual_status: 'Non'
-          orec: 'Aged'
-          institutional_status: 'No'
-          originally_disabled_flag: 'No'
-          institutional_snp_flag: null
-          enrollment_status_default: false
-          medicaid_dual_status_default: true
-          orec_default: true
-          institutional_status_default: true
-          payment_year: 2024
-          collection_start_date: '2023-01-01'
-          collection_end_date: '2023-12-31'
-          tuva_last_run: '2024-01-01 00:00:00'
+      format: sql
+      rows: |
+        {% set string_type = 'string' if target.type in ['bigquery', 'databricks'] else 'varchar(max)' if target.type in ['fabric', 'sqlserver'] else 'varchar' %}
+        {% set integer_type = 'int64' if target.type == 'bigquery' else 'integer' %}
+        {% set boolean_type = 'bit' if target.type in ['fabric', 'sqlserver'] else 'boolean' %}
+        {% set timestamp_type = 'datetime2(6)' if target.type in ['fabric', 'sqlserver'] else 'timestamp' %}
+        select
+            cast('under_65' as {{ string_type }}) as person_id
+          , cast('medicare' as {{ string_type }}) as payer
+          , cast('Continuing' as {{ string_type }}) as enrollment_status
+          , cast('Female' as {{ string_type }}) as gender
+          , cast('60-64' as {{ string_type }}) as age_group
+          , cast('No' as {{ string_type }}) as medicaid_status
+          , cast('Non' as {{ string_type }}) as dual_status
+          , cast('Disabled' as {{ string_type }}) as orec
+          , cast('No' as {{ string_type }}) as institutional_status
+          , cast('No' as {{ string_type }}) as originally_disabled_flag
+          , cast(null as {{ integer_type }}) as institutional_snp_flag
+          , cast(0 as {{ boolean_type }}) as enrollment_status_default
+          , cast(1 as {{ boolean_type }}) as medicaid_dual_status_default
+          , cast(1 as {{ boolean_type }}) as orec_default
+          , cast(1 as {{ boolean_type }}) as institutional_status_default
+          , cast(2024 as {{ integer_type }}) as payment_year
+          , cast('2023-01-01' as date) as collection_start_date
+          , cast('2023-12-31' as date) as collection_end_date
+          , cast('2024-01-01 00:00:00' as {{ timestamp_type }}) as tuva_last_run
+        union all
+        select
+            cast('sixty_five' as {{ string_type }}) as person_id
+          , cast('medicare' as {{ string_type }}) as payer
+          , cast('Continuing' as {{ string_type }}) as enrollment_status
+          , cast('Male' as {{ string_type }}) as gender
+          , cast('65-69' as {{ string_type }}) as age_group
+          , cast('No' as {{ string_type }}) as medicaid_status
+          , cast('Non' as {{ string_type }}) as dual_status
+          , cast('Aged' as {{ string_type }}) as orec
+          , cast('No' as {{ string_type }}) as institutional_status
+          , cast('No' as {{ string_type }}) as originally_disabled_flag
+          , cast(null as {{ integer_type }}) as institutional_snp_flag
+          , cast(0 as {{ boolean_type }}) as enrollment_status_default
+          , cast(1 as {{ boolean_type }}) as medicaid_dual_status_default
+          , cast(1 as {{ boolean_type }}) as orec_default
+          , cast(1 as {{ boolean_type }}) as institutional_status_default
+          , cast(2024 as {{ integer_type }}) as payment_year
+          , cast('2023-01-01' as date) as collection_start_date
+          , cast('2023-12-31' as date) as collection_end_date
+          , cast('2024-01-01 00:00:00' as {{ timestamp_type }}) as tuva_last_run

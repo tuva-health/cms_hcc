@@ -60,7 +60,7 @@ with add_rankings as (
       , min(gap_status_rank) over (partition by person_id, payer, hcc_code, model_version, payment_year) as min_gap_status_rank 
       from best_hcc_type
       where best_rank = 1
-    )
+    ) as ranked_gap_status
     where min_gap_status_rank = gap_status_rank
 )
 
