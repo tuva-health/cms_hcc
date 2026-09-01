@@ -5,6 +5,14 @@ seeds:
     description: >
       Adjustment rates by payment year. Extracted from rate announcement
       documents on cms.gov.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - payment_year
+          config:
+            tags: [official_cms_hcc_validation]
     config:
       schema: |
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
@@ -59,6 +67,69 @@ seeds:
   - name: cms_hcc__demographic_factors
     description: >
       Demographic factors by model version and risk segment. Extracted from  rate announcement documents on cms.gov.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - factor_type
+              - enrollment_status
+              - plan_segment
+              - gender
+              - age_group
+              - medicaid_status
+              - dual_status
+              - orec
+              - institutional_status
+          config:
+            tags: [official_cms_hcc_validation]
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - enrollment_status
+              - gender
+              - age_group
+              - medicaid_status
+              - orec
+          config:
+            tags: [official_cms_hcc_validation]
+            where: "enrollment_status = 'New' and plan_segment is null"
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - gender
+              - age_group
+              - medicaid_status
+              - orec
+          config:
+            tags: [official_cms_hcc_validation]
+            where: "plan_segment = 'C-SNP'"
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - enrollment_status
+              - gender
+              - age_group
+              - medicaid_status
+              - dual_status
+              - orec
+              - institutional_status
+          config:
+            tags: [official_cms_hcc_validation]
+            where: "enrollment_status = 'Continuing' and plan_segment is null"
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - enrollment_status
+              - gender
+              - age_group
+          config:
+            tags: [official_cms_hcc_validation]
+            where: "enrollment_status = 'Institutional' and plan_segment is null"
     config:
       schema: |
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
@@ -114,6 +185,27 @@ seeds:
   - name: cms_hcc__disabled_interaction_factors
     description: >
       Disease and disabled interaction factors by model version  and risk segment. Extracted from rate announcement documents on cms.gov.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - factor_type
+              - enrollment_status
+              - institutional_status
+              - short_name
+              - hcc_code
+          config:
+            tags: [official_cms_hcc_validation]
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - enrollment_status
+              - institutional_status
+              - hcc_code
+          config:
+            tags: [official_cms_hcc_validation]
     config:
       schema: |
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
@@ -157,6 +249,43 @@ seeds:
   - name: cms_hcc__disease_factors
     description: >
       Disease factors by model version and risk segment. Extracted from rate  announcement documents on cms.gov.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - factor_type
+              - enrollment_status
+              - medicaid_status
+              - dual_status
+              - orec
+              - institutional_status
+              - hcc_code
+          config:
+            tags: [official_cms_hcc_validation]
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - enrollment_status
+              - medicaid_status
+              - dual_status
+              - orec
+              - institutional_status
+              - hcc_code
+          config:
+            tags: [official_cms_hcc_validation]
+            where: "institutional_status is null or institutional_status <> 'Yes'"
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - enrollment_status
+              - institutional_status
+              - hcc_code
+          config:
+            tags: [official_cms_hcc_validation]
+            where: "institutional_status = 'Yes'"
     config:
       schema: |
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
@@ -271,6 +400,47 @@ seeds:
   - name: cms_hcc__disease_interaction_factors
     description: >
       Disease interaction factors by model version and risk segment. Extracted  from rate announcement documents on cms.gov.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - factor_type
+              - enrollment_status
+              - medicaid_status
+              - dual_status
+              - orec
+              - institutional_status
+              - short_name
+              - hcc_code_1
+              - hcc_code_2
+          config:
+            tags: [official_cms_hcc_validation]
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - enrollment_status
+              - medicaid_status
+              - dual_status
+              - orec
+              - institutional_status
+              - hcc_code_1
+              - hcc_code_2
+          config:
+            tags: [official_cms_hcc_validation]
+            where: "institutional_status is null or institutional_status <> 'Yes'"
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - enrollment_status
+              - institutional_status
+              - hcc_code_1
+              - hcc_code_2
+          config:
+            tags: [official_cms_hcc_validation]
+            where: "institutional_status = 'Yes'"
     config:
       schema: |
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
@@ -330,6 +500,40 @@ seeds:
   - name: cms_hcc__enrollment_interaction_factors
     description: >
       Enrollment interaction factors by model version and risk segment.  Extracted from rate announcement documents on cms.gov.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - factor_type
+              - gender
+              - enrollment_status
+              - medicaid_status
+              - dual_status
+              - institutional_status
+          config:
+            tags: [official_cms_hcc_validation]
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - gender
+              - enrollment_status
+              - medicaid_status
+              - dual_status
+              - institutional_status
+          config:
+            tags: [official_cms_hcc_validation]
+            where: "institutional_status is null or institutional_status <> 'Yes'"
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - enrollment_status
+              - institutional_status
+          config:
+            tags: [official_cms_hcc_validation]
+            where: "institutional_status = 'Yes'"
     config:
       schema: |
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
@@ -415,6 +619,43 @@ seeds:
   - name: cms_hcc__payment_hcc_count_factors
     description: >
       Payment HCC count factors by model version and risk segment. Extracted  from rate announcement documents on cms.gov.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - factor_type
+              - enrollment_status
+              - medicaid_status
+              - dual_status
+              - orec
+              - institutional_status
+              - payment_hcc_count
+          config:
+            tags: [official_cms_hcc_validation]
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - enrollment_status
+              - medicaid_status
+              - dual_status
+              - orec
+              - institutional_status
+              - payment_hcc_count
+          config:
+            tags: [official_cms_hcc_validation]
+            where: "institutional_status is null or institutional_status <> 'Yes'"
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - model_version
+              - enrollment_status
+              - institutional_status
+              - payment_hcc_count
+          config:
+            tags: [official_cms_hcc_validation]
+            where: "institutional_status = 'Yes'"
     config:
       schema: |
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_value_sets{% else %}value_sets{%- endif -%}
