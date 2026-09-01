@@ -8,6 +8,7 @@ with flatten_hccs as (
 select distinct
       person_id
     , payer
+    , data_source
     , payment_year
     , cast({{ the_tuva_project.concat_custom([
             "payment_year"
@@ -22,7 +23,10 @@ select distinct
     , gap_status
     , recapturable_flag
     , suspect_hcc_flag
-    , row_number() over (partition by person_id, payer, payment_year, model_version, hcc_code order by recorded_date asc) as earliest_hcc_code
+    , row_number() over (
+        partition by person_id, payer, data_source, payment_year, model_version, hcc_code
+        order by recorded_date asc
+      ) as earliest_hcc_code
 from {{ ref('hcc_recapture__hcc_status')}}
 where 1=1
   and gap_status not in ('ineligible for recapture', 'new')
@@ -34,6 +38,7 @@ where 1=1
 , monthly_hcc_counts as (
 select
       payer
+    , data_source
     , payment_year
     , payment_year_month
     , suspect_hcc_flag
@@ -44,6 +49,7 @@ from flatten_hccs
 where earliest_hcc_code = 1
 group by
       payer
+    , data_source
     , payment_year
     , payment_year_month
     , suspect_hcc_flag
@@ -52,16 +58,19 @@ group by
 , no_suspects_recap_rate as (
   select 
       payer
+    , data_source
     , payment_year
     , payment_year_month   
     , sum(closed_hccs) as closed_hccs
     , sum(open_hccs) as open_hccs
     , sum(total_hccs) as total_hccs
-    , sum(closed_hccs) / sum(total_hccs) as recapture_rate
+    , cast(sum(closed_hccs) as {{ dbt.type_numeric() }})
+        / nullif(cast(sum(total_hccs) as {{ dbt.type_numeric() }}), 0) as recapture_rate
   from monthly_hcc_counts
   where suspect_hcc_flag = 0
   group by
       payer
+    , data_source
     , payment_year
     , payment_year_month     
 )
@@ -69,21 +78,25 @@ group by
 , all_recap_rate as (
 select
       payer
+    , data_source
     , payment_year
     , payment_year_month   
     , sum(closed_hccs) as closed_hccs
     , sum(open_hccs) as open_hccs
     , sum(total_hccs) as total_hccs
-    , sum(closed_hccs) / sum(total_hccs) as recapture_rate
+    , cast(sum(closed_hccs) as {{ dbt.type_numeric() }})
+        / nullif(cast(sum(total_hccs) as {{ dbt.type_numeric() }}), 0) as recapture_rate
 from monthly_hcc_counts hcc
 group by
       payer
+    , data_source
     , payment_year
     , payment_year_month
 )
 
 select
   recap.payer
+  , recap.data_source
   , recap.payment_year
   , recap.payment_year_month
   , nosus.closed_hccs as no_suspects_closed_hccs
@@ -97,5 +110,6 @@ select
 from all_recap_rate recap
 left join no_suspects_recap_rate nosus
   on recap.payer = nosus.payer
+  and recap.data_source = nosus.data_source
   and recap.payment_year = nosus.payment_year
   and recap.payment_year_month = nosus.payment_year_month

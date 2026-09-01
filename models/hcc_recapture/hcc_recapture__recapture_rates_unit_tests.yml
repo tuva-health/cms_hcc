@@ -1,0 +1,97 @@
+version: 2
+
+unit_tests:
+  - name: test_hcc_recapture_monthly_rates_are_fractional_and_source_scoped
+    description: Reused HCC identifiers stay source-scoped and one closed of two produces 0.5.
+    model: hcc_recapture__recapture_rates_monthly
+    config:
+      enabled: "{{ var('claims_enabled', False) | as_bool }}"
+    given:
+      - input: ref('hcc_recapture__hcc_status')
+        format: sql
+        rows: |
+          select
+              'shared-person' as person_id
+            , 'shared-payer' as payer
+            , 'source-a' as data_source
+            , 2026 as payment_year
+            , cast('2025-01-10' as date) as recorded_date
+            , 'CMS-HCC-V28' as model_version
+            , '1' as hcc_code
+            , 'closed' as gap_status
+            , 1 as recapturable_flag
+            , 0 as suspect_hcc_flag
+            , 0 as filtered_by_hierarchy_flag
+            , 'coded' as hcc_type
+          union all
+          select
+              'shared-person', 'shared-payer', 'source-a', 2026,
+              cast('2025-01-11' as date), 'CMS-HCC-V28', '2', 'open',
+              1, 0, 0, 'coded'
+          union all
+          select
+              'shared-person', 'shared-payer', 'source-b', 2026,
+              cast('2025-01-10' as date), 'CMS-HCC-V28', '1', 'open',
+              1, 0, 0, 'coded'
+    expect:
+      rows:
+        - {payer: shared-payer, data_source: source-a, payment_year: 2026, payment_year_month: '2026-01-01', closed_hccs: 1, open_hccs: 1, total_hccs: 2, recapture_rate: 0.5}
+        - {payer: shared-payer, data_source: source-b, payment_year: 2026, payment_year_month: '2026-01-01', closed_hccs: 0, open_hccs: 1, total_hccs: 1, recapture_rate: 0.0}
+
+  - name: test_hcc_recapture_annual_rates_are_fractional_and_source_scoped
+    description: Annual rollups retain source and avoid integer-division truncation.
+    model: hcc_recapture__recapture_rates
+    config:
+      enabled: "{{ var('claims_enabled', False) | as_bool }}"
+    given:
+      - input: ref('hcc_recapture__recapture_rates_monthly')
+        format: sql
+        rows: |
+          select
+              'shared-payer' as payer
+            , 'source-a' as data_source
+            , 2026 as payment_year
+            , 1 as no_suspects_closed_hccs
+            , 1 as no_suspects_open_hccs
+            , 2 as no_suspects_total_hccs
+            , 1 as closed_hccs
+            , 1 as open_hccs
+            , 2 as total_hccs
+          union all
+          select 'shared-payer', 'source-b', 2026, 0, 1, 1, 0, 1, 1
+    expect:
+      rows:
+        - {payer: shared-payer, data_source: source-a, payment_year: 2026, no_suspects_recapture_rate: 0.5, recapture_rate: 0.5}
+        - {payer: shared-payer, data_source: source-b, payment_year: 2026, no_suspects_recapture_rate: 0.0, recapture_rate: 0.0}
+
+  - name: test_hcc_recapture_ytd_rates_are_fractional_and_source_scoped
+    description: YTD window partitions retain source and use numeric division.
+    model: hcc_recapture__recapture_rates_monthly_ytd
+    config:
+      enabled: "{{ var('claims_enabled', False) | as_bool }}"
+    given:
+      - input: ref('hcc_recapture__recapture_rates_monthly')
+        format: sql
+        rows: |
+          select
+              'shared-payer' as payer
+            , 'source-a' as data_source
+            , 2026 as payment_year
+            , cast('2026-01-01' as date) as payment_year_month
+            , 1 as closed_hccs
+            , 1 as open_hccs
+            , 2 as total_hccs
+            , 0.5 as recapture_rate
+          union all
+          select
+              'shared-payer', 'source-a', 2026, cast('2026-02-01' as date),
+              0, 2, 2, 0.0
+          union all
+          select
+              'shared-payer', 'source-b', 2026, cast('2026-01-01' as date),
+              0, 1, 1, 0.0
+    expect:
+      rows:
+        - {payer: shared-payer, data_source: source-a, payment_year_month: '2026-01-01', ytd_closed_hccs: 1, yearly_total_hccs: 4, ytd_recapture_rate: 0.25}
+        - {payer: shared-payer, data_source: source-a, payment_year_month: '2026-02-01', ytd_closed_hccs: 1, yearly_total_hccs: 4, ytd_recapture_rate: 0.25}
+        - {payer: shared-payer, data_source: source-b, payment_year_month: '2026-01-01', ytd_closed_hccs: 0, yearly_total_hccs: 1, ytd_recapture_rate: 0.0}

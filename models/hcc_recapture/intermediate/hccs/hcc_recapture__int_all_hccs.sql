@@ -15,10 +15,14 @@ with seed_hcc_hierarchy as (
     select distinct
         person_id
         , payer
+        , data_source
         , payment_year
         , model_version
         , risk_model_code
-        , row_number() over (partition by person_id, payment_year, model_version order by collection_end_date desc) as month_order
+        , row_number() over (
+            partition by person_id, payer, data_source, payment_year, model_version
+            order by collection_end_date desc
+        ) as month_order
     from {{ ref('cms_hcc__int_demographic_factors') }}
     where lower(factor_type) = 'demographic'
 )
@@ -28,6 +32,7 @@ with seed_hcc_hierarchy as (
     select distinct
         person_id
         , payer
+        , data_source
         , claim_id
         , rendering_npi
     from {{ ref('core__medical_claim') }}
@@ -74,18 +79,21 @@ left join {{ ref('hcc_recapture__stg_chronic_hccs') }} as chronic
 left join get_risk_code as rcode
     on sus.person_id = rcode.person_id
     and sus.payer = rcode.payer
+    and sus.data_source = rcode.data_source
     and {{ the_tuva_project.date_part('year', 'sus.recorded_date') }} = rcode.payment_year - 1
     and sus.model_version = rcode.model_version
     and rcode.month_order = 1
 left join medical_claims as med
     on sus.person_id = med.person_id
     and sus.payer = med.payer
+    and sus.data_source = med.data_source
     and sus.claim_id = med.claim_id
 -- Only include benes eligible for gap closure
 left join {{ ref('hcc_recapture__int_eligible_benes') }} as elig_bene
     on sus.person_id = elig_bene.person_id
     and {{ the_tuva_project.date_part('year', 'sus.recorded_date') }} = elig_bene.collection_year
     and sus.payer = elig_bene.payer
+    and sus.data_source = elig_bene.data_source
 where sus.hcc_code is not null
   -- Replace with cms_hcc__adjustment_rates once that table includes PY 2026 
   and 1 = (case when {{ the_tuva_project.date_part('year', 'sus.recorded_date') }} >= 2025 and sus.model_version = 'CMS-HCC-V24' then 0 else 1 end)

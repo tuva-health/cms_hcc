@@ -35,7 +35,7 @@ with stg_eligibility as (
         , dates.collection_end_date
         , {{ the_tuva_project.concat_custom(['dates.payment_year', "'-12-31'"]) }} as payment_year_end_date
         , row_number() over (
-            partition by elig.person_id, dates.collection_end_date
+            partition by elig.person_id, elig.payer, elig.data_source, dates.collection_end_date
             order by
                   case when elig.enrollment_end_date is null then 1 else 0 end desc
                 , elig.enrollment_end_date desc
@@ -83,6 +83,7 @@ with stg_eligibility as (
     select
           person_id
         , payer
+        , data_source
         , enrollment_start_date
         , enrollment_end_date
         , payment_year
@@ -103,19 +104,104 @@ with stg_eligibility as (
 
 )
 
+, normalized_coverage_spans as (
+
+    select distinct
+          person_id
+        , payer
+        , data_source
+        , payment_year
+        , collection_start_date
+        , collection_end_date
+        , cast({{ date_trunc('month', 'proxy_enrollment_start_date') }} as date) as coverage_start_month
+        , cast({{ date_trunc('month', 'proxy_enrollment_end_date') }} as date) as coverage_end_month
+    from cap_collection_start_end_dates
+
+)
+
+, coverage_with_previous_end as (
+
+    select
+          *
+        , max(coverage_end_month) over (
+              partition by person_id, payer, data_source, payment_year, collection_end_date
+              order by coverage_start_month, coverage_end_month
+              rows between unbounded preceding and 1 preceding
+          ) as previous_max_end_month
+    from normalized_coverage_spans
+
+)
+
+, coverage_island_starts as (
+
+    select
+          *
+        , case
+            when previous_max_end_month is null
+              or coverage_start_month > {{ dbt.dateadd(
+                    datepart = 'month'
+                  , interval = 1
+                  , from_date_or_timestamp = 'previous_max_end_month'
+                ) }}
+            then 1
+            else 0
+          end as coverage_island_start
+    from coverage_with_previous_end
+
+)
+
+, coverage_island_ids as (
+
+    select
+          *
+        , sum(coverage_island_start) over (
+              partition by person_id, payer, data_source, payment_year, collection_end_date
+              order by coverage_start_month, coverage_end_month
+              rows between unbounded preceding and current row
+          ) as coverage_island_id
+    from coverage_island_starts
+
+)
+
+, merged_coverage_spans as (
+
+    select
+          person_id
+        , payer
+        , data_source
+        , payment_year
+        , collection_start_date
+        , collection_end_date
+        , coverage_island_id
+        , min(coverage_start_month) as coverage_start_month
+        , max(coverage_end_month) as coverage_end_month
+    from coverage_island_ids
+    group by
+          person_id
+        , payer
+        , data_source
+        , payment_year
+        , collection_start_date
+        , collection_end_date
+        , coverage_island_id
+
+)
+
 , calculate_prior_coverage as (
 
     select
           person_id
         , payer
+        , data_source
         , payment_year
         , collection_end_date
-        , sum({{ datediff('proxy_enrollment_start_date', 'proxy_enrollment_end_date', 'month') }} + 1) as coverage_months  /* include starting month */
+        , sum({{ datediff('coverage_start_month', 'coverage_end_month', 'month') }} + 1) as coverage_months
         , min({{ datediff('collection_start_date', 'collection_end_date', 'month') }} + 1) as collection_months
-    from cap_collection_start_end_dates
+    from merged_coverage_spans
     group by
           person_id
         , payer
+        , data_source
         , payment_year
         , collection_end_date
 
@@ -130,6 +216,7 @@ with stg_eligibility as (
     select
           person_id
         , payer
+        , data_source
         , payment_year
         , collection_end_date
         , case
@@ -145,6 +232,7 @@ with stg_eligibility as (
     select
           stg_eligibility.person_id
         , stg_eligibility.payer
+        , stg_eligibility.data_source
         , stg_eligibility.payment_year
         , stg_eligibility.collection_start_date
         , stg_eligibility.collection_end_date
@@ -176,6 +264,7 @@ with stg_eligibility as (
         left outer join add_enrollment
             on stg_eligibility.person_id = add_enrollment.person_id
             and stg_eligibility.payer = add_enrollment.payer
+            and stg_eligibility.data_source = add_enrollment.data_source
             and stg_eligibility.payment_year = add_enrollment.payment_year
             and stg_eligibility.collection_end_date = add_enrollment.collection_end_date
         left outer join stg_patient
@@ -192,6 +281,7 @@ with stg_eligibility as (
     select
           person_id
         , payer
+        , data_source
         , payment_year
         , collection_start_date
         , collection_end_date
@@ -245,6 +335,7 @@ with stg_eligibility as (
     select
           person_id
         , payer
+        , data_source
         , payment_year
         , collection_start_date
         , collection_end_date
@@ -349,6 +440,7 @@ with stg_eligibility as (
     select
           cast(person_id as {{ dbt.type_string() }}) as person_id
         , cast(payer as {{ dbt.type_string() }}) as payer
+        , cast(data_source as {{ dbt.type_string() }}) as data_source
         , cast(enrollment_status as {{ dbt.type_string() }}) as enrollment_status
         , cast(gender as {{ dbt.type_string() }}) as gender
         , cast(age_group as {{ dbt.type_string() }}) as age_group
@@ -379,6 +471,7 @@ with stg_eligibility as (
 select
       person_id
     , payer
+    , data_source
     , enrollment_status
     , gender
     , age_group

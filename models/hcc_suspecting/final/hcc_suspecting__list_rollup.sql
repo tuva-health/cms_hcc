@@ -20,6 +20,7 @@ with list as (
             partition by
                   person_id
                 , payer
+                , data_source
                 , hcc_code
                 , model_version
             order by suspect_date desc
@@ -33,6 +34,7 @@ with list as (
     select
           person_id
         , payer
+        , data_source
         , model_version
         , hcc_code
         , hcc_description
@@ -49,6 +51,7 @@ with list as (
     select
           cast(person_id as {{ dbt.type_string() }}) as person_id
         , cast(payer as {{ dbt.type_string() }}) as payer
+        , cast(data_source as {{ dbt.type_string() }}) as data_source
         , cast(model_version as {{ dbt.type_string() }}) as model_version
         , cast(hcc_code as {{ dbt.type_string() }}) as hcc_code
         , cast(hcc_description as {{ dbt.type_string() }}) as hcc_description
@@ -62,6 +65,7 @@ with list as (
 select
       person_id
     , payer
+    , data_source
     , model_version
     , hcc_code
     , hcc_description

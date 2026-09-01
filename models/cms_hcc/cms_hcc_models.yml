@@ -12,7 +12,7 @@ models:
     description: >
       This final model displays the contributing demographic and disease
       risk  factors, interactions, and HCCs for each enrollee in the payment
-      year.
+      year, using that enrollee and source's latest available collection period.
     columns:
       - name: person_id
         description: Unique ID for the patient.
@@ -24,18 +24,23 @@ models:
         config:
           meta:
             data_type: varchar
+      - name: data_source
+        description: User-configured source that scopes the patient and payer identifiers.
+        config:
+          meta:
+            data_type: varchar
       - name: enrollment_status_default
         description: >
           Indicates the input data was missing and a default status was used.
         config:
           meta:
-            data_type: varchar
+            data_type: boolean
       - name: medicaid_dual_status_default
         description: >
           Indicates the input data was missing and a default status was used.
         config:
           meta:
-            data_type: varchar
+            data_type: boolean
       - name: orec_default
         description: >
           Indicates the OREC risk segment was defaulted because source OREC or
@@ -43,13 +48,13 @@ models:
           are missing, the default follows the CMS age rule.
         config:
           meta:
-            data_type: varchar
+            data_type: boolean
       - name: institutional_status_default
         description: >
           Indicates the input data was missing and a default status was used.
         config:
           meta:
-            data_type: varchar
+            data_type: boolean
       - name: risk_factor_description
         description: Description of the risk factor.
         config:
@@ -107,6 +112,11 @@ models:
         config:
           meta:
             data_type: varchar
+      - name: data_source
+        description: User-configured source that scopes the patient and payer identifiers.
+        config:
+          meta:
+            data_type: varchar
       - name: enrollment_status
         description: Enrollment status used to select the CMS-HCC risk model segment.
         config:
@@ -122,13 +132,13 @@ models:
           Indicates the input data was missing and a default status was used.
         config:
           meta:
-            data_type: varchar
+            data_type: boolean
       - name: medicaid_dual_status_default
         description: >
           Indicates the input data was missing and a default status was used.
         config:
           meta:
-            data_type: varchar
+            data_type: boolean
       - name: orec_default
         description: >
           Indicates the OREC risk segment was defaulted because source OREC or
@@ -136,13 +146,13 @@ models:
           are missing, the default follows the CMS age rule.
         config:
           meta:
-            data_type: varchar
+            data_type: boolean
       - name: institutional_status_default
         description: >
           Indicates the input data was missing and a default status was used.
         config:
           meta:
-            data_type: varchar
+            data_type: boolean
       - name: risk_factor_description
         description: Description of the risk factor.
         config:
@@ -202,18 +212,30 @@ models:
     description: >
       This final model calculates the CMS HCC raw risk score, blended risk
       score, normalized risk score, and payment risk score for each enrollee in
-      the  payment year.
+      the payment year, using that enrollee and source's latest available
+      collection period.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - person_id
+              - payer
+              - data_source
+              - payment_year
     columns:
       - name: person_id
         description: Unique ID for the patient.
-        tests:
-          - unique
         config:
           meta:
             data_type: varchar
             is_primary_key: true
       - name: payer
         description: Name of the payer used for CMS-HCC risk adjustment.
+        config:
+          meta:
+            data_type: varchar
+      - name: data_source
+        description: User-configured source that scopes the patient and payer identifiers.
         config:
           meta:
             data_type: varchar
@@ -296,11 +318,14 @@ models:
               - person_id
               - payment_year
               - payer
+              - data_source
               - collection_end_date
               - factor_type
     columns:
       - name: person_id
         description: Unique ID for the patient.
+      - name: data_source
+        description: User-configured source that scopes the patient and payer identifiers.
       - name: v24_risk_score
         description: >
           The sum of all patient risk factors from model version
@@ -363,6 +388,7 @@ models:
               - person_id
               - payment_year
               - payer
+              - data_source
               - collection_end_date
     columns:
       - name: person_id
@@ -373,6 +399,11 @@ models:
             is_primary_key: true
       - name: payer
         description: Name of the payer used for CMS-HCC risk adjustment.
+        config:
+          meta:
+            data_type: varchar
+      - name: data_source
+        description: User-configured source that scopes the patient and payer identifiers.
         config:
           meta:
             data_type: varchar
@@ -391,13 +422,13 @@ models:
           values were missing or not usable.
         config:
           meta:
-            data_type: varchar
+            data_type: boolean
       - name: orec_default
         description: Indicates whether the OREC risk segment was defaulted because
           source OREC or Medicare status was missing or not usable.
         config:
           meta:
-            data_type: varchar
+            data_type: boolean
       - name: v24_risk_score
         description: >
           The sum of all patient risk factors from model version
@@ -492,6 +523,8 @@ models:
           arguments:
             combination_of_columns:
               - person_id
+              - payer
+              - data_source
               - model_version
               - collection_end_date
     columns:
@@ -663,6 +696,7 @@ models:
             combination_of_columns:
               - person_id
               - payer
+              - data_source
               - claim_id
               - claim_line_number
               - condition_code
@@ -810,6 +844,7 @@ models:
             combination_of_columns:
               - person_id
               - payer
+              - data_source
               - collection_end_date
     description: >
       Transformed eligibility data into the demographic risk segments
@@ -904,6 +939,7 @@ models:
               - payer
               - claim_id
               - person_id
+              - data_source
               - recorded_date
               - condition_type
               - code_type
@@ -973,6 +1009,7 @@ models:
             combination_of_columns:
               - payer
               - person_id
+              - data_source
               - claim_id
               - claim_line_number
     columns:
@@ -1035,6 +1072,7 @@ models:
             combination_of_columns:
               - payer
               - person_id
+              - data_source
               - year_month
     columns:
       - name: person_id

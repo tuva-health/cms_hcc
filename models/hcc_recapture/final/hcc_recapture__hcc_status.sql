@@ -16,12 +16,14 @@ select distinct
     , hccs.hcc_description
     , hccs.hcc_hierarchy_group
     , hccs.hcc_hierarchy_group_rank
-    , coalesce(gap.suspect_hcc_flag, hccs.suspect_hcc_flag) as suspect_hcc_flag
+    , cast(coalesce(gap.suspect_hcc_flag, hccs.suspect_hcc_flag) as {{ dbt.type_int() }}) as suspect_hcc_flag
     , hccs.reason
     -- Latest risk_model_code per person/year/model_version based on recorded_date
     , first_value(hccs.risk_model_code) over (
         partition by 
             hccs.person_id,
+            hccs.payer,
+            hccs.data_source,
             coalesce(gap.payment_year, {{ the_tuva_project.date_part('year', 'hccs.recorded_date') }} + 1),
             hccs.model_version
         order by hccs.recorded_date desc
@@ -31,11 +33,11 @@ select distinct
     , hccs.hcc_source
     , coalesce(gap.gap_status,'ineligible for recapture') as gap_status
     -- Filters that may lead to an 'ineligible for recapture' gap status
-    , hccs.hcc_chronic_flag
-    , hccs.recapturable_flag
-    , hccs.eligible_claim_flag
-    , hccs.eligible_bene_flag
-    , coalesce(gap.filtered_by_hierarchy_flag, recap.filtered_by_hierarchy_flag,0) as filtered_by_hierarchy_flag
+    , cast(hccs.hcc_chronic_flag as {{ dbt.type_int() }}) as hcc_chronic_flag
+    , cast(hccs.recapturable_flag as {{ dbt.type_int() }}) as recapturable_flag
+    , cast(hccs.eligible_claim_flag as {{ dbt.type_int() }}) as eligible_claim_flag
+    , cast(hccs.eligible_bene_flag as {{ dbt.type_int() }}) as eligible_bene_flag
+    , cast(coalesce(gap.filtered_by_hierarchy_flag, recap.filtered_by_hierarchy_flag, 0) as {{ dbt.type_int() }}) as filtered_by_hierarchy_flag
 from {{ ref('hcc_recapture__int_all_hccs') }} as hccs
 left join {{ ref('hcc_recapture__int_recapturable_hccs') }} as recap
     on hccs.person_id = recap.person_id
@@ -49,6 +51,7 @@ left join {{ ref('hcc_recapture__int_recapturable_hccs') }} as recap
 left join {{ ref('hcc_recapture__int_gap_status') }} as gap
     on hccs.person_id = gap.person_id
     and hccs.payer = gap.payer
+    and hccs.data_source = gap.data_source
     and hccs.model_version = gap.model_version
     and hccs.hcc_code = gap.hcc_code
     -- For TUVA gaps, +2 is needed because we’re comparing collection year to payment year - we already need a +1 for that comparison, and an additional +1 to account for closure in the following year.

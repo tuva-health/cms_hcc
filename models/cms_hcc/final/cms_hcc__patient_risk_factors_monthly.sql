@@ -7,6 +7,7 @@ with demographic_factors as (
     select
           person_id
         , payer
+        , data_source
         /* concatenate demographic risk factors */
 
     , {{ dbt.concat(
@@ -51,6 +52,7 @@ with demographic_factors as (
     select
           person_id
         , payer
+        , data_source
         , model_version
         , enrollment_status
         , risk_model_code
@@ -70,6 +72,7 @@ with demographic_factors as (
     select
           person_id
         , payer
+        , data_source
         , {{ the_tuva_project.concat_custom(["hcc_description", "' (HCC '", "hcc_code", "')'"]) }} as description
         , coefficient
         , factor_type
@@ -86,6 +89,7 @@ with demographic_factors as (
     select
           person_id
         , payer
+        , data_source
         , description
         , coefficient
         , factor_type
@@ -102,6 +106,7 @@ with demographic_factors as (
     select
           person_id
         , payer
+        , data_source
         , description
         , coefficient
         , factor_type
@@ -118,6 +123,7 @@ with demographic_factors as (
     select
           person_id
         , payer
+        , data_source
         , description
         , coefficient
         , factor_type
@@ -134,6 +140,7 @@ with demographic_factors as (
     select
           person_id
         , payer
+        , data_source
         , description
         , coefficient
         , factor_type
@@ -166,6 +173,7 @@ with demographic_factors as (
     select
           unioned.person_id
         , unioned.payer
+        , unioned.data_source
         , demographic_defaults.enrollment_status_default
         , demographic_defaults.enrollment_status
         , demographic_defaults.medicaid_dual_status_default
@@ -183,6 +191,7 @@ with demographic_factors as (
         left outer join demographic_defaults
             on unioned.person_id = demographic_defaults.person_id
             and unioned.payer = demographic_defaults.payer
+            and unioned.data_source = demographic_defaults.data_source
             and unioned.model_version = demographic_defaults.model_version
             and unioned.payment_year = demographic_defaults.payment_year
             and unioned.collection_end_date = demographic_defaults.collection_end_date
@@ -194,6 +203,7 @@ with demographic_factors as (
     select
           cast(person_id as {{ dbt.type_string() }}) as person_id
         , cast(payer as {{ dbt.type_string() }}) as payer
+        , cast(data_source as {{ dbt.type_string() }}) as data_source
         , cast(enrollment_status as {{ dbt.type_string() }}) as enrollment_status
         , cast(risk_model_code as {{ dbt.type_string() }}) as risk_model_code
         {% if target.type == 'fabric' %}
@@ -221,6 +231,7 @@ with demographic_factors as (
 select
       person_id
     , payer
+    , data_source
     , enrollment_status
     , risk_model_code
     , enrollment_status_default

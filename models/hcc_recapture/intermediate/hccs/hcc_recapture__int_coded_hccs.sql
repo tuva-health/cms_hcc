@@ -9,6 +9,7 @@ with eligible_claims as (
         person_id
         , claim_id
         , payer
+        , data_source
     from {{ ref('cms_hcc__int_eligible_conditions') }}
 )
 
@@ -35,6 +36,7 @@ from {{ ref('hcc_suspecting__int_all_conditions') }} as cond
 left join eligible_claims as elig
     on cond.person_id = elig.person_id
     and cond.payer = elig.payer
+    and cond.data_source = elig.data_source
     and cond.claim_id = elig.claim_id
 -- Tuva Core 1.0 labels claims-derived conditions as billing diagnoses because
 -- professional claims do not establish a discharge diagnosis. Retain the

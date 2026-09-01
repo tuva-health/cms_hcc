@@ -6,6 +6,7 @@
 -- Flattening months to 1 person per year
 select distinct 
   person_id
+  , data_source
   , collection_year
   , payer
 from {{ ref('hcc_recapture__stg_eligible_benes') }}

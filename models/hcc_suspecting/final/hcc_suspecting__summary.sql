@@ -8,6 +8,7 @@ with patients as (
 
     select
           person_id
+        , data_source
         , sex
         , birth_date
         {% if target.type == 'fabric' %}
@@ -25,11 +26,13 @@ with patients as (
       select
           person_id
         , payer
+        , data_source
         , count(*) as gaps
     from {{ ref('hcc_suspecting__list') }}
     group by
           person_id
         , payer
+        , data_source
 
 )
 
@@ -38,6 +41,7 @@ with patients as (
     select
           patients.person_id
         , suspecting_list.payer
+        , suspecting_list.data_source
         , patients.sex
         , patients.birth_date
         , patients.age
@@ -45,6 +49,7 @@ with patients as (
     from patients
          inner join suspecting_list
          on patients.person_id = suspecting_list.person_id
+         and patients.data_source = suspecting_list.data_source
 
 )
 
@@ -53,6 +58,7 @@ with patients as (
     select
           cast(person_id as {{ dbt.type_string() }}) as person_id
         , cast(payer as {{ dbt.type_string() }}) as payer
+        , cast(data_source as {{ dbt.type_string() }}) as data_source
         , cast(sex as {{ dbt.type_string() }}) as patient_sex
         , cast(birth_date as date) as patient_birth_date
         , cast(age as integer) as patient_age
@@ -64,6 +70,7 @@ with patients as (
 select
       person_id
     , payer
+    , data_source
     , patient_sex
     , patient_birth_date
     , patient_age

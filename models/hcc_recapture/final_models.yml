@@ -15,10 +15,17 @@ models:
           arguments:
             combination_of_columns:
               - payer
+              - data_source
               - payment_year
     columns:
       - name: payer
         description: The name of the person (i.e. beneficiary) insurance provider.
+        config:
+          meta:
+            data_type: varchar
+            is_primary_key: true
+      - name: data_source
+        description: The source that scopes the beneficiary and payer identifiers.
         config:
           meta:
             data_type: varchar
@@ -101,11 +108,18 @@ models:
           arguments:
             combination_of_columns:
               - payer
+              - data_source
               - payment_year
               - payment_year_month
     columns:
       - name: payer
         description: The name of the person (i.e. beneficiary) insurance provider.
+        config:
+          meta:
+            data_type: varchar
+            is_primary_key: true
+      - name: data_source
+        description: The source that scopes the beneficiary and payer identifiers.
         config:
           meta:
             data_type: varchar
@@ -128,7 +142,7 @@ models:
           payment year month will be the same for both open and closed HCCs.
         config:
           meta:
-            data_type: integer
+            data_type: date
             is_primary_key: true
       - name: no_suspects_closed_hccs
         description: The number of HCCs that were closed the payment month excluding
@@ -197,11 +211,18 @@ models:
           arguments:
             combination_of_columns:
               - payer
+              - data_source
               - payment_year
               - payment_year_month
     columns:
       - name: payer
         description: The name of the person (i.e. beneficiary) insurance provider.
+        config:
+          meta:
+            data_type: varchar
+            is_primary_key: true
+      - name: data_source
+        description: The source that scopes the beneficiary and payer identifiers.
         config:
           meta:
             data_type: varchar
@@ -224,7 +245,7 @@ models:
           payment year month will be the same for both open and closed HCCs.
         config:
           meta:
-            data_type: integer
+            data_type: date
             is_primary_key: true
       - name: monthly_closed_hccs
         description: The number of HCCs that were closed the payment month. See the
@@ -524,6 +545,7 @@ models:
               - person_id
               - hcc_code
               - payer
+              - data_source
               - model_version
               - payment_year
               - hcc_type
@@ -537,6 +559,12 @@ models:
             is_primary_key: true
       - name: payer
         description: The name of the person (i.e. beneficiary) insurance provider.
+        config:
+          meta:
+            data_type: varchar
+            is_primary_key: true
+      - name: data_source
+        description: The source that scopes the beneficiary and payer identifiers.
         config:
           meta:
             data_type: varchar

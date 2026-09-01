@@ -8,6 +8,7 @@ with add_rankings as (
     select
         person_id
         , payer
+        , data_source
         , hcc_code
         , closing_hcc_code
         , gap_hcc_code
@@ -42,7 +43,7 @@ with add_rankings as (
 , best_hcc_type as (
     select *
     , row_number() over (
-        partition by person_id, payer, hcc_code, model_version, payment_year
+        partition by person_id, payer, data_source, hcc_code, model_version, payment_year
         order by 
             hcc_type_rank asc,
             suspect_hcc_flag asc   -- 0 preferred over 1
@@ -57,7 +58,9 @@ with add_rankings as (
     from (
       select 
       *
-      , min(gap_status_rank) over (partition by person_id, payer, hcc_code, model_version, payment_year) as min_gap_status_rank 
+      , min(gap_status_rank) over (
+          partition by person_id, payer, data_source, hcc_code, model_version, payment_year
+        ) as min_gap_status_rank
       from best_hcc_type
       where best_rank = 1
     ) as ranked_gap_status
@@ -69,6 +72,7 @@ with add_rankings as (
     select
         person_id
         , payer
+        , data_source
         , payment_year
         , model_version
         , hcc_hierarchy_group
@@ -77,6 +81,7 @@ with add_rankings as (
     group by
         person_id
         , payer
+        , data_source
         , payment_year
         , model_version
         , hcc_hierarchy_group
@@ -86,6 +91,7 @@ with add_rankings as (
 select distinct
     bgap.person_id
     , bgap.payer
+    , bgap.data_source
     , bgap.hcc_code
     , bgap.closing_hcc_code
     , bgap.gap_hcc_code
@@ -106,6 +112,7 @@ from best_gap_status as bgap
 left join min_open_hierarchy as mhier
     on bgap.person_id = mhier.person_id
     and bgap.payer = mhier.payer
+    and bgap.data_source = mhier.data_source
     and bgap.payment_year = mhier.payment_year
     and bgap.model_version = mhier.model_version
     and bgap.hcc_hierarchy_group = mhier.hcc_hierarchy_group
@@ -115,4 +122,5 @@ inner join {{ ref('hcc_recapture__int_eligible_benes') }} as elig
     on bgap.person_id = elig.person_id
     and bgap.payment_year = elig.collection_year + 1
     and bgap.payer = elig.payer
+    and bgap.data_source = elig.data_source
 where 1 = (case when bgap.payment_year >= 2026 and bgap.model_version = 'CMS-HCC-V24' then 0 else 1 end)

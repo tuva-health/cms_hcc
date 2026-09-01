@@ -8,6 +8,7 @@ with demographics as (
     select
           person_id
         , payer
+        , data_source
         , enrollment_status
         , gender
         , age_group
@@ -48,6 +49,7 @@ with demographics as (
     select
           demographics.person_id
         , demographics.payer
+        , demographics.data_source
         , demographics.model_version
         , demographics.payment_year
         , demographics.collection_start_date
@@ -76,6 +78,7 @@ with demographics as (
     select
           demographics.person_id
         , demographics.payer
+        , demographics.data_source
         , demographics.model_version
         , demographics.payment_year
         , demographics.collection_start_date
@@ -106,6 +109,7 @@ with demographics as (
     select
           cast(person_id as {{ dbt.type_string() }}) as person_id
         , cast(payer as {{ dbt.type_string() }}) as payer
+        , cast(data_source as {{ dbt.type_string() }}) as data_source
         , cast(description as {{ dbt.type_string() }}) as description
         , round(cast(coefficient as {{ dbt.type_numeric() }}), 3) as coefficient
         , cast(factor_type as {{ dbt.type_string() }}) as factor_type
@@ -120,6 +124,7 @@ with demographics as (
 select
       person_id
     , payer
+    , data_source
     , description
     , coefficient
     , factor_type

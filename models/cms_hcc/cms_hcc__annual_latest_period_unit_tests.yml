@@ -1,0 +1,106 @@
+version: 2
+
+unit_tests:
+  - name: test_patient_risk_factors_use_each_source_latest_period
+    description: >-
+      Annual risk factors retain the latest available period for each person,
+      payer, and source instead of filtering every source to one global date.
+    model: cms_hcc__patient_risk_factors
+    config:
+      enabled: "{{ var('claims_enabled', false) | as_bool }}"
+    given:
+      - input: ref('cms_hcc__patient_risk_factors_monthly')
+        format: sql
+        rows: |
+          {% set numeric_type = 'numeric' if target.type == 'bigquery' else 'decimal(18, 6)' %}
+          select
+              'shared-person' as person_id
+            , 'shared-payer' as payer
+            , 'source-a' as data_source
+            , 0 as enrollment_status_default
+            , 0 as medicaid_dual_status_default
+            , 0 as orec_default
+            , 0 as institutional_status_default
+            , 'Disease' as factor_type
+            , 'old-a' as risk_factor_description
+            , cast(0.1 as {{ numeric_type }}) as coefficient
+            , 'CMS-HCC-V28' as model_version
+            , {{ var('cms_hcc_payment_year') }} as payment_year
+            , cast('2025-01-31' as date) as collection_end_date
+          union all
+          select
+              'shared-person', 'shared-payer', 'source-a', 0, 0, 0, 0
+            , 'Disease', 'latest-a', cast(0.2 as {{ numeric_type }}), 'CMS-HCC-V28'
+            , {{ var('cms_hcc_payment_year') }}, cast('2025-02-28' as date)
+          union all
+          select
+              'shared-person', 'shared-payer', 'source-b', 0, 0, 0, 0
+            , 'Disease', 'latest-b', cast(0.3 as {{ numeric_type }}), 'CMS-HCC-V28'
+            , {{ var('cms_hcc_payment_year') }}, cast('2025-01-31' as date)
+          union all
+          select
+              'shared-person', 'shared-payer', 'source-b', 0, 0, 0, 0
+            , 'Disease', 'other-year', cast(0.4 as {{ numeric_type }}), 'CMS-HCC-V28'
+            , {{ var('cms_hcc_payment_year') }} - 1, cast('2025-02-28' as date)
+          union all
+          select
+              'other-person', 'shared-payer', 'source-a', 0, 0, 0, 0
+            , 'Disease', 'latest-other-person', cast(0.5 as {{ numeric_type }}), 'CMS-HCC-V28'
+            , {{ var('cms_hcc_payment_year') }}, cast('2025-01-31' as date)
+    expect:
+      rows:
+        - {person_id: shared-person, payer: shared-payer, data_source: source-a, risk_factor_description: latest-a}
+        - {person_id: shared-person, payer: shared-payer, data_source: source-b, risk_factor_description: latest-b}
+        - {person_id: other-person, payer: shared-payer, data_source: source-a, risk_factor_description: latest-other-person}
+
+  - name: test_patient_risk_scores_use_each_source_latest_period
+    description: >-
+      Annual risk scores retain the latest available period for each person,
+      payer, and source even when source timelines end in different months.
+    model: cms_hcc__patient_risk_scores
+    config:
+      enabled: "{{ var('claims_enabled', false) | as_bool }}"
+    given:
+      - input: ref('cms_hcc__patient_risk_scores_monthly')
+        format: sql
+        rows: |
+          {% set numeric_type = 'numeric' if target.type == 'bigquery' else 'decimal(18, 6)' %}
+          select
+              'shared-person' as person_id
+            , 'shared-payer' as payer
+            , 'source-a' as data_source
+            , cast(1.0 as {{ numeric_type }}) as v24_risk_score
+            , cast(1.0 as {{ numeric_type }}) as v28_risk_score
+            , cast(1.0 as {{ numeric_type }}) as blended_risk_score
+            , cast(1.0 as {{ numeric_type }}) as normalized_risk_score
+            , cast(1.0 as {{ numeric_type }}) as payment_risk_score
+            , cast(1.0 as {{ numeric_type }}) as payment_risk_score_weighted_by_months
+            , 1 as member_months
+            , {{ var('cms_hcc_payment_year') }} as payment_year
+            , cast('2025-01-31' as date) as collection_end_date
+          union all
+          select
+              'shared-person', 'shared-payer', 'source-a'
+            , cast(2.0 as {{ numeric_type }}), cast(2.0 as {{ numeric_type }})
+            , cast(2.0 as {{ numeric_type }}), cast(2.0 as {{ numeric_type }})
+            , cast(2.0 as {{ numeric_type }}), cast(2.0 as {{ numeric_type }})
+            , 2, {{ var('cms_hcc_payment_year') }}, cast('2025-02-28' as date)
+          union all
+          select
+              'shared-person', 'shared-payer', 'source-b'
+            , cast(3.0 as {{ numeric_type }}), cast(3.0 as {{ numeric_type }})
+            , cast(3.0 as {{ numeric_type }}), cast(3.0 as {{ numeric_type }})
+            , cast(3.0 as {{ numeric_type }}), cast(3.0 as {{ numeric_type }})
+            , 1, {{ var('cms_hcc_payment_year') }}, cast('2025-01-31' as date)
+          union all
+          select
+              'other-person', 'shared-payer', 'source-a'
+            , cast(4.0 as {{ numeric_type }}), cast(4.0 as {{ numeric_type }})
+            , cast(4.0 as {{ numeric_type }}), cast(4.0 as {{ numeric_type }})
+            , cast(4.0 as {{ numeric_type }}), cast(4.0 as {{ numeric_type }})
+            , 1, {{ var('cms_hcc_payment_year') }}, cast('2025-01-31' as date)
+    expect:
+      rows:
+        - {person_id: shared-person, payer: shared-payer, data_source: source-a, v24_risk_score: 2.0}
+        - {person_id: shared-person, payer: shared-payer, data_source: source-b, v24_risk_score: 3.0}
+        - {person_id: other-person, payer: shared-payer, data_source: source-a, v24_risk_score: 4.0}

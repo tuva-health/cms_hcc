@@ -8,6 +8,7 @@ with demographics as (
     select
           person_id
         , payer
+        , data_source
         , enrollment_status
         , institutional_status
         , orec
@@ -25,6 +26,7 @@ with demographics as (
     select
           person_id
         , payer
+        , data_source
         , hcc_code
         , model_version
         , payment_year
@@ -54,6 +56,7 @@ with demographics as (
     select
           demographics.person_id
         , demographics.payer
+        , demographics.data_source
         , demographics.enrollment_status
         , demographics.institutional_status
         , demographics.orec
@@ -67,6 +70,7 @@ with demographics as (
         inner join hcc_hierarchy
             on demographics.person_id = hcc_hierarchy.person_id
             and demographics.payer = hcc_hierarchy.payer
+            and demographics.data_source = hcc_hierarchy.data_source
             and demographics.model_version = hcc_hierarchy.model_version
             and demographics.payment_year = hcc_hierarchy.payment_year
             and demographics.collection_end_date = hcc_hierarchy.collection_end_date
@@ -78,6 +82,7 @@ with demographics as (
     select
           demographics_with_hccs.person_id
         , demographics_with_hccs.payer
+        , demographics_with_hccs.data_source
         , demographics_with_hccs.model_version
         , demographics_with_hccs.payment_year
         , demographics_with_hccs.collection_start_date
@@ -107,6 +112,7 @@ with demographics as (
 select
       cast(person_id as {{ dbt.type_string() }}) as person_id
     , cast(payer as {{ dbt.type_string() }}) as payer
+    , cast(data_source as {{ dbt.type_string() }}) as data_source
     , cast(description as {{ dbt.type_string() }}) as description
     , round(cast(coefficient as {{ dbt.type_numeric() }}), 3) as coefficient
     , cast(factor_type as {{ dbt.type_string() }}) as factor_type
@@ -121,6 +127,7 @@ from interactions
 select
       person_id
     , payer
+    , data_source
     , description
     , coefficient
     , factor_type

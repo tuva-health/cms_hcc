@@ -35,6 +35,7 @@ with medical_claims as (
         , claim_end_date
         , bill_type_code
         , hcpcs_code
+        , data_source
     from {{ ref('cms_hcc__stg_core__medical_claim') }}
 
 )
@@ -46,6 +47,7 @@ with medical_claims as (
         , payer
         , person_id
         , code
+        , data_source
     from {{ ref('cms_hcc__stg_core__condition') }}
     where code_type = 'icd-10-cm'
 
@@ -100,6 +102,7 @@ with medical_claims as (
         , medical_claims.claim_end_date
         , medical_claims.bill_type_code
         , medical_claims.hcpcs_code
+        , medical_claims.data_source
         , dates.payment_year
         , coalesce(medical_claims.claim_end_date, medical_claims.claim_start_date) as condition_date
     from medical_claims
@@ -123,6 +126,7 @@ with medical_claims as (
         , medical_claims.claim_end_date
         , medical_claims.bill_type_code
         , medical_claims.hcpcs_code
+        , medical_claims.data_source
         , dates.payment_year
         , coalesce(medical_claims.claim_end_date, medical_claims.claim_start_date) as condition_date
     from medical_claims
@@ -145,6 +149,7 @@ with medical_claims as (
         , medical_claims.claim_end_date
         , medical_claims.bill_type_code
         , medical_claims.hcpcs_code
+        , medical_claims.data_source
         , dates.payment_year
         , coalesce(medical_claims.claim_end_date, medical_claims.claim_start_date) as condition_date
     from medical_claims
@@ -178,11 +183,13 @@ with medical_claims as (
         , eligible_claims.payment_year
         , eligible_claims.condition_date
         , conditions.code
+        , eligible_claims.data_source
     from eligible_claims
         inner join conditions
             on eligible_claims.claim_id = conditions.claim_id
             and eligible_claims.person_id = conditions.person_id
             and eligible_claims.payer = conditions.payer
+            and eligible_claims.data_source = conditions.data_source
 
 )
 
@@ -202,6 +209,7 @@ with medical_claims as (
         , dates.collection_start_date
         , dates.collection_end_date
         , ec.code
+        , ec.data_source
     from eligible_conditions as ec
         inner join {{ ref('cms_hcc__int_monthly_collection_dates') }} as dates
             on ec.payment_year = dates.payment_year
@@ -220,6 +228,7 @@ with medical_claims as (
         , cast(payment_year as integer) as payment_year
         , cast(collection_start_date as date) as collection_start_date
         , cast(collection_end_date as date) as collection_end_date
+        , cast(data_source as {{ dbt.type_string() }}) as data_source
     from eligible_conditions_monthly
 
 )
@@ -233,5 +242,6 @@ select
     , payment_year
     , collection_start_date
     , collection_end_date
+    , data_source
     , cast('{{ var('tuva_last_run') }}' as {{ dbt.type_timestamp() }}) as tuva_last_run
 from add_data_types
