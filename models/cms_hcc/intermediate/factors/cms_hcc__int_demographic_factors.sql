@@ -33,7 +33,7 @@ with members as (
     select
           model_version
         , factor_type
-        , case when institutional_status = 'Yes' then 'Institutional' else enrollment_status end as enrollment_status
+        , enrollment_status
         , gender
         , age_group
         , medicaid_status
@@ -312,6 +312,5 @@ select
     , collection_end_date
     , cast('{{ var('tuva_last_run') }}' as {{ dbt.type_timestamp() }}) as tuva_last_run
 from add_data_types
--- 100% v28 starting in 2026
--- TODO: Update the seed table so this filter isn't necessary
+-- CMS-HCC V28 is the only Part C model used for non-PACE payment from 2026.
 where 1 = (case when payment_year >= 2026 and model_version = 'CMS-HCC-V24' then 0 else 1 end)

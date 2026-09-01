@@ -19,6 +19,8 @@ seeds:
           {%- if target.type in ("athena") -%} double {%- else -%} float {%- endif -%}
         ma_coding_pattern_adjustment: |
           {%- if target.type in ("athena") -%} double {%- else -%} float {%- endif -%}
+        blend_weight: |
+          {%- if target.type in ("athena") -%} double {%- else -%} float {%- endif -%}
     columns:
       - name: model_version
         description: Version of the CMS-HCC model
@@ -28,6 +30,8 @@ seeds:
         description: The normalization factor applied
       - name: ma_coding_pattern_adjustment
         description: The Medicare Advantage coding pattern adjustment factor
+      - name: blend_weight
+        description: The model-version weight applied for the payment year
 
   - name: cms_hcc__cpt_hcpcs
     description: >

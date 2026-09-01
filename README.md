@@ -2,6 +2,21 @@
 
 dbt package for the Tuva Project CMS HCC, HCC recapture, and HCC suspecting data marts.
 
+## Dependencies
+
+`packages.yml` declares Tuva Core at an immutable pre-1.0 commit and
+`dbt_utils` for the package's generic tests. Run `dbt deps` before parsing or
+building this package. The Core pin will move to the released 1.0 version
+range as part of release preparation.
+
+## Official-reference validation
+
+Pull requests run a credential-free DuckDB build of a beneficiary-and-
+diagnosis fixture through the real CMS HCC graph. Expected V28 factors and raw
+scores were generated with CMS's 2026 midyear/final Python model software and
+are recorded with the source URL and archive checksum under
+`integration_tests/fixtures/official_cms_2026_v28`.
+
 ## Open-ended eligibility spans
 
 Tuva Core represents an enrollment span with no known end date using a null

@@ -1,0 +1,57 @@
+name: cms_hcc_integration_tests
+version: 1.0.0
+config-version: 2
+
+profile: default
+
+model-paths: ["models"]
+seed-paths: ["fixtures"]
+test-paths: ["tests"]
+clean-targets: ["target", "dbt_packages", "cms_hcc_integration.duckdb"]
+
+vars:
+  claims_enabled: true
+  clinical_enabled: false
+  provider_attribution_enabled: false
+  parity_enabled: false
+  data_quality_enabled: false
+  cms_hcc_payment_year: 2026
+  cms_hcc_data_asset_version: "1.0.0"
+  tuva_last_run: "2026-01-01 00:00:00"
+
+models:
+  cms_hcc_integration_tests:
+    +materialized: table
+    +tags: [official_cms_hcc_validation]
+  # The fixture supplies the public Core relations directly. Keep Core's
+  # macros available while avoiding an unrelated connector Input Layer graph.
+  the_tuva_project:
+    +enabled: false
+  # This harness validates the CMS risk-adjustment graph. The recapture and
+  # suspecting marts have separate unit coverage and require additional Core
+  # relations that are intentionally outside this fixture.
+  cms_hcc:
+    hcc_recapture:
+      +enabled: false
+    hcc_suspecting:
+      +enabled: false
+
+seeds:
+  cms_hcc_integration_tests:
+    +schema: official_cms_reference
+    +tags: [official_cms_hcc_validation]
+
+# Core's public schema tests belong to Core's own integration project. They
+# should not attach to the intentionally narrow fixture relations with the same
+# public names in this package harness.
+data_tests:
+  the_tuva_project:
+    +enabled: false
+
+unit_tests:
+  the_tuva_project:
+    +enabled: false
+
+flags:
+  require_generic_test_arguments_property: true
+  require_ref_searches_node_package_before_root: true

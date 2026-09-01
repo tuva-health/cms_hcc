@@ -1,0 +1,9 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: cms_hcc_integration.duckdb
+      threads: 4
+      extensions:
+        - httpfs
