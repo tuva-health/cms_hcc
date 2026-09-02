@@ -178,7 +178,9 @@ unit_tests:
   - name: test_cms_hcc_int_members_does_not_double_count_overlapping_coverage
     description: >-
       Overlapping eligibility intervals are merged by covered month before
-      determining whether the member has a complete collection period.
+      determining whether the member has a complete collection period. A second
+      member has complete coverage, keeping the window partition nonconstant on
+      Redshift and verifying that coverage is counted independently per member.
     model: cms_hcc__int_members
     config:
       enabled: "{{ var('claims_enabled', False) | as_bool }}"
@@ -207,6 +209,13 @@ unit_tests:
             , cast(null as {{ string_type }}), cast(null as {{ string_type }})
             , cast(null as {{ integer_type }}), cast(null as {{ integer_type }})
             , 'source-a'
+          union all
+          select
+              'complete-person', 'medicare', cast('2023-01-01' as date)
+            , cast('2023-12-31' as date), '0', cast(null as {{ string_type }})
+            , cast(null as {{ string_type }}), cast(null as {{ string_type }})
+            , cast(null as {{ integer_type }}), cast(null as {{ integer_type }})
+            , 'source-a'
       - input: ref('cms_hcc__stg_core__patient')
         format: sql
         rows: |
@@ -216,6 +225,10 @@ unit_tests:
             , cast('1950-01-01' as date) as birth_date
             , cast(null as date) as death_date
             , 'source-a' as data_source
+          union all
+          select
+              'complete-person', 'female', cast('1950-01-01' as date)
+            , cast(null as date), 'source-a'
       - input: ref('cms_hcc__int_monthly_collection_dates')
         format: sql
         rows: |
@@ -227,3 +240,4 @@ unit_tests:
     expect:
       rows:
         - {person_id: overlap-person, payer: medicare, data_source: source-a, enrollment_status: New}
+        - {person_id: complete-person, payer: medicare, data_source: source-a, enrollment_status: Continuing}
