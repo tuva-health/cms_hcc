@@ -1,0 +1,213 @@
+version: 2
+
+# These tests exercise every arithmetic stage in the public score model with
+# controlled inputs. Expected values deliberately avoid halfway rounding cases
+# so results remain stable across supported warehouses.
+unit_tests:
+  - name: test_cms_hcc_risk_score_v24_pre_transition
+    description: >
+      A V24-only year uses the adjustment seed for blend weight,
+      normalization, coding adjustment, and member-month weighting.
+    model: cms_hcc__patient_risk_scores_monthly_by_factor_type
+    config:
+      enabled: "{{ var('claims_enabled', false) | as_bool }}"
+      tags: [cms_hcc]
+    overrides:
+      vars:
+        tuva_last_run: "2024-01-01 00:00:00"
+    given:
+      - input: ref('cms_hcc__patient_risk_factors_monthly')
+        format: sql
+        rows: |
+          {% set bool_false = 'cast(0 as bit)' if target.type in ['fabric', 'sqlserver'] else 'false' %}
+          select
+              'RA_GOLD_A' as person_id
+            , 'medicare' as payer
+            , 'source-a' as data_source
+            , 'Disease' as factor_type
+            , 0.450 as coefficient
+            , 'CNA' as risk_model_code
+            , 'Continuing' as enrollment_status
+            , {{ bool_false }} as enrollment_status_default
+            , {{ bool_false }} as orec_default
+            , 'CMS-HCC-V24' as model_version
+            , 2023 as payment_year
+            , cast('2023-01-01' as date) as collection_start_date
+            , cast('2023-12-31' as date) as collection_end_date
+          union all
+          select
+              'RA_GOLD_A', 'medicare', 'source-a', 'Disease', 0.350, 'CNA',
+              'Continuing', {{ bool_false }}, {{ bool_false }}, 'CMS-HCC-V24',
+              2023, cast('2023-01-01' as date), cast('2023-12-31' as date)
+      - input: ref('cms_hcc__adjustment_rates')
+        format: sql
+        rows: |
+          select
+              'CMS-HCC-V24' as model_version
+            , 2023 as payment_year
+            , 1.000 as normalization_factor
+            , 0.040 as ma_coding_pattern_adjustment
+            , 1.000 as blend_weight
+      - input: ref('cms_hcc__stg_core__member_month')
+        format: sql
+        rows: |
+          select 'RA_GOLD_A' as person_id, 'medicare' as payer, 'source-a' as data_source, '202301' as year_month
+          union all
+          select 'RA_GOLD_A', 'medicare', 'source-a', '202302'
+    expect:
+      rows:
+        - person_id: RA_GOLD_A
+          payer: medicare
+          data_source: source-a
+          factor_type: Disease
+          risk_model_code: CNA
+          enrollment_status: Continuing
+          enrollment_status_default: false
+          orec_default: false
+          v24_risk_score: 0.800
+          v28_risk_score: null
+          blended_risk_score: 0.800
+          normalized_risk_score: 0.800
+          payment_risk_score: 0.768
+          payment_risk_score_weighted_by_months: 1.536
+          member_months: 2
+          payment_year: 2023
+          collection_start_date: "2023-01-01"
+          collection_end_date: "2023-12-31"
+
+  - name: test_cms_hcc_risk_score_v24_v28_transition
+    description: >
+      Payment year 2024 uses the published 67/33 blend and each model
+      version's own normalization factor before combining the scores.
+    model: cms_hcc__patient_risk_scores_monthly_by_factor_type
+    config:
+      enabled: "{{ var('claims_enabled', false) | as_bool }}"
+      tags: [cms_hcc]
+    overrides:
+      vars:
+        tuva_last_run: "2024-01-01 00:00:00"
+    given:
+      - input: ref('cms_hcc__patient_risk_factors_monthly')
+        format: sql
+        rows: |
+          {% set bool_false = 'cast(0 as bit)' if target.type in ['fabric', 'sqlserver'] else 'false' %}
+          select
+              'RA_GOLD_B' as person_id
+            , 'medicare' as payer
+            , 'source-a' as data_source
+            , 'Disease' as factor_type
+            , 1.000 as coefficient
+            , 'CFA' as risk_model_code
+            , 'Continuing' as enrollment_status
+            , {{ bool_false }} as enrollment_status_default
+            , {{ bool_false }} as orec_default
+            , 'CMS-HCC-V24' as model_version
+            , 2024 as payment_year
+            , cast('2024-01-01' as date) as collection_start_date
+            , cast('2024-12-31' as date) as collection_end_date
+          union all
+          select
+              'RA_GOLD_B', 'medicare', 'source-a', 'Disease', 1.000, 'CFA',
+              'Continuing', {{ bool_false }}, {{ bool_false }}, 'CMS-HCC-V28',
+              2024, cast('2024-01-01' as date), cast('2024-12-31' as date)
+      - input: ref('cms_hcc__adjustment_rates')
+        format: sql
+        rows: |
+          select 'CMS-HCC-V24' as model_version, 2024 as payment_year,
+              1.146 as normalization_factor, 0.059 as ma_coding_pattern_adjustment,
+              0.670 as blend_weight
+          union all
+          select 'CMS-HCC-V28', 2024, 1.015, 0.059, 0.330
+      - input: ref('cms_hcc__stg_core__member_month')
+        format: sql
+        rows: |
+          select 'RA_GOLD_B' as person_id, 'medicare' as payer, 'source-a' as data_source, '202401' as year_month
+          union all
+          select 'RA_GOLD_B', 'medicare', 'source-a', '202402'
+          union all
+          select 'RA_GOLD_B', 'medicare', 'source-a', '202403'
+    expect:
+      rows:
+        - person_id: RA_GOLD_B
+          payer: medicare
+          data_source: source-a
+          factor_type: Disease
+          risk_model_code: CFA
+          enrollment_status: Continuing
+          enrollment_status_default: false
+          orec_default: false
+          v24_risk_score: 0.670
+          v28_risk_score: 0.330
+          blended_risk_score: 1.000
+          normalized_risk_score: 0.910
+          payment_risk_score: 0.856
+          payment_risk_score_weighted_by_months: 2.568
+          member_months: 3
+          payment_year: 2024
+          collection_start_date: "2024-01-01"
+          collection_end_date: "2024-12-31"
+
+  - name: test_cms_hcc_risk_score_adjustments_are_seed_driven
+    description: >
+      Distinct fixture values prove that blend, normalization, and coding
+      adjustments come from the seed rather than payment-year CASE logic.
+    model: cms_hcc__patient_risk_scores_monthly_by_factor_type
+    config:
+      enabled: "{{ var('claims_enabled', false) | as_bool }}"
+      tags: [cms_hcc]
+    overrides:
+      vars:
+        tuva_last_run: "2026-01-01 00:00:00"
+    given:
+      - input: ref('cms_hcc__patient_risk_factors_monthly')
+        format: sql
+        rows: |
+          {% set bool_false = 'cast(0 as bit)' if target.type in ['fabric', 'sqlserver'] else 'false' %}
+          select
+              'RA_SEED_DRIVEN' as person_id
+            , 'medicare' as payer
+            , 'source-a' as data_source
+            , 'Disease' as factor_type
+            , 2.000 as coefficient
+            , 'CNA' as risk_model_code
+            , 'Continuing' as enrollment_status
+            , {{ bool_false }} as enrollment_status_default
+            , {{ bool_false }} as orec_default
+            , 'CMS-HCC-V28' as model_version
+            , 2026 as payment_year
+            , cast('2025-01-01' as date) as collection_start_date
+            , cast('2025-12-31' as date) as collection_end_date
+      - input: ref('cms_hcc__adjustment_rates')
+        format: sql
+        rows: |
+          select
+              'CMS-HCC-V28' as model_version
+            , 2026 as payment_year
+            , 2.000 as normalization_factor
+            , 0.100 as ma_coding_pattern_adjustment
+            , 0.500 as blend_weight
+      - input: ref('cms_hcc__stg_core__member_month')
+        format: sql
+        rows: |
+          select 'RA_SEED_DRIVEN' as person_id, 'medicare' as payer,
+              'source-a' as data_source, '202601' as year_month
+    expect:
+      rows:
+        - person_id: RA_SEED_DRIVEN
+          payer: medicare
+          data_source: source-a
+          factor_type: Disease
+          risk_model_code: CNA
+          enrollment_status: Continuing
+          enrollment_status_default: false
+          orec_default: false
+          v24_risk_score: null
+          v28_risk_score: 1.000
+          blended_risk_score: 1.000
+          normalized_risk_score: 0.500
+          payment_risk_score: 0.450
+          payment_risk_score_weighted_by_months: 0.450
+          member_months: 1
+          payment_year: 2026
+          collection_start_date: "2025-01-01"
+          collection_end_date: "2025-12-31"

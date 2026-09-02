@@ -1,6 +1,8 @@
 target/
 dbt_packages/
 logs/
+package-lock.yml
+*.duckdb
+.user.yml
 .env
 .DS_Store
-
