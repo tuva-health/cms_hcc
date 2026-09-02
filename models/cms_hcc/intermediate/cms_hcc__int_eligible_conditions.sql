@@ -53,6 +53,14 @@ with medical_claims as (
 
 )
 
+, latest_cpt_hcpcs_year as (
+
+    /* A relation keeps CTE-based inputs in scope inside Fabric's test wrapper. */
+    select max(payment_year) as payment_year
+    from {{ ref('cms_hcc__cpt_hcpcs') }}
+
+)
+
 , cpt_hcpcs_list as (
 
     select
@@ -66,10 +74,11 @@ with medical_claims as (
     
     -- Adding a mapping for the next year copying the current year mappings
     select
-          payment_year + 1 as collection_year
-        , hcpcs_cpt_code
-    from {{ ref('cms_hcc__cpt_hcpcs') }}
-    where payment_year = (select max(payment_year) as payment_year from {{ ref('cms_hcc__cpt_hcpcs') }})
+          cpt_hcpcs.payment_year + 1 as collection_year
+        , cpt_hcpcs.hcpcs_cpt_code
+    from {{ ref('cms_hcc__cpt_hcpcs') }} as cpt_hcpcs
+    inner join latest_cpt_hcpcs_year
+        on cpt_hcpcs.payment_year = latest_cpt_hcpcs_year.payment_year
 
 )
 

@@ -25,6 +25,14 @@ with conditions as (
 
 )
 
+, latest_hcc_mapping_year as (
+
+    /* A relation keeps CTE-based inputs in scope inside Fabric's test wrapper. */
+    select max(payment_year) as payment_year
+    from {{ ref('cms_hcc__icd_10_cm_mappings') }}
+
+)
+
 , seed_hcc_mapping as (
 
     select
@@ -40,14 +48,15 @@ with conditions as (
 
     -- Adding a mapping for the next year copying the current year mappings
     select
-          payment_year + 1 as payment_year
-        , diagnosis_code
-        , cms_hcc_v24
-        , cms_hcc_v24_flag
-        , cms_hcc_v28
-        , cms_hcc_v28_flag
-    from {{ ref('cms_hcc__icd_10_cm_mappings') }}
-    where payment_year = (select max(payment_year) as payment_year from {{ ref('cms_hcc__icd_10_cm_mappings') }})
+          hcc_mapping.payment_year + 1 as payment_year
+        , hcc_mapping.diagnosis_code
+        , hcc_mapping.cms_hcc_v24
+        , hcc_mapping.cms_hcc_v24_flag
+        , hcc_mapping.cms_hcc_v28
+        , hcc_mapping.cms_hcc_v28_flag
+    from {{ ref('cms_hcc__icd_10_cm_mappings') }} as hcc_mapping
+    inner join latest_hcc_mapping_year
+        on hcc_mapping.payment_year = latest_hcc_mapping_year.payment_year
 
 
 )
