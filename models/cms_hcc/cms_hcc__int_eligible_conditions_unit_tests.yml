@@ -55,6 +55,79 @@ unit_tests:
       rows:
         - {person_id: shared-person, claim_id: shared-claim, claim_line_number: '1', payer: shared-payer, condition_code: A001, payment_year: 2025, data_source: source-a}
 
+  - name: test_cms_hcc_int_eligible_conditions_extends_only_latest_cpt_hcpcs_year
+    description: >-
+      Historical CPT/HCPCS mappings remain available in their own year, while
+      only the latest year is copied forward by one year. Duplicate mappings
+      and a null-year mapping do not add conditions or extend older years.
+    model: cms_hcc__int_eligible_conditions
+    config:
+      enabled: "{{ var('claims_enabled', False) | as_bool }}"
+    given:
+      - input: ref('cms_hcc__stg_core__medical_claim')
+        format: sql
+        rows: |
+          {% set string_type = 'string' if target.type in ['bigquery', 'databricks'] else 'varchar' %}
+          select
+              claims.claim_id
+            , '1' as claim_line_number
+            , 'professional' as claim_type
+            , 'payer' as payer
+            , 'person' as person_id
+            , cast(null as {{ string_type }}) as rendering_npi
+            , claims.claim_date as claim_start_date
+            , claims.claim_date as claim_end_date
+            , cast(null as {{ string_type }}) as bill_type_code
+            , claims.hcpcs_code
+            , 'source-a' as data_source
+          from (
+              select 'historical-original' as claim_id, cast('2023-06-01' as date) as claim_date, '99200' as hcpcs_code
+              union all select 'latest-original', cast('2024-06-01' as date), '99201'
+              union all select 'latest-forward', cast('2025-06-01' as date), '99201'
+              union all select 'historical-forward', cast('2024-06-01' as date), '99200'
+              union all select 'historical-later', cast('2025-06-01' as date), '99200'
+              union all select 'null-year', cast('2025-06-01' as date), '99202'
+              union all select 'latest-too-far', cast('2026-06-01' as date), '99201'
+          ) as claims
+      - input: ref('cms_hcc__stg_core__condition')
+        format: sql
+        rows: |
+          select
+              claims.claim_id
+            , 'payer' as payer
+            , 'person' as person_id
+            , 'A001' as code
+            , 'icd-10-cm' as code_type
+            , 'source-a' as data_source
+          from (
+              select 'historical-original' as claim_id
+              union all select 'latest-original'
+              union all select 'latest-forward'
+              union all select 'historical-forward'
+              union all select 'historical-later'
+              union all select 'null-year'
+              union all select 'latest-too-far'
+          ) as claims
+      - input: ref('cms_hcc__cpt_hcpcs')
+        format: sql
+        rows: |
+          select 2023 as payment_year, '99200' as hcpcs_cpt_code
+          union all select 2024, '99201'
+          union all select 2024, '99201'
+          union all select cast(null as integer), '99202'
+      - input: ref('cms_hcc__int_monthly_collection_dates')
+        format: sql
+        rows: |
+          select cast('2023-01-01' as date) as collection_start_date, cast('2023-12-31' as date) as collection_end_date, 2023 as collection_year, 2024 as payment_year
+          union all select cast('2024-01-01' as date), cast('2024-12-31' as date), 2024, 2025
+          union all select cast('2025-01-01' as date), cast('2025-12-31' as date), 2025, 2026
+          union all select cast('2026-01-01' as date), cast('2026-12-31' as date), 2026, 2027
+    expect:
+      rows:
+        - {person_id: person, claim_id: historical-original, condition_code: A001, payment_year: 2024, data_source: source-a}
+        - {person_id: person, claim_id: latest-original, condition_code: A001, payment_year: 2025, data_source: source-a}
+        - {person_id: person, claim_id: latest-forward, condition_code: A001, payment_year: 2026, data_source: source-a}
+
   - name: test_cms_hcc_int_hcc_mapping_scopes_heart_siblings_by_source
     description: A V28 heart sibling in one source cannot retain HCC 223 in another source.
     model: cms_hcc__int_hcc_mapping

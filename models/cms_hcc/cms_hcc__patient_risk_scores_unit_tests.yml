@@ -3,6 +3,10 @@ version: 2
 # These tests exercise every arithmetic stage in the public score model with
 # controlled inputs. Expected values deliberately avoid halfway rounding cases
 # so results remain stable across supported warehouses.
+# SQL expectations preserve fractional values when Redshift's empty-result type
+# inference reports numeric(18,0), and render false as a Fabric-compatible bit.
+# Redshift compares these three-decimal scores as doubles to avoid its numeric
+# precision/scale UNION errors; the expected values and exact comparison remain.
 unit_tests:
   - name: test_cms_hcc_risk_score_v24_pre_transition
     description: >
@@ -55,25 +59,31 @@ unit_tests:
           union all
           select 'RA_GOLD_A', 'medicare', 'source-a', '202302'
     expect:
-      rows:
-        - person_id: RA_GOLD_A
-          payer: medicare
-          data_source: source-a
-          factor_type: Disease
-          risk_model_code: CNA
-          enrollment_status: Continuing
-          enrollment_status_default: false
-          orec_default: false
-          v24_risk_score: 0.800
-          v28_risk_score: null
-          blended_risk_score: 0.800
-          normalized_risk_score: 0.800
-          payment_risk_score: 0.768
-          payment_risk_score_weighted_by_months: 1.536
-          member_months: 2
-          payment_year: 2023
-          collection_start_date: "2023-01-01"
-          collection_end_date: "2023-12-31"
+      format: sql
+      rows: |
+        {% set boolean_type = 'bit' if target.type in ['fabric', 'sqlserver'] else 'boolean' %}
+        {% set timestamp_type = 'datetime2' if target.type in ['fabric', 'sqlserver'] else 'timestamp' %}
+        {% set numeric_type = 'numeric' if target.type == 'bigquery' else ('double precision' if target.type == 'redshift' else 'decimal(28,6)') %}
+        select
+            'RA_GOLD_A' as person_id
+          , 'medicare' as payer
+          , 'source-a' as data_source
+          , 'Disease' as factor_type
+          , 'CNA' as risk_model_code
+          , 'Continuing' as enrollment_status
+          , cast(0 as {{ boolean_type }}) as enrollment_status_default
+          , cast(0 as {{ boolean_type }}) as orec_default
+          , cast(0.800 as {{ numeric_type }}) as v24_risk_score
+          , cast(null as {{ numeric_type }}) as v28_risk_score
+          , cast(0.800 as {{ numeric_type }}) as blended_risk_score
+          , cast(0.800 as {{ numeric_type }}) as normalized_risk_score
+          , cast(0.768 as {{ numeric_type }}) as payment_risk_score
+          , cast(1.536 as {{ numeric_type }}) as payment_risk_score_weighted_by_months
+          , 2 as member_months
+          , 2023 as payment_year
+          , cast('2023-01-01' as date) as collection_start_date
+          , cast('2023-12-31' as date) as collection_end_date
+          , cast('2024-01-01 00:00:00' as {{ timestamp_type }}) as tuva_last_run
 
   - name: test_cms_hcc_risk_score_v24_v28_transition
     description: >
@@ -127,25 +137,31 @@ unit_tests:
           union all
           select 'RA_GOLD_B', 'medicare', 'source-a', '202403'
     expect:
-      rows:
-        - person_id: RA_GOLD_B
-          payer: medicare
-          data_source: source-a
-          factor_type: Disease
-          risk_model_code: CFA
-          enrollment_status: Continuing
-          enrollment_status_default: false
-          orec_default: false
-          v24_risk_score: 0.670
-          v28_risk_score: 0.330
-          blended_risk_score: 1.000
-          normalized_risk_score: 0.910
-          payment_risk_score: 0.856
-          payment_risk_score_weighted_by_months: 2.568
-          member_months: 3
-          payment_year: 2024
-          collection_start_date: "2024-01-01"
-          collection_end_date: "2024-12-31"
+      format: sql
+      rows: |
+        {% set boolean_type = 'bit' if target.type in ['fabric', 'sqlserver'] else 'boolean' %}
+        {% set timestamp_type = 'datetime2' if target.type in ['fabric', 'sqlserver'] else 'timestamp' %}
+        {% set numeric_type = 'numeric' if target.type == 'bigquery' else ('double precision' if target.type == 'redshift' else 'decimal(28,6)') %}
+        select
+            'RA_GOLD_B' as person_id
+          , 'medicare' as payer
+          , 'source-a' as data_source
+          , 'Disease' as factor_type
+          , 'CFA' as risk_model_code
+          , 'Continuing' as enrollment_status
+          , cast(0 as {{ boolean_type }}) as enrollment_status_default
+          , cast(0 as {{ boolean_type }}) as orec_default
+          , cast(0.670 as {{ numeric_type }}) as v24_risk_score
+          , cast(0.330 as {{ numeric_type }}) as v28_risk_score
+          , cast(1.000 as {{ numeric_type }}) as blended_risk_score
+          , cast(0.910 as {{ numeric_type }}) as normalized_risk_score
+          , cast(0.856 as {{ numeric_type }}) as payment_risk_score
+          , cast(2.568 as {{ numeric_type }}) as payment_risk_score_weighted_by_months
+          , 3 as member_months
+          , 2024 as payment_year
+          , cast('2024-01-01' as date) as collection_start_date
+          , cast('2024-12-31' as date) as collection_end_date
+          , cast('2024-01-01 00:00:00' as {{ timestamp_type }}) as tuva_last_run
 
   - name: test_cms_hcc_risk_score_adjustments_are_seed_driven
     description: >
@@ -192,22 +208,28 @@ unit_tests:
           select 'RA_SEED_DRIVEN' as person_id, 'medicare' as payer,
               'source-a' as data_source, '202601' as year_month
     expect:
-      rows:
-        - person_id: RA_SEED_DRIVEN
-          payer: medicare
-          data_source: source-a
-          factor_type: Disease
-          risk_model_code: CNA
-          enrollment_status: Continuing
-          enrollment_status_default: false
-          orec_default: false
-          v24_risk_score: null
-          v28_risk_score: 1.000
-          blended_risk_score: 1.000
-          normalized_risk_score: 0.500
-          payment_risk_score: 0.450
-          payment_risk_score_weighted_by_months: 0.450
-          member_months: 1
-          payment_year: 2026
-          collection_start_date: "2025-01-01"
-          collection_end_date: "2025-12-31"
+      format: sql
+      rows: |
+        {% set boolean_type = 'bit' if target.type in ['fabric', 'sqlserver'] else 'boolean' %}
+        {% set timestamp_type = 'datetime2' if target.type in ['fabric', 'sqlserver'] else 'timestamp' %}
+        {% set numeric_type = 'numeric' if target.type == 'bigquery' else ('double precision' if target.type == 'redshift' else 'decimal(28,6)') %}
+        select
+            'RA_SEED_DRIVEN' as person_id
+          , 'medicare' as payer
+          , 'source-a' as data_source
+          , 'Disease' as factor_type
+          , 'CNA' as risk_model_code
+          , 'Continuing' as enrollment_status
+          , cast(0 as {{ boolean_type }}) as enrollment_status_default
+          , cast(0 as {{ boolean_type }}) as orec_default
+          , cast(null as {{ numeric_type }}) as v24_risk_score
+          , cast(1.000 as {{ numeric_type }}) as v28_risk_score
+          , cast(1.000 as {{ numeric_type }}) as blended_risk_score
+          , cast(0.500 as {{ numeric_type }}) as normalized_risk_score
+          , cast(0.450 as {{ numeric_type }}) as payment_risk_score
+          , cast(0.450 as {{ numeric_type }}) as payment_risk_score_weighted_by_months
+          , 1 as member_months
+          , 2026 as payment_year
+          , cast('2025-01-01' as date) as collection_start_date
+          , cast('2025-12-31' as date) as collection_end_date
+          , cast('2026-01-01 00:00:00' as {{ timestamp_type }}) as tuva_last_run

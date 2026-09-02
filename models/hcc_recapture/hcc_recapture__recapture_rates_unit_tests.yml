@@ -33,10 +33,31 @@ unit_tests:
               'shared-person', 'shared-payer', 'source-b', 2026,
               cast('2025-01-10' as date), 'CMS-HCC-V28', '1', 'open',
               1, 0, 0, 'coded'
+    # SQL expectations avoid Redshift rounding an inferred scale-zero 0.5 to 1.
+    # Double precision normalizes Redshift's actual/expected UNION comparison;
+    # 0.5 and 0.0 are exact in binary, and no tolerance is introduced.
     expect:
-      rows:
-        - {payer: shared-payer, data_source: source-a, payment_year: 2026, payment_year_month: '2026-01-01', closed_hccs: 1, open_hccs: 1, total_hccs: 2, recapture_rate: 0.5}
-        - {payer: shared-payer, data_source: source-b, payment_year: 2026, payment_year_month: '2026-01-01', closed_hccs: 0, open_hccs: 1, total_hccs: 1, recapture_rate: 0.0}
+      format: sql
+      rows: |
+        {% set numeric_type = 'numeric' if target.type == 'bigquery' else ('double precision' if target.type == 'redshift' else 'decimal(28,6)') %}
+        select
+            'shared-payer' as payer
+          , 'source-a' as data_source
+          , 2026 as payment_year
+          , cast('2026-01-01' as date) as payment_year_month
+          , 1 as no_suspects_closed_hccs
+          , 1 as no_suspects_open_hccs
+          , 2 as no_suspects_total_hccs
+          , cast(0.5 as {{ numeric_type }}) as no_suspects_recapture_rate
+          , 1 as closed_hccs
+          , 1 as open_hccs
+          , 2 as total_hccs
+          , cast(0.5 as {{ numeric_type }}) as recapture_rate
+        union all
+        select
+            'shared-payer', 'source-b', 2026, cast('2026-01-01' as date)
+          , 0, 1, 1, cast(0.0 as {{ numeric_type }})
+          , 0, 1, 1, cast(0.0 as {{ numeric_type }})
 
   - name: test_hcc_recapture_annual_rates_are_fractional_and_source_scoped
     description: Annual rollups retain source and avoid integer-division truncation.
@@ -60,9 +81,26 @@ unit_tests:
           union all
           select 'shared-payer', 'source-b', 2026, 0, 1, 1, 0, 1, 1
     expect:
-      rows:
-        - {payer: shared-payer, data_source: source-a, payment_year: 2026, no_suspects_recapture_rate: 0.5, recapture_rate: 0.5}
-        - {payer: shared-payer, data_source: source-b, payment_year: 2026, no_suspects_recapture_rate: 0.0, recapture_rate: 0.0}
+      format: sql
+      rows: |
+        {% set numeric_type = 'numeric' if target.type == 'bigquery' else ('double precision' if target.type == 'redshift' else 'decimal(28,6)') %}
+        select
+            'shared-payer' as payer
+          , 'source-a' as data_source
+          , 2026 as payment_year
+          , 1 as no_suspects_closed_hccs
+          , 1 as no_suspects_open_hccs
+          , 2 as no_suspects_total_hccs
+          , cast(0.5 as {{ numeric_type }}) as no_suspects_recapture_rate
+          , 1 as closed_hccs
+          , 1 as open_hccs
+          , 2 as total_hccs
+          , cast(0.5 as {{ numeric_type }}) as recapture_rate
+        union all
+        select
+            'shared-payer', 'source-b', 2026
+          , 0, 1, 1, cast(0.0 as {{ numeric_type }})
+          , 0, 1, 1, cast(0.0 as {{ numeric_type }})
 
   - name: test_hcc_recapture_ytd_rates_are_fractional_and_source_scoped
     description: YTD window partitions retain source and use numeric division.
