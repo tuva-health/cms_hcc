@@ -1,0 +1,75 @@
+version: 2
+
+unit_tests:
+  - name: test_cms_hcc_int_eligible_conditions_excludes_null_normalized_codes
+    description: >-
+      An eligible claim retains its populated normalized ICD-10-CM condition
+      while excluding its null normalized condition. A claim with only a null
+      normalized condition contributes no row, even when its identifiers are
+      reused in another data source.
+    model: cms_hcc__int_eligible_conditions
+    config:
+      enabled: "{{ var('claims_enabled', False) | as_bool }}"
+    given:
+      - input: ref('cms_hcc__stg_core__medical_claim')
+        format: sql
+        rows: |
+          {% set string_type = 'string' if target.type in ['bigquery', 'databricks'] else 'varchar' %}
+          select
+              'shared-claim' as claim_id
+            , '1' as claim_line_number
+            , 'professional' as claim_type
+            , 'shared-payer' as payer
+            , 'shared-person' as person_id
+            , cast(null as {{ string_type }}) as rendering_npi
+            , cast('2024-06-01' as date) as claim_start_date
+            , cast('2024-06-01' as date) as claim_end_date
+            , cast(null as {{ string_type }}) as bill_type_code
+            , '99201' as hcpcs_code
+            , 'source-a' as data_source
+          union all
+          select
+              'shared-claim', '1', 'professional', 'shared-payer', 'shared-person',
+              cast(null as {{ string_type }}), cast('2024-06-01' as date),
+              cast('2024-06-01' as date), cast(null as {{ string_type }}),
+              '99201', 'source-b'
+      - input: ref('cms_hcc__stg_core__condition')
+        format: sql
+        rows: |
+          {% set string_type = 'string' if target.type in ['bigquery', 'databricks'] else 'varchar' %}
+          select
+              'shared-claim' as claim_id
+            , 'shared-payer' as payer
+            , 'shared-person' as person_id
+            , 'A001' as code
+            , 'icd-10-cm' as code_type
+            , 'source-a' as data_source
+          union all
+          select 'shared-claim', 'shared-payer', 'shared-person',
+              cast(null as {{ string_type }}), 'icd-10-cm', 'source-a'
+          union all
+          select 'shared-claim', 'shared-payer', 'shared-person',
+              cast(null as {{ string_type }}), 'icd-10-cm', 'source-b'
+      - input: ref('cms_hcc__cpt_hcpcs')
+        format: sql
+        rows: |
+          select 2024 as payment_year, '99201' as hcpcs_cpt_code
+      - input: ref('cms_hcc__int_monthly_collection_dates')
+        format: sql
+        rows: |
+          select
+              cast('2024-01-01' as date) as collection_start_date
+            , cast('2024-12-31' as date) as collection_end_date
+            , 2024 as collection_year
+            , 2025 as payment_year
+    expect:
+      rows:
+        - person_id: shared-person
+          claim_id: shared-claim
+          claim_line_number: '1'
+          payer: shared-payer
+          condition_code: A001
+          payment_year: 2025
+          collection_start_date: '2024-01-01'
+          collection_end_date: '2024-12-31'
+          data_source: source-a
