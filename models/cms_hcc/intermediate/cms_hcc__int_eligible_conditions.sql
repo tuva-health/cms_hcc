@@ -50,6 +50,9 @@ with medical_claims as (
         , data_source
     from {{ ref('cms_hcc__stg_core__condition') }}
     where code_type = 'icd-10-cm'
+      -- Core retains source diagnoses when normalization cannot resolve a code.
+      -- Only populated normalized codes can participate in HCC mapping.
+      and code is not null
 
 )
 
