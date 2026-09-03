@@ -29,7 +29,7 @@ from {{ ref('core__medication') }}
 
 {% elif var('claims_enabled', False) == true -%}
 
-{% if target.type == 'fabric' %}
+{% if target.type in ['fabric', 'sqlserver'] %}
     select top 0
           cast(null as {{ dbt.type_string() }} ) as person_id
         , {{ the_tuva_project.try_to_cast_date('null', 'YYYY-MM-DD') }} as dispensing_date

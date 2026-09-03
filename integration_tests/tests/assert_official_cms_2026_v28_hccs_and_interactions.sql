@@ -44,13 +44,13 @@ with expected_hccs as (
     union all
     (select 'unexpected_hcc' as failure, * from actual_hccs except select 'unexpected_hcc', * from expected_hccs)
     union all
-    (select 'missing_interaction' as failure, person_id, hcc_code_1 || '+' || hcc_code_2 as hcc_code from expected_interactions
+    (select 'missing_interaction' as failure, person_id, {{ the_tuva_project.concat_custom(["hcc_code_1", "'+'", "hcc_code_2"]) }} as hcc_code from expected_interactions
      except
-     select 'missing_interaction', person_id, hcc_code_1 || '+' || hcc_code_2 from actual_interactions)
+     select 'missing_interaction', person_id, {{ the_tuva_project.concat_custom(["hcc_code_1", "'+'", "hcc_code_2"]) }} from actual_interactions)
     union all
-    (select 'unexpected_interaction' as failure, person_id, hcc_code_1 || '+' || hcc_code_2 as hcc_code from actual_interactions
+    (select 'unexpected_interaction' as failure, person_id, {{ the_tuva_project.concat_custom(["hcc_code_1", "'+'", "hcc_code_2"]) }} as hcc_code from actual_interactions
      except
-     select 'unexpected_interaction', person_id, hcc_code_1 || '+' || hcc_code_2 from expected_interactions)
+     select 'unexpected_interaction', person_id, {{ the_tuva_project.concat_custom(["hcc_code_1", "'+'", "hcc_code_2"]) }} from expected_interactions)
 )
 
 select * from failures

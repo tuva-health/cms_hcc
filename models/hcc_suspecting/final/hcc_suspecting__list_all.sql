@@ -110,7 +110,7 @@ select
     , cast(reason as {{ dbt.type_string() }}) as reason
     , cast(contributing_factor as {{ dbt.type_string() }}) as contributing_factor
     , cast(suspect_date as date) as suspect_date
-        {% if target.type == 'fabric' %}
+        {% if target.type in ['fabric', 'sqlserver'] %}
             , cast(current_year_billed as bit) as current_year_billed
         {% else %}
             , cast(current_year_billed as boolean) as current_year_billed

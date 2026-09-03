@@ -266,7 +266,7 @@ with members as (
         , cast(orec as {{ dbt.type_string() }}) as orec
         , cast(institutional_status as {{ dbt.type_string() }}) as institutional_status
         , cast(originally_disabled_flag as {{ dbt.type_string() }}) as originally_disabled_flag
-        {% if target.type == 'fabric' %}
+        {% if target.type in ['fabric', 'sqlserver'] %}
             , cast(enrollment_status_default as bit) as enrollment_status_default
             , cast(medicaid_dual_status_default as bit) as medicaid_dual_status_default
             , cast(orec_default as bit) as orec_default

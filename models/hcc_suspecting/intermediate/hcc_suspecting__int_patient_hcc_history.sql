@@ -180,7 +180,7 @@ with all_conditions as (
         , cast(first_recorded as date) as first_recorded
         , cast(last_recorded as date) as last_recorded
         , cast(last_billed as date) as last_billed
-        {% if target.type == 'fabric' %}
+        {% if target.type in ['fabric', 'sqlserver'] %}
             , cast(current_year_billed as bit) as current_year_billed
         {% else %}
             , cast(current_year_billed as boolean) as current_year_billed

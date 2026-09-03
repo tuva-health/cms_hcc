@@ -217,7 +217,7 @@ with egfr_labs as (
         , cast(model_version as {{ dbt.type_string() }}) as model_version
         , cast(hcc_code as {{ dbt.type_string() }}) as hcc_code
         , cast(hcc_description as {{ dbt.type_string() }}) as hcc_description
-        {% if target.type == 'fabric' %}
+        {% if target.type in ['fabric', 'sqlserver'] %}
             , cast(current_year_billed as bit) as current_year_billed
         {% else %}
             , cast(current_year_billed as boolean) as current_year_billed

@@ -249,7 +249,7 @@ with stg_eligibility as (
             when add_enrollment.enrollment_status is null then 'New'
             else add_enrollment.enrollment_status
           end as enrollment_status
-        {% if target.type == 'fabric' %}
+        {% if target.type in ['fabric', 'sqlserver'] %}
             , case
                 when add_enrollment.enrollment_status is null and stg_eligibility.enrollment_status is null then 1
                 else 0
@@ -399,7 +399,7 @@ with stg_eligibility as (
           end as institutional_status
         , enrollment_status_default
         , case
-            {% if target.type == 'fabric' %}
+            {% if target.type in ['fabric', 'sqlserver'] %}
                 when dual_status_code is null then 1
                 else 0
             {% else %}
@@ -409,7 +409,7 @@ with stg_eligibility as (
           end as medicaid_dual_status_default
         /* Setting default true when OREC or Medicare Status is ESRD, or null */
         , case
-            {% if target.type == 'fabric' %}
+            {% if target.type in ['fabric', 'sqlserver'] %}
                 when original_reason_entitlement_code in ('2') then 1
                 when original_reason_entitlement_code is null and medicare_status_code in ('31') then 1
                 when coalesce(original_reason_entitlement_code,medicare_status_code) is null then 1
@@ -423,7 +423,7 @@ with stg_eligibility as (
           end as orec_default
         /* Default true when long_term_institutional_flag is not populated */
         , case
-            {% if target.type == 'fabric' %}
+            {% if target.type in ['fabric', 'sqlserver'] %}
                 when long_term_institutional_flag is null and enrollment_status != 'Institutional' then 1
                 else 0
             {% else %}
@@ -450,7 +450,7 @@ with stg_eligibility as (
         , cast(institutional_status as {{ dbt.type_string() }}) as institutional_status
         , cast(originally_disabled_flag as {{ dbt.type_string() }}) as originally_disabled_flag
         , cast(institutional_snp_flag as {{ dbt.type_int() }}) as institutional_snp_flag
-        {% if target.type == 'fabric' %}
+        {% if target.type in ['fabric', 'sqlserver'] %}
             , cast(enrollment_status_default as bit) as enrollment_status_default
             , cast(medicaid_dual_status_default as bit) as medicaid_dual_status_default
             , cast(orec_default as bit) as orec_default

@@ -1,5 +1,5 @@
 select
-      cast(ID || '-' || ICD10 as varchar) as claim_id
+      cast({{ the_tuva_project.concat_custom(["ID", "'-'", "ICD10"]) }} as varchar) as claim_id
     , cast(ID as varchar) as person_id
     , cast('medicare' as varchar) as payer
     , cast('2025-12-15' as date) as recorded_date

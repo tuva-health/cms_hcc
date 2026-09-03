@@ -206,7 +206,7 @@ with demographic_factors as (
         , cast(data_source as {{ dbt.type_string() }}) as data_source
         , cast(enrollment_status as {{ dbt.type_string() }}) as enrollment_status
         , cast(risk_model_code as {{ dbt.type_string() }}) as risk_model_code
-        {% if target.type == 'fabric' %}
+        {% if target.type in ['fabric', 'sqlserver'] %}
             , cast(enrollment_status_default as bit) as enrollment_status_default
             , cast(medicaid_dual_status_default as bit) as medicaid_dual_status_default
             , cast(orec_default as bit) as orec_default

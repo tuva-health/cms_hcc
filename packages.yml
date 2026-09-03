@@ -2,7 +2,7 @@ packages:
   # Pre-1.0 integration pin. Replace with the released Core 1.0 version range
   # during release preparation.
   - git: "https://github.com/tuva-health/tuva-core.git"
-    revision: b6cda907b3694e58117861dee9a986f17c25cc49
+    revision: 37a08d48cd41a36106526b33a1b53d30f32dc961
   - package: dbt-labs/dbt_utils
     version:
       - ">=1.3.2"

@@ -30,7 +30,7 @@ from {{ ref('core__observation') }}
 
 {% elif var('claims_enabled', False) == true -%}
 
-{% if target.type == 'fabric' %}
+{% if target.type in ['fabric', 'sqlserver'] %}
     select top 0
       cast(null as {{ dbt.type_string() }} ) as person_id
     , cast(null as {{ dbt.type_string() }} ) as payer
