@@ -16,7 +16,7 @@ select
     , suspect_date
     , tuva_last_run
 from {{ ref('hcc_suspecting__list_all') }}
-    {% if target.type == 'fabric' %}
+    {% if target.type in ['fabric', 'sqlserver'] %}
         where (current_year_billed = 0
             or current_year_billed is null)
     {% else %}

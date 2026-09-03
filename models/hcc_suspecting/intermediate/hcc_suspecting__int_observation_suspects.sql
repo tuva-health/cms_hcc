@@ -36,7 +36,7 @@ with conditions as (
     select
           person_id
         , observation_date
-        {% if target.type in ['fabric', 'duckdb', 'databricks'] %}
+        {% if target.type in ['fabric', 'sqlserver', 'duckdb', 'databricks'] %}
          , TRY_CAST(result AS {{ dbt.type_numeric() }}) AS result
         {% else %}
         , CAST(result as {{ dbt.type_numeric() }}) as result
@@ -464,7 +464,7 @@ with conditions as (
         , CAST(model_version as {{ dbt.type_string() }}) as model_version
         , CAST(hcc_code as {{ dbt.type_string() }}) as hcc_code
         , CAST(hcc_description as {{ dbt.type_string() }}) as hcc_description
-        {% if target.type == 'fabric' %}
+        {% if target.type in ['fabric', 'sqlserver'] %}
             , CAST(current_year_billed as bit) as current_year_billed
         {% else %}
             , CAST(current_year_billed as boolean) as current_year_billed

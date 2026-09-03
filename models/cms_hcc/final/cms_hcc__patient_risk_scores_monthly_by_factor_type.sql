@@ -237,7 +237,7 @@ group by
         , cast(factor_type as {{ dbt.type_string() }}) as factor_type
         , cast(risk_model_code as {{ dbt.type_string() }}) as risk_model_code
         , cast(enrollment_status as {{ dbt.type_string() }}) as enrollment_status
-        {% if target.type == 'fabric' %}
+        {% if target.type in ['fabric', 'sqlserver'] %}
             , cast(enrollment_status_default as bit) as enrollment_status_default
             , cast(orec_default as bit) as orec_default
         {% else %}

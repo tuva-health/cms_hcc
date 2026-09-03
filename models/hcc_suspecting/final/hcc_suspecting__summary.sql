@@ -11,7 +11,7 @@ with patients as (
         , data_source
         , sex
         , birth_date
-        {% if target.type == 'fabric' %}
+        {% if target.type in ['fabric', 'sqlserver'] %}
             , floor({{ datediff('birth_date', 'GETDATE()', 'hour') }} / 8766.0) as age
         {% else %}
             , floor({{ datediff('birth_date', 'current_date', 'hour') }} / 8766.0) as age
